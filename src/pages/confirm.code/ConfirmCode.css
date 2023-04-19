@@ -1,0 +1,48 @@
+.confirm-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.confirm-code  .container{
+    width: 50%;
+}
+.confirm-code .container h1{
+    color: var(--purple);
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.confirm-code .container h2{
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+/* form style */
+.confirm-code .auth-form .code-input {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 10px;
+    border: 1px solid var(--second-light);
+    border-radius: 8px 8px;
+    margin-bottom: 50px;
+}
+.confirm-code .auth-form form input[type = "tel"]{
+    width: 50px;
+    padding: 5px;
+    border: none;
+    border-radius: 0%;
+    border-bottom: 2px solid var(--second-light);
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+@media (max-width: 991px){
+    .confirm-code  .container{
+        width: 100%;
+    }
+}

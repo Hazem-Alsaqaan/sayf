@@ -56,6 +56,8 @@
 .auth-form form {
     display: flex;
     flex-direction: column;
+} 
+.login .container .auth-form form {
     margin-bottom: 20px;
 }
 .auth-form form label{
