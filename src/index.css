@@ -1,0 +1,25 @@
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+:root{
+    --purple: #5500A1;
+    --black: #000000;
+    --white: #ffffff;
+    --light: #F7F7F7;
+    --second-light: rgba(0, 0, 0, 0.18);
+}
+body{
+    margin: 0px;
+    font-family: 'Almarai', sans-serif;
+    direction: rtl;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
