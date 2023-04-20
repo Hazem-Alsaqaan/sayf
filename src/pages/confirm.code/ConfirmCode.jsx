@@ -3,6 +3,7 @@ import "./ConfirmCode.css"
 
 const ConfirmCode =()=>{
     const myMail ="hazem@gmail.com"
+
     return(
         <>
             <section className="confirm-code">

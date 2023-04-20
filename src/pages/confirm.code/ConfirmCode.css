@@ -29,6 +29,7 @@
     border: 1px solid var(--second-light);
     border-radius: 8px 8px;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 .confirm-code .auth-form form input[type = "tel"]{
     width: 50px;
@@ -44,5 +45,29 @@
 @media (max-width: 991px){
     .confirm-code  .container{
         width: 100%;
+    }
+}
+@media (max-width: 771px){
+    .confirm-code .container h1{
+        font-size: 35px;
+    }
+    .confirm-code .container h2{
+        font-size: 30px;
+    }
+}
+@media (max-width: 435px){
+    .confirm-code .container h1{
+        font-size: 30px;
+    }
+    .confirm-code .container h2{
+        font-size: 20px;
+    }
+    .confirm-code .container .auth-form label{
+        font-size: 16px;
+    }
+}
+@media (max-width: 330px){
+    .confirm-code .auth-form form input[type = "tel"]{
+        width: 25px;
     }
 }

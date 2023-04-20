@@ -66,14 +66,14 @@
     margin: 7px 0px;
 }
 .auth-form form input {
-    padding: 10px;
+    padding: 7px;
     border: 1px solid var(--second-light);
     border-radius: 8px 8px;
 }
 .auth-form form input:focus{
     outline: none;
 }
-.auth-form form input[type="email"]{
+.login .auth-form form input[type="email"]{
     margin-bottom: 15px;
 }
 .auth-form form button{

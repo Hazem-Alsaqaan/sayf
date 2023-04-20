@@ -1,0 +1,68 @@
+.register{
+    background-color: var(--white);
+}
+.register .container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.register-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.register .container .landing{
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.register .container .landing .text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.register .container .landing .text h1{
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 40px;
+}
+.register .container .landing .text p{
+    font-weight: 700;
+    font-size: 35px;
+    white-space:nowrap;
+}
+.register .container .landing .image {
+    max-width: 584px;
+    max-height: 373px;
+    overflow: hidden;
+}
+.register .container .landing .image img{
+    max-width: 100%;
+    max-height: 100%;
+}
+/* auth form */
+.register .auth-form form input {
+    margin-bottom: 10px;
+}
+
+/* media screen */
+@media (max-width: 1116px) {
+    .register .container .register-content .landing .text p{
+        font-size: 25px;
+    }
+}
+@media (max-width: 360px) {
+    .register .container .register-content .landing .text p{
+        font-size: 20px;
+    }
+    .register .container .auth-form form label,
+    .register .container .auth-form form button {
+        font-size: 16px;
+    }
+}
