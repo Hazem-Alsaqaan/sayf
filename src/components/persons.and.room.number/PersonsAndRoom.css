@@ -1,0 +1,67 @@
+
+.selection-component {
+    position: relative;
+    margin: 10px;
+}
+.selection-component .selection {
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 260px;
+    margin-bottom: 3px;
+    border-radius: 8px 8px;
+}
+.selection-component .selection .fa-user{
+    color: var(--black);
+    margin: 0px 5px;
+}
+.selection-component .selection .fa-chevron-down{
+    color: #999;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+
+
+/* selection list */
+.selection-component .select-person-room{
+    background-color: var(--white);
+    min-width: 260px;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    border: 1px solid rgba(85, 0, 162, 0.11);
+    border-radius: 5px 5px;
+    z-index: 10;
+}
+.selection-component .select-person-room section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light);
+}
+.selection-component .select-person-room section .select-number,
+.selection-component .select-person-room section p{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selection-component .select-person-room section .select-number span{
+    margin: 0px 15px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.selection-component .select-person-room section .select-number svg{
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 26px;
+    border: 1px solid #999;
+    padding: 3px;
+    border-radius: 5px 5px;
+}

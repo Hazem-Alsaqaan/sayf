@@ -1,0 +1,47 @@
+.search-data .container {
+    background: rgba(255, 255, 255, 0.44);
+    box-shadow: 0px 4px 4px rgba(180, 180, 180, 0.4);
+    border-radius: 12px;
+    padding: 25px;
+}
+.search-data .container form input {
+    border-radius: 8px 8px;
+}
+/* start top part */
+.search-data .container form .top-part{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.search-data .container form .top-part input[type=search]{
+    margin: 10px;
+    padding: 10px 7px;
+}
+/* start bottom part */
+.search-data .container form .bottom-part{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.search-data .container form .bottom-part input[type=date] {
+    text-align: right;
+    color: rgba(150, 150, 150, 0.637);
+    border: none;
+    padding: 10px 7px;
+    display: flex;
+    margin: 10px;
+}
+
+.search-data .container form .bottom-part input[type="date"]:before {
+    color: var(--black);
+    content: attr(placeholder) !important;
+    white-space: nowrap;
+}
+.search-data .container form .bottom-part button.btn-primary {
+    background-color: var(--purple);
+    flex: 1;
+    border: 1px solid var(--purple);
+    font-weight: 700;
+    font-size: 28px;
+    margin: 10px;
+}

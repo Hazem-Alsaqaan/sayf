@@ -1,0 +1,85 @@
+
+.header {
+    padding: 25px 20px;
+    width: 100%;
+}
+.header .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .container-fluid nav ul {
+    display: flex;
+    margin: 10px;
+}
+.header .container-fluid nav ul li a {
+    padding: 10px;
+    color: var(--white);
+    font-size: 25px;
+    font-weight: 700;
+}
+.header .container-fluid nav ul li a.active{
+    color: var(--purple);
+}
+.header .container-fluid .header-btn {
+    display: flex;
+}
+.header .container-fluid .header-btn .btn {
+    margin: 0px 5px;
+    white-space: nowrap;
+    width: 172px;
+    height: 63px;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header .container-fluid .header-btn .btn svg {
+    width: 26px;
+    height: 26px;
+    margin: 7px;
+}
+.header .container-fluid .header-btn .btn-primary {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
+/* start media screen */
+@media (max-width: 791px){
+    .header .container-fluid nav ul li a {
+        font-size: 18px;
+    }
+    .header .container-fluid .header-btn .btn {
+        margin: 0px 5px;
+        width: 130px;
+        height: 40px;
+        font-size: 14px;
+    }
+    .header .container-fluid .header-btn .btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+@media (max-width: 610px){
+    .header .container-fluid nav ul li a {
+        font-size: 14px;
+        padding: 6px;
+    }
+    .header .container-fluid .header-btn .btn {
+        margin: 0px 5px;
+        width: 110px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .header .container-fluid .header-btn .btn svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+@media (max-width: 510px){
+    .header .container-fluid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

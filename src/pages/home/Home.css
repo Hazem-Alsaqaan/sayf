@@ -1,0 +1,14 @@
+
+.home .home-page-landing {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("https://res.cloudinary.com/dkhu7rt8n/image/upload/v1681155504/sayf/landing_xlcptf.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.home .home-page-landing .landing-content{
+    height: calc(100vh - 113px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

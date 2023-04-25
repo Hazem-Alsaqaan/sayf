@@ -57,7 +57,7 @@ const Register = ()=>{
                             </form>
                             <div className="new-account">
                                 <span>لديك حساب بالفعل؟</span>
-                                <Link to="/">تسجيل الدخول</Link>
+                                <Link to="/login">تسجيل الدخول</Link>
                             </div>
                             <div className="fire-base">
                                 <p>أو قم بالتسجيل التالي</p>

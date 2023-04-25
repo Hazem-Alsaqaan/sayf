@@ -1,0 +1,8 @@
+.search-form{
+    flex: 1;
+    border: none;
+    padding: 7px;
+}
+.search-form:focus{
+    outline: none;
+}
