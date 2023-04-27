@@ -4,6 +4,8 @@ import Header from "../../components/header/Header";
 import SearchData from "../../components/search.data/SearchData";
 import CitiesLocations from "../../components/cities.loctions/CitiesLocations";
 import MostBookedApartments from "../../components/most.booked.apartments/MostBookedApartments";
+import LatestApartments from "../../components/latest.apartments/LatestApartments";
+import Footer from "../../components/footer/Footer";
 
 const Home =()=>{
     return(
@@ -17,6 +19,8 @@ const Home =()=>{
                 </section>
                 <CitiesLocations/>
                 <MostBookedApartments/>
+                <LatestApartments/>
+                <Footer/>
             </div>
         </>
     )

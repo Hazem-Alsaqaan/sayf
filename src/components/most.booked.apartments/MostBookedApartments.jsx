@@ -1,4 +1,9 @@
 import React from "react";
+import {Link} from "react-router-dom"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
+import {faHeart} from "@fortawesome/free-regular-svg-icons"
+import "./MostBookedApartments.css"
 
 
 const MostBookedApartments = ()=>{
@@ -35,16 +40,27 @@ const MostBookedApartments = ()=>{
     return (
         <>
             <section className="most-booked">
-                <div className="container-fluid">
+                <div className="container">
                     <h1>أكثر الشقق حجزا لهذا الشهر</h1>
-                    <div>
+                    <div className="boxes-container">
                         {
                             mostBooked.map((item)=>(
                                 <div key={item.id} className="most-booked-box">
-                                    <img src={item.image_url} alt=""/>
+                                    <div className="image-box">
+                                        <FontAwesomeIcon icon={faHeart}/>
+                                        <img src={item.image_url} alt=""/>
+                                        <span className="star-icon">
+                                            5.0
+                                            <FontAwesomeIcon icon={faStar}/>
+                                        </span>
+                                    </div>
                                     <h4>{item.description}</h4>
-                                    <p>{item.rate}تقييم</p>
-                                    <p>{item.location}</p>
+                                    <p><span>600 \ اليوم</span>({item.rate}تقييم)</p>
+                                    <p>
+                                        <FontAwesomeIcon icon={faLocationDot}/>
+                                        {item.location}
+                                    </p>
+                                    <Link className="btn btn-primary">احجز الأن</Link>
                                 </div>
                             ))
                         }

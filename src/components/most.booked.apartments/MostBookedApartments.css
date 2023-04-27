@@ -1,0 +1,110 @@
+
+.most-booked  {
+    padding: 0px 35px;
+}
+.most-booked .container h1{
+    font-weight: 700;
+    font-size: 40px;
+}
+.most-booked .boxes-container {
+    padding: 80px 0px 30px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40% , 1fr));
+    gap: 50px 30px;
+}
+.most-booked .most-booked-box {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+}
+.most-booked .most-booked-box .image-box {
+    position: relative;
+}
+.most-booked .most-booked-box .image-box img{
+    width: 100%;
+}
+.most-booked .most-booked-box .image-box svg.fa-heart {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+.most-booked .most-booked-box .image-box svg.fa-heart:hover {
+    font-size: 25px;
+}
+.most-booked .most-booked-box .image-box .star-icon {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 700;
+}
+.most-booked .most-booked-box .image-box .star-icon svg.fa-star{
+    color: var(--white);
+    font-size: 22px;
+    margin-right: 10px;
+}
+.most-booked .most-booked-box h4,
+.most-booked .most-booked-box p {
+    margin-top: 20px;
+}
+.most-booked .most-booked-box h4 {
+    font-size: 25px;
+}
+.most-booked .most-booked-box p{
+    font-size: 22px;
+}
+
+.most-booked .most-booked-box p:first-of-type{
+    font-weight: 700;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.77);
+}
+.most-booked .most-booked-box p span{
+    margin-left: 20px;
+    font-size: 22px;
+    color: var(--purple);
+}
+.most-booked .most-booked-box p svg{
+    margin-left: 10px;
+    font-size: 22px;
+}
+.most-booked .most-booked-box a.btn-primary {
+    margin-top: 20px;
+    font-size: 28px;
+    height: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background-color: var(--purple);
+    border: 1px solid var(--purple);
+}
+
+/* start media screen */
+@media(max-width: 991px){
+    .most-booked .boxes-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px , 1fr));
+        gap: 30px;
+    }
+}
+@media(max-width: 471px){
+    .most-booked {
+        padding: 0px;
+    }
+    .most-booked .boxes-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px , 1fr));
+        gap: 30px;
+    }
+    .most-booked .container h1{
+        font-size: 28px;
+    }
+}

@@ -8,7 +8,7 @@ const Header = ()=>{
     return(
         <>
             <section className="header">
-                <div className="container-fluid">
+                <div className="container">
                     <nav>
                         <ul>
                             <li>

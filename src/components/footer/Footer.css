@@ -1,0 +1,194 @@
+.footer {
+    background-color: var(--purple);
+}
+.footer .container {
+    width: 100%;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+/* start right side */
+.footer .container .right-side nav ul li {
+    padding-bottom: 15px;
+}
+.footer .container .right-side nav ul li a {
+    color: var(--white);
+    font-size: 25px;
+    white-space: nowrap;
+}
+/* start center side */
+.footer .container .center-side {
+    padding: 0px 50px;
+    flex: 1;
+}
+.footer .container .center-side h2 {
+    font-size: 35px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 25px;
+
+}
+.footer .container .center-side p {
+    font-size: 24px;
+    color: var(--white);
+}
+/* start left side */
+.footer .container .left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer .container .left-side .top-side {
+    margin-bottom: 20px;
+}
+.footer .container .left-side .top-side .btn-white {
+    background-color: var(--white);
+    border-radius: 8px 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition-duration: .3s;
+}
+.footer .container .left-side .top-side .btn-white:hover {
+    background-color: #ccc;
+}
+.footer .container .left-side .top-side .btn-white .text p{
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    text-align: end;
+}
+.footer .container .left-side .top-side .btn-white .text h4{
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    text-align: end;
+}
+.footer .container .left-side .top-side .btn-white svg{
+    color: var(--purple);
+    font-size: 50px;
+    margin-right: 15px;
+}
+
+/* left side bottom side */
+.footer .container .left-side .bottom-side {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer .container .left-side .bottom-side svg{
+    color: var(--white);
+    font-size: 50px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+.footer .container .left-side .bottom-side svg:hover {
+    color: #ccc;
+}
+
+/* start media screen */
+@media(max-width: 992px){
+    /* right side */
+    .footer .container .right-side nav ul li a {
+        font-size: 18px;
+    }
+    /* center side */
+    .footer .container .center-side {
+        padding: 0px 30px;
+    }
+    .footer .container .center-side h2 {
+        font-size: 22px;
+    }
+    .footer .container .center-side p {
+        font-size: 16px;
+    }
+    /* left side */
+    .footer .container .left-side .top-side .btn-white .text p{
+        font-size: 12px;
+    }
+    .footer .container .left-side .top-side .btn-white .text h4{
+        font-size: 18px;
+    }
+    .footer .container .left-side .top-side .btn-white svg{
+        font-size: 35px;
+    }
+    .footer .container .left-side .bottom-side svg{
+        font-size: 35px;
+    }
+}
+@media(max-width: 561px){
+    /* right side */
+    .footer .container .right-side nav ul li a {
+        font-size: 16px;
+    }
+    /* center side */
+    .footer .container .center-side {
+        padding: 0px 20px;
+    }
+    .footer .container .center-side h2 {
+        font-size: 18px;
+    }
+    .footer .container .center-side p {
+        font-size: 14px;
+    }
+    /* left side */
+    .footer .container .left-side .top-side .btn-white .text p{
+        font-size: 10px;
+    }
+    .footer .container .left-side .top-side .btn-white .text h4{
+        font-size: 14px;
+    }
+    .footer .container .left-side .top-side .btn-white svg{
+        font-size: 25px;
+        margin-right: 7px;
+    }
+    .footer .container .left-side .bottom-side svg{
+        font-size: 25px;
+    }
+}
+@media(max-width: 471px){
+    /* right side */
+    .footer .container .right-side nav ul li a {
+        font-size: 14px;
+    }
+    /* center side */
+    .footer .container .center-side {
+        padding: 0px 15px;
+    }
+    .footer .container .center-side h2 {
+        font-size: 16px;
+    }
+    .footer .container .center-side p {
+        font-size: 12px;
+    }
+    
+}
+@media(max-width: 399px){
+    /* right side */
+    .footer .container .right-side nav ul li {
+        padding-bottom: 7px;
+    }
+    .footer .container .right-side nav ul li a {
+        font-size: 12px;
+    }
+    /* center side */
+    .footer .container .center-side {
+        padding: 0px 10px;
+    }
+    .footer .container .center-side h2 {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .footer .container .center-side p {
+        font-size: 10px;
+    }
+}

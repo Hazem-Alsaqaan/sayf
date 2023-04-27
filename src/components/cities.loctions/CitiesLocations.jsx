@@ -53,7 +53,7 @@ const CitiesLocations = ()=>{
     return(
         <>
             <section className="cities-locations">
-                    <div className="text">
+                    <div className="text container">
                         <h1>اماكن تواجد الشقق</h1>
                         <div className="indicator">
                             <FontAwesomeIcon icon={faChevronRight}
