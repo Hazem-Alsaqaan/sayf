@@ -1,8 +1,9 @@
 import React from "react";
 import "./SpecificationsConditions.css"
-import locationIcon from "../../assets/352521_location_on_icon 1.svg"
 import unitSizeIcon from "../../assets/809090_architecture_family_home_house_residential_icon 1.svg"
 import houseIcon from "../../assets/6714576_family_home_house_insurance_investment_icon 1.svg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const SpecificationsConditions = ()=>{
     return(
@@ -12,7 +13,7 @@ const SpecificationsConditions = ()=>{
                 <h2 className="title">المواصفات</h2>
                 <div className="specifications-data">
                     <div>
-                        <img src={locationIcon} alt=""/>
+                        <FontAwesomeIcon icon={faLocationDot}/>
                         <span>القاهرة - مصر</span>
                     </div>
                     <div>

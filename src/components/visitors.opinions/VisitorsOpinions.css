@@ -19,6 +19,10 @@
     background-color: var(--purple);
     border-radius: 8px;
 }
+.visitors-opinions .top-side span svg {
+    font-size: 22px;
+    color: var(--white);
+}
 .visitors-opinions .top-side span p {
     color: var(--white);
     font-size: 22px;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./VisitorsOpinions.css"
-import starIcon from "../../assets/star.svg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 
 const VisitorsOpinions = ()=>{
@@ -10,7 +11,7 @@ const VisitorsOpinions = ()=>{
                 <div className="top-side">
                     <h2>آراء الزوار</h2>
                     <span>
-                        <img src={starIcon} alt=""/>
+                        <FontAwesomeIcon icon={faStar}/>
                         <p>{`5.0 (12 تقييم)`}</p>
                     </span>
                 </div>
