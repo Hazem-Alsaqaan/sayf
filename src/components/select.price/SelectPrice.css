@@ -56,3 +56,10 @@
     border: 1px solid var(--purple);
     font-size: 20px;
 }
+
+/* start media screen */
+@media(max-width: 350px){
+    .select-price .selection span{
+        font-size: 14px;
+    }
+}

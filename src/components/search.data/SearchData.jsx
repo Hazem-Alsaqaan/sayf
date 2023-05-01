@@ -1,15 +1,22 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import "./SearchData.css"
 import PersonsAndRoom from "../persons.and.room.number/PersonsAndRoom";
 import Search from "../search/Search";
 import SelectPrice from "../select.price/SelectPrice";
 
-const SearchData = ()=>{
+const SearchData = ({getSearchValue})=>{
+    
+    let resultSearchData = true
+    
+    const handleSearchSubmit = (e)=>{
+        e.preventDefault()
+        getSearchValue(resultSearchData)
+    }
     return(
         <>
             <section className="search-data">
                 <div className="container">
-                    <form>
+                    <form onSubmit={(e)=>handleSearchSubmit(e)}>
                         <div className="top-part">
                             <Search/>
                             <PersonsAndRoom/>
@@ -35,4 +42,4 @@ const SearchData = ()=>{
         </>
     )
 }
-export default SearchData
+export default memo(SearchData)

@@ -65,3 +65,16 @@
     padding: 3px;
     border-radius: 5px 5px;
 }
+
+/* start media screen */
+@media(max-width: 350px){
+    .selection-component .selection {
+        min-width: 150px;
+    }
+    .selection-component .select-person-room{
+        min-width: 150px;
+    }
+    .selection-component .selection .selection-title span{
+        font-size: 14px;
+    }
+}

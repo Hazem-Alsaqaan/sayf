@@ -11,6 +11,7 @@ html{
     --black: #000000;
     --white: #ffffff;
     --light: #F7F7F7;
+    --red: #E20D0D;
     --second-light: rgba(0, 0, 0, 0.18);
 }
 body{

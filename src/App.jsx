@@ -9,8 +9,10 @@ import Home from "./pages/home/Home"
 import MyBookings from "./pages/my.bookings/MyBookings"
 import ShowYourApartment from "./pages/show.your.apartment/ShowYourApartment"
 import MyFavourite from "./pages/my.favourite/MyFavourite"
+import ShowUnit from "./pages/show.unit/ShowUnit"
 
 function App() {
+
   return (
     <div className="App">
       <Routes>
@@ -23,6 +25,7 @@ function App() {
         <Route path="/forgetPassword" element={<Forgetpassword/>}/>
         <Route path="/confirmCode" element={<ConfirmCode/>}/>
         <Route path="/confirmPassword" element={<ConfirmPassword/>}/>
+        <Route path="/showUnit/:unitId" element={<ShowUnit/>}/>
       </Routes>
     </div>
   )

@@ -1,13 +1,13 @@
 import React from "react";
-import "./Header.css"
-import { Link, NavLink } from "react-router-dom"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faCirclePlus, faCircleUser} from "@fortawesome/free-solid-svg-icons"
+import "./WhiteHeader.css"
+import { Link, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ()=>{
+const WhiteHeader = ()=>{
     return(
         <>
-            <section className="header">
+            <section className="white-header">
                 <div className="container">
                     <nav>
                         <ul>
@@ -23,13 +23,13 @@ const Header = ()=>{
                             </li>
                         </ul>
                     </nav>
-                    <div className="header-btn">
+                    <div className="white-header-btn">
                         <Link to="/showYourApartment" className="btn btn-primary">
                             <FontAwesomeIcon icon={faCirclePlus}/>
                             اعرض شقتك
                         </Link>
 
-                        <Link to="/login" className="btn btn-outline-light">
+                        <Link to="/login" className="btn btn-light">
                             <FontAwesomeIcon icon={faCircleUser}/>
                             تسجيل الدخول
                         </Link>
@@ -40,4 +40,4 @@ const Header = ()=>{
     )
 }
 
-export default Header
+export default WhiteHeader

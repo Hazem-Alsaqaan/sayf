@@ -1,0 +1,81 @@
+
+.single-box {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px 5px 0px 0px;
+    overflow: hidden;
+}
+.single-box .date-booking-title {
+    color: var(--purple);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.single-box .image-box {
+    position: relative;
+}
+.single-box .image-box img{
+    width: 100%;
+}
+.single-box .image-box svg.fa-heart {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: rgba(255, 255, 255, 0.479);
+    font-size: 22px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+.single-box .image-box svg.fa-heart:hover {
+    color: var(--red);
+}
+.single-box .image-box .star-icon {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 700;
+}
+.single-box .image-box .star-icon svg.fa-star{
+    color: var(--white);
+    font-size: 22px;
+    margin-right: 10px;
+}
+.single-box h4,
+.single-box p {
+    margin-top: 15px;
+}
+.single-box h4 {
+    font-size: 25px;
+}
+.single-box p.rate{
+    font-weight: 700;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.77);
+}
+.single-box p.rate span{
+    margin-left: 20px;
+    font-size: 22px;
+    color: var(--purple);
+    white-space: nowrap;
+}
+.single-box p.location {
+    font-size: 22px;
+}
+.single-box p.location svg{
+    margin-left: 10px;
+    font-size: 22px;
+}
+.single-box a.btn-primary {
+    margin-top: 20px;
+    font-size: 28px;
+    height: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background-color: var(--purple);
+    border: 1px solid var(--purple);
+}

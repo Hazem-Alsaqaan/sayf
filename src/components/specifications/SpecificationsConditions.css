@@ -1,0 +1,77 @@
+
+.specifications-conditions {
+    display: flex;
+    flex-wrap: wrap;
+}
+.specifications {
+    flex: 1;
+    padding: 50px 0px 50px 50px;
+}
+.specifications .title {
+    font-weight: 700;
+    font-size: 35px;
+    color: var(--purple);
+    margin-bottom: 0px;
+}
+.specifications .specifications-data {
+    margin: 40px 0px; 
+}
+.specifications .specifications-data div {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.specifications .specifications-data div span {
+    padding-right: 10px;
+    font-size: 22px;
+}
+/* description */
+.specifications .description  {
+    background: rgba(237, 237, 237, 0.66);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 25px 20px;
+}
+.specifications .description h3 {
+    font-weight: 700;
+    font-size: 25px;
+}
+.specifications .description p {
+    font-size: 22px;
+}
+
+/* condition section */
+.conditions {
+    flex: 1;
+    padding: 50px 50px 50px 0px;
+    border-right: 1px solid rgba(0, 0, 0, 0.22);;
+}
+.conditions .title {
+    font-weight: 700;
+    font-size: 35px;
+    color: var(--purple);
+    margin-bottom: 40px;
+}
+.conditions .conditions-data {
+    margin-bottom: 30px;
+}
+.conditions .conditions-data h4 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+.conditions .conditions-data p {
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-right: 15px;
+}
+
+/* start media screen */
+@media(max-width: 771px){
+    .specifications,
+    .conditions {
+        min-width: 100%;
+        padding: 50px 0px;
+        border: none;
+    }
+}

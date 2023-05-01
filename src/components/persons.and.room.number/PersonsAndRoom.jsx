@@ -13,7 +13,7 @@ const PersonsAndRoom = ()=>{
         <>
         <section className="selection-component">
             <div className="selection">
-                <div>
+                <div className="selection-title">
                     <FontAwesomeIcon icon={faUser}/>
                     <span>{` ${room} غرفة - ${person} شخص - ${children} طفل `}</span>
                 </div>

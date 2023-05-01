@@ -1,0 +1,31 @@
+.sort-searching {
+    background-color: var(--white);
+    padding: 35px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    border-radius: 8px 8px;
+    position: absolute;
+    width: 100%;
+    right: 0px;
+    top: 100%;
+    overflow: hidden;
+    z-index: 10;
+}
+.sort-searching form {
+    display: flex;
+    flex-direction: column;
+}
+.sort-searching form h4{
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.sort-searching form div {
+    padding: 12px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.sort-searching form div label{
+    white-space: nowrap;
+    padding-left: 20px;
+    cursor: pointer;
+}

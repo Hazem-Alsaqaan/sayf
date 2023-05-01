@@ -1,0 +1,24 @@
+.ratings {
+    margin: 50px 0px;
+}
+.ratings h2 {
+    font-size: 35px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 40px;
+}
+.ratings .ratings-data {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.ratings .ratings-data h5 {
+    margin: 0px;
+    font-weight: 700;
+    font-size: 25px;
+}
+.ratings .ratings-data p {
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.66);
+    margin-right: 10px;
+}

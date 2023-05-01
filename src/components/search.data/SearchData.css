@@ -45,3 +45,13 @@
     font-size: 28px;
     margin: 10px;
 }
+/* start media screen */
+@media(max-width: 350px){
+    .search-data .container {
+        padding: 15px;
+    }
+    .search-data .container form input,
+    .search-data .container form .bottom-part button.btn-primary {
+        font-size: 14px;
+    }
+}
