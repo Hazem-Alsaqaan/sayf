@@ -1,7 +1,5 @@
 import React from "react";
 import "./SpecificationsConditions.css"
-import unitSizeIcon from "../../assets/809090_architecture_family_home_house_residential_icon 1.svg"
-import houseIcon from "../../assets/6714576_family_home_house_insurance_investment_icon 1.svg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,11 +15,11 @@ const SpecificationsConditions = ()=>{
                         <span>القاهرة - مصر</span>
                     </div>
                     <div>
-                        <img src={unitSizeIcon} alt=""/>
+                        <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682941496/sayf/809090_architecture_family_home_house_residential_icon_1_ahokpe.svg" alt=""/>
                         <span>مساحه الشقه 6200 متر</span>
                     </div>
                     <div>
-                        <img src={houseIcon} alt=""/>
+                        <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682941534/sayf/6714576_family_home_house_insurance_investment_icon_1_fe6wn5.svg" alt=""/>
                         <span>مناسب للعائلات والعزاب</span>
                     </div>
                 </div>
