@@ -11,6 +11,8 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneUnit } from "../../redux/actions/unitsActions";
+import {RotatingLines} from "react-loader-spinner"
+
 
 // register();
 
@@ -32,7 +34,14 @@ const UnitSwiperImages = ()=>{
     
     return(
         <>
-        {isLoading ? <h1>يتم التحميل ...</h1>
+        {isLoading ? 
+                    <RotatingLines
+                    strokeColor="#5500A1"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="96"
+                    visible={true}
+                    />
         :
         <div className="unit-swiper-images">
         {!oneUnit.images ? <h1>لا يوجد شيء</h1> :

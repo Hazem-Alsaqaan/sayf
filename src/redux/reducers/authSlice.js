@@ -7,7 +7,8 @@ const authSlice = createSlice({
     initialState: {
         user: userStorage ? userStorage : "",
         token: tokenStorage ? tokenStorage : "",
-        isLoading: false
+        isLoading: false,
+        error: false
     },
     reducers: {
         // login
@@ -21,6 +22,7 @@ const authSlice = createSlice({
         },
         loginRejected: (state, action)=>{
             state.isLoading = false
+            state.error = true
 
         }
     }

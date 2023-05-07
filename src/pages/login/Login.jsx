@@ -3,17 +3,20 @@ import  {Link, useLocation, useNavigate} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFacebook, faGooglePlus, faSquareTwitter} from "@fortawesome/free-brands-svg-icons"
 import axios from "axios"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
-import { loginFulfilled, loginPending } from "../../redux/reducers/authSlice";
+import { loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const Login =()=>{
+    const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const dispatch = useDispatch()
-
+    const {error} = useSelector((state)=> state.authSlice)
     const redirectPath = location.state?.path || "/"
     
 // handle login 
@@ -30,13 +33,31 @@ const handleLogin = async(e)=>{
     dispatch(loginFulfilled(res.data))
     navigate(redirectPath, {replace: true})
     }catch(err){
-        console.log(`from client ${err}`)
+        dispatch(loginRejected(err.response.data))
+        if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
     }
 }
 
     return(
         <>
             <section className="login">
+            {
+                    error ? 
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        /> : ""
+                }
                 <div className="container">
                     <div className="login-content">
                         <section className="landing">
