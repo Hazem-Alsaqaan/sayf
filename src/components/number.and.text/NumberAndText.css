@@ -1,0 +1,22 @@
+.number-and-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.number-and-text .number {
+    min-height: 50px;
+    min-width: 50px;
+    background-color: var(--purple);
+    font-size: 30px;
+    font-weight: 700;
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.number-and-text .text {
+    font-size: 30px;
+    font-weight: 700;
+    margin-right: 18px;
+}

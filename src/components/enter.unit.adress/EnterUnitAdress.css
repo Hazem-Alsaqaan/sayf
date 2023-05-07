@@ -1,0 +1,8 @@
+
+.enter-unit-adress .inputs {
+    display: flex;
+    flex-direction: column;
+}
+.enter-unit-adress .inputs input {
+    margin-bottom: 20px;
+}

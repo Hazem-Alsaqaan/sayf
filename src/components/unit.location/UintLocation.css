@@ -1,0 +1,6 @@
+.map-container {
+    overflow: hidden;
+}
+.map-container img{
+    max-width: 100%;
+}

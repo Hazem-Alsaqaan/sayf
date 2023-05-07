@@ -1,10 +1,39 @@
-import React from "react";
-import  {Link} from "react-router-dom"
+import React, { useState } from "react";
+import  {Link, useLocation, useNavigate} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFacebook, faGooglePlus, faSquareTwitter} from "@fortawesome/free-brands-svg-icons"
+import axios from "axios"
+import {useDispatch} from "react-redux"
 import "./Login.css"
+import { loginFulfilled, loginPending } from "../../redux/reducers/authSlice";
 
 const Login =()=>{
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
+
+    const redirectPath = location.state?.path || "/"
+    
+// handle login 
+const handleLogin = async(e)=>{
+    e.preventDefault()
+    dispatch(loginPending())
+    try{
+        const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login`, {
+        phone: email,
+        password: password
+    })
+    window.localStorage.setItem("user", JSON.stringify(res.data.user))
+    window.localStorage.setItem("token", JSON.stringify(res.data.token))
+    dispatch(loginFulfilled(res.data))
+    navigate(redirectPath, {replace: true})
+    }catch(err){
+        console.log(`from client ${err}`)
+    }
+}
+
     return(
         <>
             <section className="login">
@@ -22,12 +51,13 @@ const Login =()=>{
                             </div>
                         </section>
                         <section className="auth-form">
-                            <form>
+                            <form onSubmit={(e)=>handleLogin(e)}>
                                 <label htmlFor="email">البريد الالكتروني</label>
                                 <input
                                 id="email"
                                 name="email" 
-                                type="email"
+                                type="text"
+                                onChange={(e)=>setEmail(e.target.value)}
                                 required
                                 />
                                 <label htmlFor="password">كلمة المرور</label>
@@ -35,6 +65,7 @@ const Login =()=>{
                                 id="password"
                                 name="password"  
                                 type="password"
+                                onChange={(e)=>setPassword(e.target.value)}
                                 required
                                 />
                                 <Link 

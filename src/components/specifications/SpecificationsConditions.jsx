@@ -2,10 +2,20 @@ import React from "react";
 import "./SpecificationsConditions.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { Link, useParams } from "react-router-dom";
 
 const SpecificationsConditions = ()=>{
+    const {unitId} = useParams()
+
     return(
         <>
+        <div className="static-specifications">
+            <div>
+                <h1>شقة مفروشة للايجار</h1>
+                <p>600 \ اليوم</p>
+            </div>
+            <Link to= {`/showUnit/${unitId}/payment`} className="btn">احجز الأن</Link>
+        </div>
         <div className="specifications-conditions">
             <section className="specifications">
                 <h2 className="title">المواصفات</h2>

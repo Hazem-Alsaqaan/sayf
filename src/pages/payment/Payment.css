@@ -1,0 +1,123 @@
+.payment .container .result-search-box {
+    margin: 80px 0px;
+}
+.payment .container .center {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/* booking details container */
+.payment .container .center .booking-details{
+    flex:1;
+    margin: 10px 0px 10px 50px;
+}
+.payment .container .center .booking-details h3{
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--black);
+    margin-bottom: 40px;
+    white-space: nowrap;
+}
+.payment .container .center .booking-details .details-content{
+    background-color: rgba(237, 237, 237, 0.44);
+    box-shadow: 0px 6px 6px rgba(220, 217, 217, 0.4);
+    border-radius: 8px;
+    padding: 35px 15px;
+    display: flex;
+}
+
+.payment .container .center .booking-details .details-content div {
+    display: flex;
+    flex-direction: column;
+}
+.payment .container .center .booking-details .details-content div:first-child{
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+}
+.payment .container .center .booking-details .details-content div p{
+    font-size: 22px;
+    color: var(--black);
+    padding: 20px 15px;
+    white-space: nowrap;
+}
+/* payment methods container */
+.payment .container .center .payment-methods {
+    flex: 1;
+    margin: 10px 0px 10px 50px;
+}
+.payment .container .center .payment-methods h3{
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--black);
+    margin-bottom: 40px;
+    white-space: nowrap;
+}
+.payment .container .payment-methods .methods-content {
+    background-color: var(--white);
+    padding: 25px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(242, 239, 239, 0.25);
+    border-radius: 5px;
+}
+/*payment methods top side */
+.payment .container .payment-methods .methods-content .top-side {
+    display: flex;
+    align-items: center;
+}
+.payment .container .payment-methods .methods-content .top-side svg {
+    font-size: 35px;
+    color: var(--purple);
+}
+.payment .container .payment-methods .methods-content .top-side img,
+.payment .container .payment-methods .methods-content .top-side svg {
+    margin-left: 20px;
+}
+/*payment methods center side */
+.payment .container .center .payment-methods .methods-content .center-side {
+    margin: 25px 0px;
+}
+/* payment methods bottom side */
+.payment .container .center .payment-methods .methods-content .bottom-side {
+    display: flex;
+}
+.payment .container .center .payment-methods .methods-content .bottom-side div {
+    margin-left: 20px;
+}
+.payment .container .center .payment-methods .methods-content .center-side p,
+.payment .container .center .payment-methods .methods-content .bottom-side div p {
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 18px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+.payment .container .center .payment-methods .methods-content .bottom-side div input,
+.payment .container .center .payment-methods .methods-content .center-side input {
+    background: #F8F8F8;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(242, 239, 239, 0.25);
+    border-radius: 5px;
+    border: none;
+    padding: 7px;
+}
+.payment .container .center .payment-methods .methods-content .bottom-side div input:focus,
+.payment .container .center .payment-methods .methods-content .center-side input:focus{
+    outline: none;
+}
+.payment .container .center .payment-methods .methods-content .bottom-side div input.cvv,
+.payment .container .center .payment-methods .methods-content .bottom-side div input[type= "date"] {
+    max-width: 80px;
+}
+/* button */
+.payment .container .btn-purple {
+    display: flex;
+    justify-content: center;
+    margin: 150px 0px;
+}
+
+.payment .container .btn-purple button {
+    background-color: var(--purple);
+    width: 50%;
+    padding: 15px;
+    font-weight: 700;
+    font-size: 25px;
+    color: var(--white);
+    border: none;
+    border-radius: 8px 8px;
+}

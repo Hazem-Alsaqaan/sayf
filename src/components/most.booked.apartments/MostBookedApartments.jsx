@@ -1,54 +1,46 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux"
 import "./MostBookedApartments.css"
 import ApartmentBox from "../apartment.box/ApartmentBox";
+import { getMostBookings } from "../../redux/actions/unitsActions";
+
+
 
 
 const MostBookedApartments = ()=>{
-    const mostBooked = [
-        {
-            id: 1,
-            image_url: "https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682450453/sayf/Rectangle_39409_scjfyo.png",
-            description: "شقة مفروش للايجار شارع احمد عرابي بالمهندسين",
-            rate: 12,
-            location: "القاهرة/ مصر"
-        },
-        {
-            id: 2,
-            image_url: "https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682450478/sayf/Rectangle_39409_1_owdyhj.png",
-            description: "شقة مفروش للايجار شارع احمد عرابي بالمهندسين",
-            rate: 12,
-            location: "القاهرة/ مصر"
-        },
-        {
-            id: 3,
-            image_url: "https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682450501/sayf/Rectangle_39409_2_wyo34p.png",
-            description: "شقة مفروش للايجار شارع احمد عرابي بالمهندسين",
-            rate: 12,
-            location: "القاهرة/ مصر"
-        },
-        {
-            id: 4,
-            image_url: "https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682450551/sayf/Rectangle_39409_3_y7udqo.png",
-            description: "شقة مفروش للايجار شارع احمد عرابي بالمهندسين",
-            rate: 12,
-            location: "القاهرة/ مصر"
-        },
-    ]
+    const {token} = useSelector((state)=> state.authSlice)
+    const dispatch = useDispatch()
+    const {units} = useSelector((state)=>state.unitsSlice)
+    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    useEffect(()=>{
+        const cleaner = ()=>{
+            dispatch(getMostBookings(token))
+        }
+        return()=> cleaner()
+    },[])
     return (
         <>
             <section className="most-booked">
                 <div className="container">
                     <h1>أكثر الشقق حجزا لهذا الشهر</h1>
-                    <div className="boxes-container">
+                    { isLoading ? <h1>يتم التحميل...</h1> :
+                        <>
                         {
-                            mostBooked.map((item)=>(
-                                <ApartmentBox key={item.id} item={ item}/>
-                            ))
+                            !units ? <div>لا توجد الأكثر حجزا</div> :
+                        <div className="boxes-container">
+                            {
+                                units.map((item)=>(
+                                    item._id.house &&
+                                    <ApartmentBox key={item._id.house[0]._id} item={ item._id.house[0]}/>
+                                    ))
+                            }
+                        </div>
                         }
-                    </div>
+                        </> 
+                    }
                 </div>
             </section>
+            
         </>
     )
 }

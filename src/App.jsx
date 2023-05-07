@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
@@ -10,22 +10,37 @@ import MyBookings from "./pages/my.bookings/MyBookings"
 import ShowYourApartment from "./pages/show.your.apartment/ShowYourApartment"
 import MyFavourite from "./pages/my.favourite/MyFavourite"
 import ShowUnit from "./pages/show.unit/ShowUnit"
+import UnitSwiperImages from "./components/unit.swiper.images/UnitSwiperImages"
+import UnitLocation from "./components/unit.location/UnitLocation"
+import Payment from "./pages/payment/Payment"
+import SearchResult from "./components/search.result/SearchResult"
+import HomeContent from "./components/home.content/HomeContent"
+import RequireAuth from "./components/require.auth/RequireAuth"
 
 function App() {
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/myFavourite" element={<MyFavourite/>}/>
-        <Route path="/myBookings" element={<MyBookings/>}/>
-        <Route path="/showYourApartment" element={<ShowYourApartment/>}/>
+        <Route path="/" element={<Home/>}>
+          <Route index element={<HomeContent/>}/>
+          <Route path="search" element={<SearchResult/>}/>
+          <Route path="home" element={<HomeContent/>}/>
+        </Route>
+        <Route path="/myFavourite" element={<RequireAuth><MyFavourite/></RequireAuth>}/>
+        <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
+        <Route path="/showYourApartment" element={<RequireAuth><ShowYourApartment/></RequireAuth>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgetPassword" element={<Forgetpassword/>}/>
         <Route path="/confirmCode" element={<ConfirmCode/>}/>
         <Route path="/confirmPassword" element={<ConfirmPassword/>}/>
-        <Route path="/showUnit/:unitId" element={<ShowUnit/>}/>
+        <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
+        <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>
+          <Route index element={<UnitSwiperImages/>}/>
+          <Route path="images" element={<UnitSwiperImages/>}/>
+          <Route path="location" element={<UnitLocation/>}/>
+        </Route>
       </Routes>
     </div>
   )

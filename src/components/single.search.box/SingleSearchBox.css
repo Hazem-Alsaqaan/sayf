@@ -1,0 +1,102 @@
+ .result-search-box {
+    background-color: var(--light);
+    margin-bottom: 30px;
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    justify-content: space-between;
+    max-height: 280px;
+    /* cursor: pointer; */
+    overflow: hidden;
+}
+
+/* image container */
+ .result-search-box .image-container {
+    position: relative;
+}
+ .result-search-box .image-container img{
+    width: 100%;
+}
+ .result-search-box .image-container svg.fa-heart {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: rgba(255, 255, 255, 0.479);
+    font-size: 22px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+ .result-search-box .image-container svg.fa-heart:hover {
+    color: var(--red);
+}
+
+/* text container */
+ .result-search-box .text-container {
+    padding: 15px;
+}
+ .result-search-box .text-container .text-top-side {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+ .result-search-box .text-container .text-top-side .star-icon {
+    color: var(--purple);
+    font-size: 18px;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+ .result-search-box .text-container .text-top-side .star-icon svg.fa-star{
+    margin-right: 5px;
+}
+ .result-search-box .text-container h4 {
+    font-weight: 700;
+    font-size: 28px;
+}
+ .result-search-box .text-container h4,
+ .result-search-box .text-container p {
+    margin-top: 15px;
+}
+ .result-search-box .text-container p.rate{
+    font-weight: 700;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.77);
+}
+ .result-search-box .text-container p.rate span{
+    margin-left: 20px;
+    font-size: 22px;
+    color: var(--purple);
+    white-space: nowrap;
+}
+ .result-search-box .text-container p.location {
+    font-size: 22px;
+}
+ .result-search-box .text-container p.location svg{
+    margin-left: 10px;
+    font-size: 22px;
+}
+
+/* start media screen */
+@media(max-width: 991px){
+     .result-search-box .text-container h4 {
+        font-size: 23px;
+    }
+}
+@media(max-width: 771px){
+     .result-search-box {
+        max-height: 100%;
+        align-items: center;
+        flex-wrap: wrap;
+        border-radius: 8px 8px;
+    }
+     .result-search-box .text-container h4 {
+        font-size: 20px;
+    }
+     .result-search-box .text-container p.rate,
+     .result-search-box .text-container p.rate span,
+     .result-search-box .text-container p.location,
+     .result-search-box .text-container p.location svg
+    {
+        font-size: 16px;
+    }
+}

@@ -3,20 +3,19 @@ import "./SearchData.css"
 import PersonsAndRoom from "../persons.and.room.number/PersonsAndRoom";
 import Search from "../search/Search";
 import SelectPrice from "../select.price/SelectPrice";
+import { useNavigate } from "react-router-dom";
 
-const SearchData = ({getSearchValue})=>{
-    
-    let resultSearchData = true
-    
-    const handleSearchSubmit = (e)=>{
+const SearchData = ()=>{
+    const navigate = useNavigate()
+    const handleSearch = (e)=>{
         e.preventDefault()
-        getSearchValue(resultSearchData)
+        navigate("/search")
     }
     return(
         <>
             <section className="search-data">
                 <div className="container">
-                    <form onSubmit={(e)=>handleSearchSubmit(e)}>
+                    <form onSubmit={(e)=>handleSearch(e)}>
                         <div className="top-part">
                             <Search/>
                             <PersonsAndRoom/>

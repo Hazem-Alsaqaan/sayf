@@ -18,26 +18,26 @@ const ApartmentBox = ({item})=>{
                 <h4 className="date-booking-title">تم الحجز من يوم 13 يناير 2002 إلى يوم16 يناير 2022</h4>}
                 <div className="image-box">
                     <FontAwesomeIcon icon={faHeart} style={location.pathname === "/myFavourite" && {color: "#E20D0D"}}/>
-                    <img src={item.image_url} alt=""/>
+                    <img src={item?.images && item?.images[0]} alt=""/>
                     <span className="star-icon">
                         5.0
                         <FontAwesomeIcon icon={faStar}/>
                     </span>
                 </div>
-                <h4>{item.description}</h4>
+                <h4>{`${item?.street} ${item?.apartment_area} شقة مفروش للإيجار`}</h4>
                 {location.pathname === "/myFavourite" && 
-                <p>غرفتين غرفة تحتوي على سرير والأخرى سريرين مناسبة ل 3-4 افراد</p>}
-                <p className="rate"><span>600 \ اليوم</span>({item.rate}تقييم)</p>
+                <p>{`حمام ${item?.bathrooms}شقة تحتوي على `}</p>}
+                <p className="rate"><span>600 \ اليوم</span>({item?.about}تقييم)</p>
                 <p className="location">
                     <FontAwesomeIcon icon={faLocationDot}/>
-                    {item.location}
+                    {item?.city}
                 </p>
-                {/* {location.pathname === "/" &&  */}
+                {location.pathname !== "/myBookings" && 
                 <Link 
                 className="btn btn-primary"
-                to={`/showUnit/${item.id}`}
+                to={`/showUnit/${item?._id}`}
                 >احجز الأن</Link>
-                {/* } */}
+                }
             </div>
         </>
     )
