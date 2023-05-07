@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import "./MostBookedApartments.css"
 import ApartmentBox from "../apartment.box/ApartmentBox";
 import { getMostBookings } from "../../redux/actions/unitsActions";
+import {RotatingLines} from "react-loader-spinner"
 
 
 
@@ -23,7 +24,13 @@ const MostBookedApartments = ()=>{
             <section className="most-booked">
                 <div className="container">
                     <h1>أكثر الشقق حجزا لهذا الشهر</h1>
-                    { isLoading ? <h1>يتم التحميل...</h1> :
+                    { isLoading ? <RotatingLines
+                            strokeColor="#5500A1"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="96"
+                            visible={true}
+                            /> :
                         <>
                         {
                             !units ? <div>لا توجد الأكثر حجزا</div> :

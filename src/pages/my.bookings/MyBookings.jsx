@@ -5,6 +5,7 @@ import "./MyBookings.css"
 import ApartmentBox from "../../components/apartment.box/ApartmentBox";
 import { useDispatch, useSelector } from "react-redux";
 import {getMyBooking } from "../../redux/actions/unitsActions";
+import {RotatingLines} from "react-loader-spinner"
 
 
 
@@ -32,7 +33,13 @@ const MyBookings = ()=>{
                         <h1>حجوزاتي</h1>
                     </div>
                 </section>
-                {isLoading ? <h1>يتم التحميل...</h1> : 
+                {isLoading ? <RotatingLines
+                            strokeColor="#5500A1"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="96"
+                            visible={true}
+                            /> : 
                     <>
                     {!units ? <h1>لم يتم حجز وحدات...</h1> :
                         <div className="boxes-container container">

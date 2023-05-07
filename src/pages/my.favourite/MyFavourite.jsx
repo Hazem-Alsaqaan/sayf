@@ -5,6 +5,9 @@ import "./MyFavourite.css"
 import ApartmentBox from "../../components/apartment.box/ApartmentBox";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyFavourites } from "../../redux/actions/unitsActions";
+import {RotatingLines} from "react-loader-spinner"
+
+
 
 const MyFavourite = ()=>{
     const dispatch = useDispatch()
@@ -28,7 +31,13 @@ const MyFavourite = ()=>{
                         <h1>مفضلتي</h1>
                     </div>
                 </section>
-                {isLoading ? <h1>يتم التحميل...</h1> :
+                {isLoading ? <RotatingLines
+                            strokeColor="#5500A1"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="96"
+                            visible={true}
+                            /> :
                 <>
                     {
                     !units ? <h1>لم يتم العثور على وحدات...</h1> :
