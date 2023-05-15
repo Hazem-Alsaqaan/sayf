@@ -12,7 +12,6 @@ const SentCode =()=>{
         try{
             const res = await axios.post(`https://saif-production-e995.up.railway.app/phone-confirmation`, 
             {phone: email})
-            console.log(res.data)
             navigate("/confirmCode")
         }catch(err){
             console.log(err)

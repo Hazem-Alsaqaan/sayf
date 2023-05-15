@@ -16,7 +16,6 @@ const containerStyle = {
     };
     const libraries = ["places"]
 
-
 // component 
 const EnterUnitLocation = ()=>{
     const title = {
@@ -25,7 +24,7 @@ const EnterUnitLocation = ()=>{
     }
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyDXwFmFd3ufRe3lHgGe9o5MT1fOFHMas7A",
+        googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
         libraries: libraries
         })
     return(
