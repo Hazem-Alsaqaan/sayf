@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CitiesLocations from "../cities.loctions/CitiesLocations";
 import MostBookedApartments from "../most.booked.apartments/MostBookedApartments";
 import LatestApartments from "../latest.apartments/LatestApartments";
@@ -13,4 +13,4 @@ const HomeContent = ()=>{
     )
 }
 
-export default HomeContent
+export default memo(HomeContent)

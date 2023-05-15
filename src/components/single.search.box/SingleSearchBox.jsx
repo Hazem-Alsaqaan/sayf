@@ -10,12 +10,9 @@ const SingleSearchBox = ({item}) => {
     const navigate = useNavigate()
     return (
         <>
-            <div
-                className="result-search-box"
-                // onClick={() => navigate(`/showUnit/${item._id}`)}
-            >
+            <div className="result-search-box">
                 <div className="image-container">
-                    <img src={item.image_url} alt="" />
+                    <img src={item?.images[0]} alt="" />
                     <FontAwesomeIcon icon={faHeart} />
                 </div>
                 <div className="text-container">
@@ -27,10 +24,10 @@ const SingleSearchBox = ({item}) => {
                         </div>
                     </div>
                     <p>غرفتين غرفة تحتوي على سرير والأخرى سريرين مناسبة ل 3-4 افراد</p>
-                    <p className="rate"><span>600 \ اليوم</span>({item.rate}تقييم)</p>
+                    <p className="rate"><span>600 \ اليوم</span>({item?.rating}تقييم)</p>
                     <p className="location">
                         <FontAwesomeIcon icon={faLocationDot} />
-                        {item.location}
+                        {`${item?.city} ${item?.street}`}
                     </p>
                 </div>
             </div>

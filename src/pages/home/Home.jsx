@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Home.css"
 import Header from "../../components/header/Header";
 import SearchData from "../../components/search.data/SearchData";
 import Footer from "../../components/footer/Footer";
 import { Outlet } from "react-router-dom";
+
 
 const Home =()=>{
     return(

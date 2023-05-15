@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import SingleSearchBox from "../../components/single.search.box/SingleSearchBox";
@@ -8,23 +8,43 @@ import { getOneUnit } from "../../redux/actions/unitsActions";
 import "./Payment.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleDot} from "@fortawesome/free-regular-svg-icons"
+import {RotatingLines} from "react-loader-spinner"
+
 
 const Payment =()=>{
+    const [render, setRender] = useState(false)
     const {unitId} = useParams()
     const {oneUnit} = useSelector((state)=>state.unitsSlice)
+    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {token} = useSelector((state)=>state.authSlice)
     const dispatch = useDispatch()
     useEffect(()=>{
+        setRender(true)
         const cleaner = ()=>{
-            dispatch(getOneUnit(unitId))
+            dispatch(getOneUnit({id:unitId, token: token}))
         }
         return()=> cleaner()
-    },[])
+    },[render])
     return(
         <>
             <section className="payment">
                 <WhiteHeader/>
                 <div className="container">
-                    <SingleSearchBox item = {oneUnit}/>
+                    {isLoading ? 
+                            <div className="loading">
+                                <RotatingLines
+                                strokeColor="#5500A1"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="96"
+                                visible={true}
+                                /> 
+                            </div>
+                    : 
+                    <>
+                    {Object.keys(oneUnit).length > 0 ? <SingleSearchBox item = {oneUnit}/> : <h1 className="container not-found-units">لم يتم العثور على وحدات...</h1>}
+                    </>
+                    }
                     <div className="center">
                         <section className="booking-details">
                             <h3>تفاصيل الحجز</h3>

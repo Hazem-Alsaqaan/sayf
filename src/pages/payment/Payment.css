@@ -1,6 +1,13 @@
 .payment .container .result-search-box {
     margin: 80px 0px;
 }
+.payment .not-found-units,
+.payment .loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .payment .container .center {
     display: flex;
     align-items: center;

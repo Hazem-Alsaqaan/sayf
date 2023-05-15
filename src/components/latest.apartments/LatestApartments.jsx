@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LatestApartments.css"
 import { register } from 'swiper/element/bundle';
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 register();
 
 
 const LatestApartments = ()=>{
-
+    const [latestUnits, setLatestUnits] = useState([])
+    const {token} = useSelector((state)=> state.authSlice)
+    useEffect(()=>{
+            const getLatestUnits = async()=>{
+                const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/newest-houses`, {
+                    headers: {
+                        Authorization: `baerar ${token}`
+                    }
+                })
+                setLatestUnits(res.data)
+            }
+            return ()=> getLatestUnits()
+    },[])
     return(
         <>
         <section className="latest-apartments">

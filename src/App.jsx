@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
-import Forgetpassword from "./pages/forget.password/ForgetPassword"
 import ConfirmCode from "./pages/confirm.code/ConfirmCode"
 import ConfirmPassword from "./pages/confirm.password/ConfirmPassword"
 import Home from "./pages/home/Home"
@@ -16,9 +15,13 @@ import Payment from "./pages/payment/Payment"
 import SearchResult from "./components/search.result/SearchResult"
 import HomeContent from "./components/home.content/HomeContent"
 import RequireAuth from "./components/require.auth/RequireAuth"
+import SentCode from "./pages/sent.code/SentCode"
 
 function App() {
-
+  const [email, setEmail] = useState("")
+  const getMailFromRegister = (mail)=>{
+    setEmail(mail)
+  }
   return (
     <div className="App">
       <Routes>
@@ -31,9 +34,9 @@ function App() {
         <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
         <Route path="/showYourApartment" element={<RequireAuth><ShowYourApartment/></RequireAuth>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/forgetPassword" element={<Forgetpassword/>}/>
-        <Route path="/confirmCode" element={<ConfirmCode/>}/>
+        <Route path="/register" element={<Register getMailFromRegister = {getMailFromRegister}/>}/>
+        <Route path="/sentCode" element={<SentCode/>}/>
+        <Route path="/confirmCode" element={<ConfirmCode email = {email}/>}/>
         <Route path="/confirmPassword" element={<ConfirmPassword/>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>

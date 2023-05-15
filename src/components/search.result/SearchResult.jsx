@@ -1,52 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faArrowDownLong, faArrowUpLong} from "@fortawesome/free-solid-svg-icons"
 import "./SearchResult.css"
 import SortSearching from "../sort.searching/SortSearching";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllUnits } from "../../redux/actions/unitsActions";
 import SingleSearchBox from "../single.search.box/SingleSearchBox";
+import {RotatingLines} from "react-loader-spinner"
+import { useSelector } from "react-redux";
+
 
 const SearchResult = ()=>{
     const [toggleSearchSort, setToggleSearchSort] = useState(false)
-    const dispatch = useDispatch()
-    const {units} = useSelector((state)=>state.unitsSlice)
+    const {searchUnits} = useSelector((state)=>state.unitsSlice)
+    const {isLoading} = useSelector((state)=>state.unitsSlice)
     
-    useEffect(()=>{
-        const cleaner = ()=>{
-            dispatch(getAllUnits())
-        }
-        return()=> cleaner()
-    },[])
+
+    
     return(
         <>
             <section className="search-result">
                 <div className="container">
-                    <div className="top-side">
-                        <h1>عثرنا على 100 شقة نتيجة بحثك</h1>
-                        <div className = "sort-searching-container">
-                            <div 
-                            className="sort-by-icon"
-                            onClick={()=>setToggleSearchSort(!toggleSearchSort)}
-                            >
-                                <FontAwesomeIcon icon={faArrowDownLong}/>
-                                <FontAwesomeIcon icon={faArrowUpLong}/>
+                    {isLoading ? 
+                        <div className="loading">
+                            <RotatingLines
+                            strokeColor="#5500A1"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="96"
+                            visible={true}
+                            /> 
+                        </div> 
+                    :
+                    <div> 
+                    {!searchUnits.length > 0 ? <h1 className="not-found-units">لم يتم العثور على نتائج...</h1>
+                    :    <div>
+                            <div className="top-side">
+                                <h1>عثرنا على {searchUnits.length} شقة نتيجة بحثك</h1>
+                                <div className = "sort-searching-container">
+                                    <div 
+                                    className="sort-by-icon"
+                                    onClick={()=>setToggleSearchSort(!toggleSearchSort)}
+                                    >
+                                        <FontAwesomeIcon icon={faArrowDownLong}/>
+                                        <FontAwesomeIcon icon={faArrowUpLong}/>
+                                    </div>
+                                    {
+                                        toggleSearchSort && <SortSearching/> 
+                                    }
+                                </div>
                             </div>
-                            {
-                                toggleSearchSort && <SortSearching/> 
-                            }
+                            <div className="result-search-boxes">
+                                {searchUnits.map((item)=>(
+                                    <SingleSearchBox key={item?._id} item = {item}/>
+                                    ))}
+                            </div>
                         </div>
+                    }
                     </div>
-                    <div className="result-search-boxes">
-                        {
-                            units.map((item)=>(
-                                <SingleSearchBox key={item._id} item = {item}/>
-                            ))
-                        }
-                    </div>
+                    }
                 </div>
             </section>
         </>
     )
 }
-export default SearchResult
+export default memo(SearchResult)

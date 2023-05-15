@@ -1,8 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./UintLocation.css"
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneUnit } from "../../redux/actions/unitsActions";
+import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
+import {RotatingLines} from "react-loader-spinner"
+
+
+const libraries = ["places"]
+const containerStyle = {
+    width: "100%",
+    height: '400px'
+    };
 
 const UnitLocation = ()=>{
     const {unitId} = useParams()
@@ -17,11 +26,38 @@ const UnitLocation = ()=>{
         return()=> cleaner()
     },[])
 
+    const center = useMemo(()=>({
+        lat: 30.033333,
+        lng: 31.233334
+    }),[])
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyDXwFmFd3ufRe3lHgGe9o5MT1fOFHMas7A",
+        libraries: libraries
+        })
+
     return(
         <>
             <div className="map-container">
-                {/* <img src={oneUnit.image_url} alt=""/> */}
-                <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683028719/sayf/GoogleMap_bxdqvk.svg" alt=""/>
+            {!isLoaded ? 
+                    <RotatingLines
+                    strokeColor="#5500A1"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="96"
+                    visible={true}
+                    />
+            :
+                <GoogleMap
+                center={center}
+                zoom={10}
+                mapContainerStyle={containerStyle}
+                >
+                    <Marker
+                    position={center}
+                    />
+                </GoogleMap>
+            }
             </div>
         </>
     )

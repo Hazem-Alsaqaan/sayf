@@ -5,6 +5,13 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.booking .not-found-units,
+.booking .loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .booking .booking-page-landing .landing-content{
     height: calc(100vh - 113px);
     display: flex;

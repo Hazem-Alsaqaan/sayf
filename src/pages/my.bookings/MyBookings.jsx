@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import "./MyBookings.css"
@@ -11,19 +11,20 @@ import {RotatingLines} from "react-loader-spinner"
 
 
 const MyBookings = ()=>{
+    const [render, setRender] = useState(false)
     const dispatch = useDispatch()
     const {token} = useSelector((state)=> state.authSlice)
-    const {units} = useSelector((state)=>state.unitsSlice)
+    const {myBookings} = useSelector((state)=>state.unitsSlice)
     const {isLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
+        setRender(true)
         const cleaner = ()=>{
             dispatch(getMyBooking(token))
         }
         return()=> cleaner()
-    },[])
+    },[render])
 
-// console.log(units[0].house)
     return(
         <>
             <div className="booking">
@@ -33,20 +34,23 @@ const MyBookings = ()=>{
                         <h1>حجوزاتي</h1>
                     </div>
                 </section>
-                {isLoading ? <RotatingLines
+                {isLoading ? 
+                        <div className="loading">
+                            <RotatingLines
                             strokeColor="#5500A1"
                             strokeWidth="5"
                             animationDuration="0.75"
                             width="96"
                             visible={true}
-                            /> : 
+                            /> 
+                        </div>
+                            : 
                     <>
-                    {!units ? <h1>لم يتم حجز وحدات...</h1> :
+                    {!myBookings.length > 0 ? <h1 className="container not-found-units">لم يتم حجز وحدات...</h1> :
                         <div className="boxes-container container">
                             {
-                                units.map((item)=>(
-                                    item.house &&
-                                    <ApartmentBox key={item.house._id} item={ item.house}/>
+                                myBookings.map((item)=>(
+                                    item.house && <ApartmentBox key={item.house._id} item={ item.house}/>
                                 ))
                             }
                         </div>

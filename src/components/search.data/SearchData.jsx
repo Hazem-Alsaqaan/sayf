@@ -4,12 +4,18 @@ import PersonsAndRoom from "../persons.and.room.number/PersonsAndRoom";
 import Search from "../search/Search";
 import SelectPrice from "../select.price/SelectPrice";
 import { useNavigate } from "react-router-dom";
+import { getAllUnits } from "../../redux/actions/unitsActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const SearchData = ()=>{
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {token} = useSelector((state)=>state.authSlice)
+
     const handleSearch = (e)=>{
         e.preventDefault()
         navigate("/search")
+        dispatch(getAllUnits(token))
     }
     return(
         <>

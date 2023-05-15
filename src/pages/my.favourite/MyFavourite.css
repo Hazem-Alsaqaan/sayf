@@ -5,6 +5,13 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+.favourite .not-found-units,
+.favourite .loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .favourite .favourite-page-landing .landing-content{
     height: calc(100vh - 113px);
     display: flex;

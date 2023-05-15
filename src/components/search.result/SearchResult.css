@@ -9,6 +9,13 @@
     font-size: 33px;
     font-weight: 700;
 }
+.search-result .not-found-units,
+.search-result .loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .search-result .top-side .sort-searching-container {
     position: relative;
     display: flex;

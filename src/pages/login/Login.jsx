@@ -14,10 +14,10 @@ const Login =()=>{
     const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
+    const redirectPath =  "/" || location.state?.path
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const {error} = useSelector((state)=> state.authSlice)
-    const redirectPath = location.state?.path || "/"
     
 // handle login 
 const handleLogin = async(e)=>{
@@ -38,6 +38,8 @@ const handleLogin = async(e)=>{
             toast.error(err.response.data.errorMessage)
         }
     }
+    setEmail("")
+    setPassword("")
 }
 
     return(
@@ -79,6 +81,7 @@ const handleLogin = async(e)=>{
                                 name="email" 
                                 type="text"
                                 onChange={(e)=>setEmail(e.target.value)}
+                                value={email}
                                 required
                                 />
                                 <label htmlFor="password">كلمة المرور</label>
@@ -87,11 +90,12 @@ const handleLogin = async(e)=>{
                                 name="password"  
                                 type="password"
                                 onChange={(e)=>setPassword(e.target.value)}
+                                value={password}
                                 required
                                 />
                                 <Link 
                                 className="forget-password"
-                                to="/forgetPassword"
+                                to="/sentCode"
                                 >نسيت كلمة المرور؟</Link>
                                 <button
                                 type="submit"

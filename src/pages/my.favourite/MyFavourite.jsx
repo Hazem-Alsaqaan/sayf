@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import "./MyFavourite.css"
@@ -10,17 +10,21 @@ import {RotatingLines} from "react-loader-spinner"
 
 
 const MyFavourite = ()=>{
+    const [render, setRender] = useState(false)
     const dispatch = useDispatch()
     const {token} = useSelector((state)=> state.authSlice)
-    const {units} = useSelector((state)=>state.unitsSlice)
+    const {myFavourites} = useSelector((state)=>state.unitsSlice)
     const {isLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
+        setRender(true)
         const cleaner = ()=>{
             dispatch(getMyFavourites(token))
         }
         return()=> cleaner()
-    },[])
+    },[render])
+
+    
 
     return(
         <>
@@ -31,26 +35,23 @@ const MyFavourite = ()=>{
                         <h1>مفضلتي</h1>
                     </div>
                 </section>
-                {isLoading ? <RotatingLines
-                            strokeColor="#5500A1"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="96"
-                            visible={true}
-                            /> :
-                <>
-                    {
-                    !units ? <h1>لم يتم العثور على وحدات...</h1> :
-                    <div className="boxes-container container">
-                            {
-                                units.map((item)=>
-                                    Object.keys(item).length > 0 && <ApartmentBox key={item._id} item={item}/>
-                                )
-                                }
-                    </div>
-                    }
-                </> 
+                {isLoading ? <div className="loading">
+                                <RotatingLines
+                                strokeColor="#5500A1"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="96"
+                                visible={true}
+                                /> 
+                            </div>
+                            : <>
+                            {!myFavourites.length > 0 ? <h1 className="container not-found-units">لم يتم العثور على وحدات...</h1> :
+                            <div className="boxes-container container">
+                                {myFavourites.map((item)=><ApartmentBox key={item._id} item={item}/>)}
+                            </div>}
+                        </> 
                 }
+                
                 <Footer/>
             </div>
         </>

@@ -57,12 +57,12 @@ const UnitSwiperImages = ()=>{
                     modules={[FreeMode, Navigation, Thumbs]}
                     className="mySwiper2"
                     >
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[0]} alt=""/>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[1]} alt=""/>
-                                    </SwiperSlide>
+                        {oneUnit.images.map((item, index)=>{
+                            return (<SwiperSlide key={index}>
+                                        <img src={item} alt=""/>
+                                    </SwiperSlide>)
+                        })}
+                        
                 </Swiper>
                 <Swiper
                         onSwiper={setThumbsSwiper}
@@ -73,18 +73,11 @@ const UnitSwiperImages = ()=>{
                         modules={[FreeMode, Navigation, Thumbs]}
                         className="mySwiper"
                         >
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[0]} alt=""/>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[1]} alt=""/>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[0]} alt=""/>
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <img src={oneUnit.images[1]} alt=""/>
-                                    </SwiperSlide>
+                            {oneUnit.images.map((item, index)=>{
+                                return (<SwiperSlide key={index}>
+                                            <img src={item} alt=""/>
+                                        </SwiperSlide>)
+                            })}
                 </Swiper>
                 </>
                 }

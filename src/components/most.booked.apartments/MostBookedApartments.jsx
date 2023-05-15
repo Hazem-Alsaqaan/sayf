@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import "./MostBookedApartments.css"
 import ApartmentBox from "../apartment.box/ApartmentBox";
@@ -6,16 +6,14 @@ import { getMostBookings } from "../../redux/actions/unitsActions";
 import {RotatingLines} from "react-loader-spinner"
 
 
-
-
 const MostBookedApartments = ()=>{
-    const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
-    const {units} = useSelector((state)=>state.unitsSlice)
+    const {mostBookings} = useSelector((state)=>state.unitsSlice)
     const {isLoading} = useSelector((state)=>state.unitsSlice)
+
     useEffect(()=>{
         const cleaner = ()=>{
-            dispatch(getMostBookings(token))
+            dispatch(getMostBookings())
         }
         return()=> cleaner()
     },[])
@@ -31,19 +29,12 @@ const MostBookedApartments = ()=>{
                             width="96"
                             visible={true}
                             /> :
-                        <>
-                        {
-                            !units ? <div>لا توجد الأكثر حجزا</div> :
                         <div className="boxes-container">
-                            {
-                                units.map((item)=>(
-                                    item._id.house &&
-                                    <ApartmentBox key={item._id.house[0]._id} item={ item._id.house[0]}/>
-                                    ))
-                            }
+                            {!mostBookings.length > 0 ?  <h1>لا توجد وحدات ...</h1>
+                                :mostBookings.map((item)=>
+                                        <ApartmentBox key={item[0]?._id} item ={item[0]}/>)
+                                    }
                         </div>
-                        }
-                        </> 
                     }
                 </div>
             </section>
@@ -51,4 +42,4 @@ const MostBookedApartments = ()=>{
         </>
     )
 }
-export default MostBookedApartments
+export default memo(MostBookedApartments)

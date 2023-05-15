@@ -1,13 +1,65 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import "./Register.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGooglePlus, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { registerFulfilled, registerPending, registerRejected } from "../../redux/reducers/authSlice";
+import { ToastContainer, toast } from 'react-toastify';
 
-const Register = ()=>{
+const Register = ({getMailFromRegister})=>{
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const {error} = useSelector((state)=>state.authSlice)
+
+    const handleRegister = async(e)=>{
+        e.preventDefault()
+        dispatch(registerPending())
+        try{
+            const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/signup`,
+            {
+                username: username,
+                password:password,
+                phone: email
+            })
+            getMailFromRegister(email)
+            dispatch(registerFulfilled(res.data))
+            navigate("/confirmCode")
+        }catch(err){
+            dispatch(registerRejected(err.response.data.errorMessage))
+            if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
+        }
+        setUsername("")
+        setEmail("")
+        setPassword("")
+        setConfirmPassword("")
+    }
+
     return(
         <>
             <section className="register">
+            {
+                    error ? 
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        /> : ""
+                }
                 <div className="container">
                     <div className="register-content">
                         <section className="landing">
@@ -22,20 +74,24 @@ const Register = ()=>{
                             </div>
                         </section>
                         <section className="auth-form">
-                            <form>
+                            <form onSubmit={(e)=>handleRegister(e)}>
                                 <label htmlFor="username">الاسم</label>
                                 <input
                                 id="username"
                                 name="username" 
                                 type="text"
                                 required
+                                onChange={(e)=> setUsername(e.target.value)}
+                                value={username}
                                 />
                                 <label htmlFor="email">البريد الالكتروني</label>
                                 <input
                                 id="email"
                                 name="email" 
-                                type="email"
+                                type="text"
                                 required
+                                onChange={(e)=>setEmail(e.target.value)}
+                                value={email}
                                 />
                                 <label htmlFor="password">كلمة المرور</label>
                                 <input
@@ -43,6 +99,8 @@ const Register = ()=>{
                                 name="password"  
                                 type="password"
                                 required
+                                onChange={(e)=>setPassword(e.target.value)}
+                                value={password}
                                 />
                                 <label htmlFor="confirmPassword">تأكيد كلمة المرور</label>
                                 <input
@@ -50,6 +108,8 @@ const Register = ()=>{
                                 name="confirmPassword"  
                                 type="password"
                                 required
+                                onChange={(e)=>setConfirmPassword(e.target.value)}
+                                value={confirmPassword}
                                 />
                                 <button
                                 type="submit"
@@ -74,4 +134,4 @@ const Register = ()=>{
         </>
     )
 }
-export default Register
+export default memo(Register)
