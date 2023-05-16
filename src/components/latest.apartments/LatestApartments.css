@@ -7,14 +7,34 @@
     padding-bottom: 80px;
 }
 
-.latest-apartments swiper-container {
+/* .latest-apartments swiper-container {
     max-height: 324px;
+} */
+.latest-apartments .swiper {
+  width: 100%;
+  height: 100%;
 }
-.latest-apartments swiper-container swiper-slide {
-    position: relative;
-    overflow: hidden;
+
+.latest-apartments .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  position: relative;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.latest-apartments swiper-container swiper-slide .title-slide {
+
+.latest-apartments .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.latest-apartments  .swiper-slide .title-slide {
     position: absolute;
     width: 100%;
     padding: 25px 5px;
@@ -26,28 +46,30 @@
     text-align: center;
     color: #000000;
 }
-.latest-apartments swiper-container swiper-slide img{
+.latest-apartments  .swiper-slide img{
     width: 100%;
+    height: 100%;
 }
 
-/* start media screen */
 
+
+/* start media screen */
 @media(max-width: 761px){
-    .latest-apartments swiper-container swiper-slide .title-slide {
+    .latest-apartments  .swiper-slide .title-slide {
         padding: 15px 5px;
         font-size: 18px;
         font-weight: 700;
     }
 }
 @media(max-width: 520px){
-    .latest-apartments swiper-container swiper-slide .title-slide {
+    .latest-apartments  .swiper-slide .title-slide {
         padding: 5px;
         font-size: 14px;
         font-weight: 700;
     }
 }
 @media(max-width: 412px){
-    .latest-apartments swiper-container swiper-slide .title-slide {
+    .latest-apartments  .swiper-slide .title-slide {
         padding: 5px;
         font-size: 12px;
         font-weight: 700;
