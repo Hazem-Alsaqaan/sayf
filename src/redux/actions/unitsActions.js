@@ -78,11 +78,14 @@ export const getMyFavourites = createAsyncThunk("units/getMyFavourites", async(t
 // add to my favourites
 export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async(item)=>{
     try{
-        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses/make-favourite/${item.id}`, {
+        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses/make-favourite/${item.id}`, 
+        {id: item.id},
+        {
             headers: {
                 Authorization: `bearer ${item.token}`
             }
-        })
+        }
+        )
         return res.data
     }catch(err){
         console.log(err)
@@ -92,7 +95,9 @@ export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async
 // remove from my favourites
 export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites", async(item)=>{
     try{
-        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses/remove-favourite/${item.id}`, {
+        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses/remove-favourite/${item.id}`,
+        {id: item.id},
+        {
             headers: {
                 Authorization: `bearer ${item.token}`
             }
@@ -103,7 +108,6 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
         throw(err.response.data.errorMessage)
     }
 })
-
 
 
 
@@ -121,5 +125,13 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
         return res.data
     }catch(err){
         throw(err.response.data.errorMessage)
+    }
+})
+export const enterUnitData = createAsyncThunk("units/enterUnitData", async()=>{
+    try{
+        const res = await axios.post(``,
+        {})
+    }catch(err){
+        console.log(err)
     }
 })

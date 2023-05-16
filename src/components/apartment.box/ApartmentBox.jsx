@@ -21,11 +21,11 @@ const ApartmentBox = ({item})=>{
 
     const handleAddToMyFavourites= (id)=>{
         dispatch(addTMyFavourites({id: id, token: token}))
-        // dispatch(getMyFavourites(token))
+        dispatch(getMyFavourites(token))
     }
     const handleRemoveFromMyFavourites= (id)=>{
         dispatch(removeFromFavourites({id: id, token: token}))
-        // dispatch(getMyFavourites(token))
+        dispatch(getMyFavourites(token))
     }
     return(
         <>
