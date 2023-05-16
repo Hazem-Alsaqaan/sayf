@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./EnterUnitLocation.css"
 import NumberAndText from "../number.and.text/NumberAndText";
 import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
@@ -17,11 +17,19 @@ const containerStyle = {
     const libraries = ["places"]
 
 // component 
-const EnterUnitLocation = ()=>{
+const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
     const title = {
         number: "3",
         text: "حدد موقع شقتك"
     }
+    
+    useEffect(()=>{
+        return ()=>setEnterLocation({...enterLocation, 
+            lat: "31.205753",
+            long: "29.924526"
+        })
+    },[])
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
@@ -51,10 +59,9 @@ const EnterUnitLocation = ()=>{
                         />
                     </GoogleMap>
                 }
-                    {/* <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683028719/sayf/GoogleMap_bxdqvk.svg" alt=""/> */}
                 </div>
             </section>
         </>
     )
 }
-export default EnterUnitLocation
+export default memo(EnterUnitLocation)

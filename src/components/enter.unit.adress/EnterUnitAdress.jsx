@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./EnterUnitAdress.css"
 import NumberAndText from "../number.and.text/NumberAndText";
 
-const EnterUnitAdress = ()=>{
+const EnterUnitAdress = ({enterAdress, setEnterAdress})=>{
     const title = {
         number: "2",
         text: "العنوان"
@@ -16,18 +16,26 @@ const EnterUnitAdress = ()=>{
                     <input 
                     type="text"
                     placeholder="المدينة"
+                    onChange={(e)=> setEnterAdress({...enterAdress, city: e.target.value})}
+                    value={enterAdress.city}
                     />
                     <input 
                     type="text"
-                    placeholder="اسم الشارع ورقم البيت" 
+                    placeholder="اسم الشارع ورقم البيت"
+                    onChange={(e)=> setEnterAdress({...enterAdress, street: e.target.value})}
+                    value={enterAdress.street} 
                     />
                     <input 
                     type="text"
                     placeholder="رقم الشقه او الطابق" 
+                    onChange={(e)=> setEnterAdress({...enterAdress, houseNum: e.target.value})}
+                    value={enterAdress.houseNum}
                     />
                     <input 
                     type="text"
                     placeholder="الرمز البريدي" 
+                    onChange={(e)=> setEnterAdress({...enterAdress, zibCode: e.target.value})}
+                    value={enterAdress.zibCode}
                     />
                     </div>
             </section>
@@ -35,4 +43,4 @@ const EnterUnitAdress = ()=>{
     )
 }
 
-export default EnterUnitAdress
+export default memo(EnterUnitAdress)

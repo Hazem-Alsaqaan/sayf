@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./EnterUnitName.css"
 import NumberAndText from "../number.and.text/NumberAndText";
 
-const EnterUnitName = ()=>{
+const EnterUnitName = ({enterName, setEnterName})=>{
     const title = {
         number: "1",
         text: "الاسم"
@@ -16,10 +16,12 @@ const EnterUnitName = ()=>{
                     <input 
                     type="text"
                     placeholder="ادخل اسم مكان الشقة الخاصه بك"
+                    onChange={(e)=>setEnterName(e.target.value)}
+                    value={enterName}
                     />
                 </div>
             </section>
         </>
     )
 }
-export default EnterUnitName
+export default memo(EnterUnitName)

@@ -127,11 +127,15 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
         throw(err.response.data.errorMessage)
     }
 })
-export const enterUnitData = createAsyncThunk("units/enterUnitData", async()=>{
-    try{
-        const res = await axios.post(``,
-        {})
-    }catch(err){
-        console.log(err)
-    }
-})
+// export const enterUnitData = createAsyncThunk("units/enterUnitData", async()=>{
+//     try{
+//         const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`,
+//         {
+
+//         },
+//         {}
+//         )
+//     }catch(err){
+//         console.log(err)
+//     }
+// })

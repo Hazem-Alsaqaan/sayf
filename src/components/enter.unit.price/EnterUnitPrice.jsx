@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./EnterUnitPrice.css"
 import NumberAndText from "../number.and.text/NumberAndText";
 
-const EnterUnitPrice = ()=>{
+const EnterUnitPrice = ({enterPrice, setEnterPrice})=>{
     const title = {
         number: "6",
         text: "السعر"
@@ -15,6 +15,8 @@ const EnterUnitPrice = ()=>{
                     <input 
                     type="text"
                     placeholder="حدد السعر المطلوب لليوم الواحد"
+                    onChange={(e)=>setEnterPrice(e.target.value)}
+                    value={enterPrice}
                     />
                 </div>
             </section>
@@ -22,4 +24,4 @@ const EnterUnitPrice = ()=>{
     )
 }
 
-export default EnterUnitPrice
+export default memo(EnterUnitPrice)
