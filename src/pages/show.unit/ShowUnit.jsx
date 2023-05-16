@@ -32,9 +32,9 @@ const ShowUnit = ()=>{
                 <div className="container">
                     <NestedNavigate/>
                     <Outlet/>
-                    <SpecificationsConditions/>
+                    <SpecificationsConditions oneUnit ={oneUnit}/>
                     <Ratings/>
-                    <VisitorsOpinions/>
+                    <VisitorsOpinions oneUnit ={oneUnit}/>
                 </div>
                 <Footer/>
             </div>

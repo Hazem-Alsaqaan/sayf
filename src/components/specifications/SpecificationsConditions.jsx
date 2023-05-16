@@ -1,12 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import "./SpecificationsConditions.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams } from "react-router-dom";
 
-const SpecificationsConditions = ()=>{
+const SpecificationsConditions = ({oneUnit})=>{
     const {unitId} = useParams()
-
     return(
         <>
         <div className="static-specifications">
@@ -22,7 +21,7 @@ const SpecificationsConditions = ()=>{
                 <div className="specifications-data">
                     <div>
                         <FontAwesomeIcon icon={faLocationDot}/>
-                        <span>القاهرة - مصر</span>
+                        <span>{`${oneUnit.city} - مصر`}</span>
                     </div>
                     <div>
                         <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682941496/sayf/809090_architecture_family_home_house_residential_icon_1_ahokpe.svg" alt=""/>
@@ -65,4 +64,4 @@ const SpecificationsConditions = ()=>{
         </>
     )
 }
-export default SpecificationsConditions
+export default memo(SpecificationsConditions)
