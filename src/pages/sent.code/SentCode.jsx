@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SentCode.css"
 import axios from "axios";
 
-const SentCode =()=>{
+const SentCode =({getMailFromSentCode})=>{
     const [email, setEmail] = useState("")
     const navigate = useNavigate()
     
     const handleConfirmEmail = async(e)=>{
         e.preventDefault()
+        getMailFromSentCode(email)
         try{
             const res = await axios.post(`https://saif-production-e995.up.railway.app/phone-confirmation`, 
             {phone: email})

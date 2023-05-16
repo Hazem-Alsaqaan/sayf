@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerFulfilled, registerPending, registerRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 
-const Register = ({getMailFromRegister})=>{
+const Register = ({getEmailFromRegister})=>{
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [username, setUsername] = useState("")
@@ -27,9 +27,9 @@ const Register = ({getMailFromRegister})=>{
                 password:password,
                 phone: email
             })
-            getMailFromRegister(email)
+            getEmailFromRegister(email)
             dispatch(registerFulfilled(res.data))
-            navigate("/confirmCode")
+            navigate("/verifyCode")
         }catch(err){
             dispatch(registerRejected(err.response.data.errorMessage))
             if(err.response.data.errorMessage){

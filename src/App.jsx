@@ -16,11 +16,21 @@ import SearchResult from "./components/search.result/SearchResult"
 import HomeContent from "./components/home.content/HomeContent"
 import RequireAuth from "./components/require.auth/RequireAuth"
 import SentCode from "./pages/sent.code/SentCode"
+import VerifyCode from "./pages/verify.code/VerifyCode"
 
 function App() {
   const [email, setEmail] = useState("")
-  const getMailFromRegister = (mail)=>{
+  const [registerMail, setRegisterMail] = useState("")
+  const [code, setCode] = useState("")
+
+  const getMailFromSentCode = (mail)=>{
     setEmail(mail)
+  }
+  const getCodeFromConfirmCode = (theCode)=>{
+    setCode(theCode)
+  }
+  const getEmailFromRegister = (mail)=>{
+    setRegisterMail(mail)
   }
   return (
     <div className="App">
@@ -34,10 +44,11 @@ function App() {
         <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
         <Route path="/showYourApartment" element={<RequireAuth><ShowYourApartment/></RequireAuth>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register getMailFromRegister = {getMailFromRegister}/>}/>
-        <Route path="/sentCode" element={<SentCode/>}/>
-        <Route path="/confirmCode" element={<ConfirmCode email = {email}/>}/>
-        <Route path="/confirmPassword" element={<ConfirmPassword/>}/>
+        <Route path="/register" element={<Register getEmailFromRegister ={getEmailFromRegister}/>}/>
+        <Route path="/verifyCode" element={<VerifyCode registerMail ={registerMail}/>}/>
+        <Route path="/sentCode" element={<SentCode getMailFromSentCode = {getMailFromSentCode}/>}/>
+        <Route path="/confirmCode" element={<ConfirmCode email = {email} getCodeFromConfirmCode = {getCodeFromConfirmCode}/>}/>
+        <Route path="/confirmPassword" element={<ConfirmPassword email ={email}  code ={code}/>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>
           <Route index element={<UnitSwiperImages/>}/>

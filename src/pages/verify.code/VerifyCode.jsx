@@ -1,11 +1,9 @@
 import React, { memo, useState } from "react";
-import "./ConfirmCode.css"
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ConfirmCode =({email, getCodeFromConfirmCode})=>{
-    const {user} = useSelector((state)=> state.authSlice)
+const VerifyCode =({registerMail})=>{
     const navigate = useNavigate()
     const[firstNum, setFirstNum] = useState(0)
     const[secondNum, setSecondNum] = useState(0)
@@ -14,17 +12,16 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
     const[fiveNum, setFiveNum] = useState(0)
     const[sixNum, setSixNum] = useState(0)
 
-    const handleConfirmCode = async(e)=>{
+    const handleVerifyCode = async(e)=>{
         e.preventDefault()
-        getCodeFromConfirmCode(`${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`)
         try{
-            const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/check-code-to-reset`
+            const res = await axios.post(`https://saif-production-e995.up.railway.app/phone-confirmation/verify`
             , {
-                phone: email,
+                phone: registerMail,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
             console.log(res.data)
-            navigate("/confirmPassword")
+            navigate("/login")
         }catch(err){
             console.log(err)
         }
@@ -34,10 +31,10 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
         <>
             <section className="confirm-code">
                 <div className="container">
-                    <h1>نسيت كلمة المرور</h1>
-                    <h2>{`تم إرسال الكود على البريد الالكتروني ${email ? email : "unknown"}`}</h2>
+                    {/* <h1>نسيت كلمة المرور</h1> */}
+                    <h2>{`تم إرسال الكود على البريد الالكتروني ${registerMail ? registerMail : "unknown"}`}</h2>
                     <section className="auth-form">
-                        <form onSubmit={(e)=>handleConfirmCode(e)}>
+                        <form onSubmit={(e)=>handleVerifyCode(e)}>
                             <label>الرمز التأكيدي</label>
                             <div className="code-input">
                                 <input
@@ -92,4 +89,4 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
         </>
     )
 }
-export default memo(ConfirmCode)
+export default memo(VerifyCode)
