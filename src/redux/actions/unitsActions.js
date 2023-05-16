@@ -6,7 +6,7 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
     try{
         const res = await axios.get(`https://saif-production-e995.up.railway.app/houses?page=1&limit=8&allowPagination=true`, {
             headers: {
-                Authorization: `bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         })
         return res.data.docs
@@ -45,7 +45,7 @@ export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=
         const res = await axios.get(`https://saif-production-e995.up.railway.app/reservations/my-reservations
         `, {
             headers: {
-                Authorization: `bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         })
         return res.data
@@ -66,7 +66,7 @@ export const getMyFavourites = createAsyncThunk("units/getMyFavourites", async(t
     try{
         const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/myFavourites`, {
             headers: {
-                Authorization: `bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         })
         return res.data
@@ -82,7 +82,7 @@ export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async
         {id: item.id},
         {
             headers: {
-                Authorization: `bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`
             }
         }
         )
@@ -99,7 +99,7 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
         {id: item.id},
         {
             headers: {
-                Authorization: `bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`
             }
         })
         return res.data
@@ -119,7 +119,7 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
     try{
         const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/${item.id}`, {
             headers: {
-                Authorization: `bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`
             }
         })
         return res.data
@@ -127,15 +127,43 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
         throw(err.response.data.errorMessage)
     }
 })
-// export const enterUnitData = createAsyncThunk("units/enterUnitData", async()=>{
-//     try{
-//         const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`,
-//         {
 
-//         },
-//         {}
-//         )
-//     }catch(err){
-//         console.log(err)
-//     }
-// })
+
+
+
+
+
+export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>{
+    try{
+        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`,
+        {
+            images: [],
+            contractImage: "",
+            name: unitInfo.name,
+            city: unitInfo.city,
+            street: unitInfo.street,
+            house_num: unitInfo.house_num,
+            code: unitInfo.code,
+            conditions: unitInfo.conditions,
+            rooms: unitInfo.rooms,
+            persons: unitInfo.persons,
+            children: unitInfo.children,
+            beds: unitInfo.beds,
+            bathrooms: unitInfo.bathrooms,
+            apartment_area: unitInfo.apartment_area,
+            price: unitInfo.price,
+            about: unitInfo.about,
+            lat: unitInfo.lat,
+            long: unitInfo.log
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${unitInfo.token}`,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        return res.data
+    }catch(err){
+        console.log(err)
+    }
+})

@@ -10,8 +10,13 @@ import EnterUnitConditions from "../../components/enter.unit.conditions/EnterUni
 import EnterUnitPrice from "../../components/enter.unit.price/EnterUnitPrice";
 import EnterAboutUnit from "../../components/enter.about.unit/EnterAboutUnit";
 import EnterUnitImages from "../../components/enter.unit.images/EnterUnitImages";
+import { useDispatch, useSelector } from "react-redux";
+import EnterPersonsChildren from "../../components/enter.persons.children/EnterPersonsChildren";
+import { addNewUnit } from "../../redux/actions/unitsActions";
 
 const ShowYourApartment = ()=>{
+    const dispatch = useDispatch()
+    const {token} = useSelector((state)=>state.authSlice)
     const [enterName, setEnterName] = useState("")
     const [enterAdress, setEnterAdress] = useState({
         city: "",
@@ -32,10 +37,42 @@ const ShowYourApartment = ()=>{
     const [enterConditions, setEnterConditions] = useState("")
     const [enterAboutUnit, setEnterAboutUnit] = useState("")
     const [enterPrice, setEnterPrice] = useState("")
+    const [enterPersons, setEnterPersons] = useState({
+        personNum: "",
+        childrenNum: ""
+    })
+    const [enterImages, setEnterImages] = useState({
+        unitImages: [],
+        contractImage: ""
+    })
 
+    const unitInfo = {
+        images: enterImages.unitImages,
+        contractImage: enterImages.contractImage,
+        name: enterName,
+        city: enterAdress.city,
+        street: enterAdress.street,
+        house_num: enterAdress.houseNum,
+        code: enterAdress.zibCode,
+        conditions: enterConditions,
+        rooms: enterDetails.rooms,
+        persons: enterPersons.personNum,
+        children: enterPersons.childrenNum,
+        beds: enterDetails.beds,
+        bathrooms: enterDetails.bathrooms,
+        apartment_area: enterDetails.apartment_area,
+        price: enterPrice,
+        about: enterAboutUnit,
+        lat: enterLocation.lat,
+        long: enterLocation.long,
+        token: token
+    }
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
+        console.log(unitInfo)
+        dispatch(addNewUnit(unitInfo))
+        // rest all inputs values
         setEnterName("")
         setEnterAdress({...enterAdress, 
             city: "",
@@ -52,7 +89,10 @@ const ShowYourApartment = ()=>{
         setEnterConditions("")
         setEnterAboutUnit("")
         setEnterPrice("")
-        console.log(enterPrice)
+        setEnterPersons({
+            personNum: "",
+            childrenNum: ""
+        })
     }
     return(
         <>
@@ -69,7 +109,8 @@ const ShowYourApartment = ()=>{
                         <EnterUnitConditions enterConditions={enterConditions} setEnterConditions={setEnterConditions}/>
                         <EnterUnitPrice enterPrice ={enterPrice} setEnterPrice ={setEnterPrice}/>
                         <EnterAboutUnit enterAboutUnit={enterAboutUnit} setEnterAboutUnit={setEnterAboutUnit}/>
-                        <EnterUnitImages/>
+                        <EnterUnitImages enterImages ={enterImages} setEnterImages ={setEnterImages}/>
+                        <EnterPersonsChildren enterPersons ={enterPersons} setEnterPersons ={setEnterPersons}/>
                         <div className="btn-purple">
                             <button 
                             className="btn"
