@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import  {Link, useLocation, useNavigate} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faFacebook, faGooglePlus, faSquareTwitter} from "@fortawesome/free-brands-svg-icons"
 import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
-import { loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
+import { logOut, loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
+import { auth } from "../../config/authFireBase";
+import {onAuthStateChanged, signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 
 
 
@@ -18,7 +20,43 @@ const Login =()=>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const {error} = useSelector((state)=> state.authSlice)
+// handle firebase auth
+useEffect(()=>{
+    const unsubscrip = onAuthStateChanged(auth, (user)=>{
+        return user
+    })
+    return()=> unsubscrip()
+},[])
+//  handle signin with firebase
+const handleGoogleAuth = ()=>{
+    const provider = new GoogleAuthProvider()
+    signInWithPopup(auth, provider).then((data)=>{
+        if(data.user){
+            console.log(data.user.accessToken)
+            
+            try{
+                    axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`,{
+                    access_token: `Bearer ${data.user.accessToken}`
+                }).then((res)=>{
+                    console.log(res.data)
+                    window.sessionStorage.setItem("user", JSON.stringify(data.user))
+                    window.sessionStorage.setItem("token", JSON.stringify(data.user.accessToken))
+                    dispatch(loginFulfilled(data.user))
+                    navigate(redirectPath, {replace: true})
+                })
+                
+            }catch(err){
+                console.log(err)
+            }
+            
+        }else{
+            dispatch(logOut())
+            window.sessionStorage.removeItem("user")
+            window.sessionStorage.removeItem("token")
+        }
+    })
     
+}
 // handle login 
 const handleLogin = async(e)=>{
     e.preventDefault()
@@ -28,8 +66,8 @@ const handleLogin = async(e)=>{
         phone: email,
         password: password
     })
-    window.localStorage.setItem("user", JSON.stringify(res.data.user))
-    window.localStorage.setItem("token", JSON.stringify(res.data.token))
+    window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
+    window.sessionStorage.setItem("token", JSON.stringify(res.data.token))
     dispatch(loginFulfilled(res.data))
     navigate(redirectPath, {replace: true})
     }catch(err){
@@ -108,7 +146,10 @@ const handleLogin = async(e)=>{
                             <div className="fire-base">
                                 <p>أو قم بالتسجيل التالي</p>
                                 <div>
-                                    <FontAwesomeIcon icon={faGooglePlus}/>
+                                    <FontAwesomeIcon 
+                                    icon={faGooglePlus}
+                                    onClick={handleGoogleAuth}
+                                    />
                                     <FontAwesomeIcon icon={faSquareTwitter}/>
                                     <FontAwesomeIcon icon={faFacebook}/>
                                 </div>
