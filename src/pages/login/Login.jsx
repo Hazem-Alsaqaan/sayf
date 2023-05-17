@@ -32,8 +32,7 @@ const handleGoogleAuth = ()=>{
     const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider).then((data)=>{
         if(data.user){
-            console.log(data.user.accessToken)
-            
+            // console.log(data.user.accessToken)
             try{
                     axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`,{
                     access_token: `Bearer ${data.user.accessToken}`
