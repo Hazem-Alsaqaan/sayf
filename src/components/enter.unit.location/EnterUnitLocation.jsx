@@ -25,8 +25,8 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
     
     useEffect(()=>{
         return ()=>setEnterLocation({...enterLocation, 
-            lat: "31.205753",
-            long: "29.924526"
+            lat: "31",
+            long: "29"
         })
     },[])
 

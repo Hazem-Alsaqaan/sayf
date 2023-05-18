@@ -134,11 +134,13 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
 
 
 export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>{
+    const imagesFormData = new FormData()
+    console.log(unitInfo)
     try{
         const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`,
         {
-            images: [],
-            contractImage: "",
+            images: imagesFormData.append("images", unitInfo.unitImages),
+            contractImage: contractFormData.append("contractImage", unitInfo.contractImage),
             name: unitInfo.name,
             city: unitInfo.city,
             street: unitInfo.street,
@@ -151,17 +153,19 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
             beds: unitInfo.beds,
             bathrooms: unitInfo.bathrooms,
             apartment_area: unitInfo.apartment_area,
+            description : "about",
             price: unitInfo.price,
             about: unitInfo.about,
             lat: unitInfo.lat,
-            long: unitInfo.log
+            long: unitInfo.long
         },
         {
             headers: {
-                Authorization: `Bearer ${unitInfo.token}`,
-                "Content-Type": "multipart/form-data"
+                "Authorization": `Bearer ${unitInfo.token}`,
+                "Content-Type": "multipart/form-data;",
             }
         })
+        console.log(res.data)
         return res.data
     }catch(err){
         console.log(err)

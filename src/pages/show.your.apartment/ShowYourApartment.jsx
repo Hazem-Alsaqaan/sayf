@@ -43,9 +43,9 @@ const ShowYourApartment = ()=>{
     })
     const [enterImages, setEnterImages] = useState({
         unitImages: [],
-        contractImage: ""
+        contractImage: null
     })
-
+    
     const unitInfo = {
         images: enterImages.unitImages,
         contractImage: enterImages.contractImage,
@@ -55,22 +55,21 @@ const ShowYourApartment = ()=>{
         house_num: enterAdress.houseNum,
         code: enterAdress.zibCode,
         conditions: enterConditions,
-        rooms: enterDetails.rooms,
-        persons: enterPersons.personNum,
-        children: enterPersons.childrenNum,
+        rooms: Number(enterDetails.rooms),
+        persons: Number(enterPersons.personNum),
+        children: Number(enterPersons.childrenNum),
         beds: enterDetails.beds,
         bathrooms: enterDetails.bathrooms,
         apartment_area: enterDetails.apartment_area,
-        price: enterPrice,
+        price: Number(enterPrice),
         about: enterAboutUnit,
-        lat: enterLocation.lat,
-        long: enterLocation.long,
+        lat: Number(enterLocation.lat),
+        long: Number(enterLocation.long),
         token: token
     }
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
-        console.log(unitInfo)
         dispatch(addNewUnit(unitInfo))
         // rest all inputs values
         setEnterName("")
