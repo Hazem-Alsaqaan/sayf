@@ -134,7 +134,6 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
 
 
 export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>{
-    console.log(unitInfo)
     try{
         const formData = new FormData()
         for(let i = 0; i < unitInfo.images.length; i++){
@@ -158,7 +157,6 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
         formData.append("about", unitInfo.about)
         formData.append("lat", unitInfo.lat)
         formData.append("long", unitInfo.long)
-        console.log(formData)
         const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`, formData,
         {
             headers: {
@@ -166,30 +164,9 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
                 "Content-Type": "multipart/form-data;",
             }
         })
-        console.log(res.data)
         return res.data
     }catch(err){
         console.log(err)
     }
 })
 
-
-// images: unitInfo.formDate.get("images"),
-//             contractImage: unitInfo.formDate.get("contractImage"),
-//             name: unitInfo.formDate.get("name"),
-//             city: unitInfo.formDate.get("city"),
-//             street: unitInfo.formDate.get("street"),
-//             house_num: unitInfo.formDate.get("house_num"),
-//             code: unitInfo.formDate.get("code"),
-//             conditions: unitInfo.formDate.get("conditions"),
-//             rooms: Number(unitInfo.formDate.get("rooms")),
-//             persons: Number(unitInfo.formDate.get("persons")),
-//             children: Number(unitInfo.formDate.get("children")),
-//             beds: unitInfo.formDate.get("beds"),
-//             bathrooms: unitInfo.formDate.get("bathrooms"),
-//             apartment_area: unitInfo.formDate.get("apartment_area"),
-//             description : unitInfo.formDate.get("about"),
-//             price: Number(unitInfo.formDate.get("price")),
-//             about: unitInfo.formDate.get("about"),
-//             lat: Number(unitInfo.formDate.get("lat")),
-//             long: Number(unitInfo.formDate.get("long"))

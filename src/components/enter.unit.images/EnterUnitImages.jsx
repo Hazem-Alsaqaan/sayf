@@ -10,27 +10,14 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
         text: "الصور"
     }
 
-
     // handle upload contract img
     const handleUploadContract = (e)=>{
         setEnterImages({...enterImages, contractImage: e.target.files[0]})
-        // const contractFile = e.target.files[0]
-        // const contractReader = new FileReader();
-        // contractReader.addEventListener("load", ()=>{
-        //     setEnterImages({...enterImages, contractImage: contractReader.result})
-        // })
-        // contractReader.readAsDataURL(contractFile)
     }
-
     
+    // handle upload units img
     const handleUploadUnitsImgs = (e)=>{
         setEnterImages({...enterImages, unitImages: e.target.files})
-        // const unitsFile = e.target.files[0]
-        // const unitsReader = new FileReader();
-        // unitsReader.addEventListener("load", ()=>{
-        //     setEnterImages({...enterImages, unitImages: [...enterImages.unitImages, unitsReader.result]})
-        // })
-        // unitsReader.readAsDataURL(unitsFile)
     }
     return(
         <>
@@ -47,12 +34,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             onChange={(e)=>handleUploadUnitsImgs(e)}
                             />
                         </div>
-                        {/* <div className="mt-3">
-                        {enterImages.unitImages[0] && <img className="m-1" src={enterImages.unitImages[0]?enterImages.unitImages[0]:"failed"} alt="not found" width={100} height={60}/>}
-                        {enterImages.unitImages[1] && <img className="m-1" src={enterImages.unitImages[1]?enterImages.unitImages[1]:"failed"} alt="not found" width={100} height={60}/>}
-                        {enterImages.unitImages[2] && <img className="m-1" src={enterImages.unitImages[2]?enterImages.unitImages[2]:"failed"} alt="not found" width={100} height={60}/>}
-                        {enterImages.unitImages[3] && <img className="m-1" src={enterImages.unitImages[3]?enterImages.unitImages[3]:"failed"} alt="not found" width={100} height={60}/>}
-                        </div> */}
+                        
                     </section>
                     <section className="unit-contract-image">
                         <h5>2- ادخل صورة لعقد الشقه</h5>
@@ -64,9 +46,6 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             onChange={(e)=>handleUploadContract(e)}
                             />
                         </div>
-                        {/* <>
-                        {enterImages.contractImage && <img className="mt-3" src={enterImages.contractImage?enterImages.contractImage:"failed"} alt="not found" width={80} height={120}/>}
-                        </> */}
                     </section>
                 </div>
             </section>
