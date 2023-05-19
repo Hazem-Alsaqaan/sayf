@@ -45,7 +45,7 @@ const ShowYourApartment = ()=>{
         unitImages: [],
         contractImage: null
     })
-    
+
     const unitInfo = {
         images: enterImages.unitImages,
         contractImage: enterImages.contractImage,
@@ -61,37 +61,44 @@ const ShowYourApartment = ()=>{
         beds: enterDetails.beds,
         bathrooms: enterDetails.bathrooms,
         apartment_area: enterDetails.apartment_area,
+        description: enterAboutUnit,
         price: Number(enterPrice),
         about: enterAboutUnit,
         lat: Number(enterLocation.lat),
         long: Number(enterLocation.long),
         token: token
     }
+    
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
+        // const unitInfo = {
+        //     formDate: formData,
+        //     token: token
+        // }
+        // // dispatch add new units
         dispatch(addNewUnit(unitInfo))
-        // rest all inputs values
-        setEnterName("")
-        setEnterAdress({...enterAdress, 
-            city: "",
-            street: "",
-            houseNum: "",
-            zibCode: ""
-        })
-        setEnterDetails({...enterDetails,
-            rooms: "",
-            beds: "",
-            bathrooms : "",
-            apartment_area: ""
-        })
-        setEnterConditions("")
-        setEnterAboutUnit("")
-        setEnterPrice("")
-        setEnterPersons({
-            personNum: "",
-            childrenNum: ""
-        })
+        // // rest all inputs values
+        // setEnterName("")
+        // setEnterAdress({...enterAdress, 
+        //     city: "",
+        //     street: "",
+        //     houseNum: "",
+        //     zibCode: ""
+        // })
+        // setEnterDetails({...enterDetails,
+        //     rooms: "",
+        //     beds: "",
+        //     bathrooms : "",
+        //     apartment_area: ""
+        // })
+        // setEnterConditions("")
+        // setEnterAboutUnit("")
+        // setEnterPrice("")
+        // setEnterPersons({
+        //     personNum: "",
+        //     childrenNum: ""
+        // })
     }
     return(
         <>
@@ -125,3 +132,28 @@ const ShowYourApartment = ()=>{
     )
 }
 export default ShowYourApartment
+
+
+
+
+// const formData = new FormData()
+// for(let i = 0; i < enterImages.unitImages.length; i++){
+//     formData.append("images", enterImages.unitImages[0])
+// }
+// formData.append("contractImage", enterImages.contractImage)
+// formData.append("name", enterName)
+// formData.append("city", enterAdress.city)
+// formData.append("street", enterAdress.street)
+// formData.append("house_num", enterAdress.houseNum)
+// formData.append("code", enterAdress.zibCode)
+// formData.append("conditions", enterConditions)
+// formData.append("rooms", Number(enterDetails.rooms))
+// formData.append("persons", Number(enterPersons.personNum))
+// formData.append("children", Number(enterPersons.childrenNum))
+// formData.append("beds", enterDetails.beds)
+// formData.append("bathrooms", enterDetails.bathrooms)
+// formData.append("apartment_area", enterDetails.apartment_area)
+// formData.append("price", Number(enterPrice))
+// formData.append("about", enterAboutUnit)
+// formData.append("lat", Number(enterLocation.lat))
+// formData.append("long", Number(enterLocation.long))

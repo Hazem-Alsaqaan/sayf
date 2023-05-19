@@ -24,7 +24,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
 
     
     const handleUploadUnitsImgs = (e)=>{
-        setEnterImages({...enterImages, unitImages: e.target.files[0]})
+        setEnterImages({...enterImages, unitImages: e.target.files})
         // const unitsFile = e.target.files[0]
         // const unitsReader = new FileReader();
         // unitsReader.addEventListener("load", ()=>{
@@ -47,12 +47,12 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             onChange={(e)=>handleUploadUnitsImgs(e)}
                             />
                         </div>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                         {enterImages.unitImages[0] && <img className="m-1" src={enterImages.unitImages[0]?enterImages.unitImages[0]:"failed"} alt="not found" width={100} height={60}/>}
                         {enterImages.unitImages[1] && <img className="m-1" src={enterImages.unitImages[1]?enterImages.unitImages[1]:"failed"} alt="not found" width={100} height={60}/>}
                         {enterImages.unitImages[2] && <img className="m-1" src={enterImages.unitImages[2]?enterImages.unitImages[2]:"failed"} alt="not found" width={100} height={60}/>}
                         {enterImages.unitImages[3] && <img className="m-1" src={enterImages.unitImages[3]?enterImages.unitImages[3]:"failed"} alt="not found" width={100} height={60}/>}
-                        </div>
+                        </div> */}
                     </section>
                     <section className="unit-contract-image">
                         <h5>2- ادخل صورة لعقد الشقه</h5>

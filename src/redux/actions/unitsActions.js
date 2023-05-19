@@ -134,31 +134,32 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
 
 
 export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>{
-    const imagesFormData = new FormData()
     console.log(unitInfo)
     try{
-        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`,
-        {
-            images: imagesFormData.append("images", unitInfo.unitImages),
-            contractImage: contractFormData.append("contractImage", unitInfo.contractImage),
-            name: unitInfo.name,
-            city: unitInfo.city,
-            street: unitInfo.street,
-            house_num: unitInfo.house_num,
-            code: unitInfo.code,
-            conditions: unitInfo.conditions,
-            rooms: unitInfo.rooms,
-            persons: unitInfo.persons,
-            children: unitInfo.children,
-            beds: unitInfo.beds,
-            bathrooms: unitInfo.bathrooms,
-            apartment_area: unitInfo.apartment_area,
-            description : "about",
-            price: unitInfo.price,
-            about: unitInfo.about,
-            lat: unitInfo.lat,
-            long: unitInfo.long
-        },
+        const formData = new FormData()
+        for(let i = 0; i < unitInfo.images.length; i++){
+            formData.append("images", unitInfo.images[i])
+        }
+        formData.append("contractImage", unitInfo.contractImage)
+        formData.append("name", unitInfo.name)
+        formData.append("city", unitInfo.city)
+        formData.append("street", unitInfo.street)
+        formData.append("house_num", unitInfo.house_num)
+        formData.append("code", unitInfo.code)
+        formData.append("conditions", unitInfo.conditions)
+        formData.append("rooms", unitInfo.rooms)
+        formData.append("persons", unitInfo.persons)
+        formData.append("children", unitInfo.children)
+        formData.append("beds", unitInfo.beds)
+        formData.append("bathrooms", unitInfo.bathrooms)
+        formData.append("apartment_area", unitInfo.apartment_area)
+        formData.append("description", unitInfo.description)
+        formData.append("price", unitInfo.price)
+        formData.append("about", unitInfo.about)
+        formData.append("lat", unitInfo.lat)
+        formData.append("long", unitInfo.long)
+        console.log(formData)
+        const res = await axios.post(`https://saif-production-e995.up.railway.app/houses`, formData,
         {
             headers: {
                 "Authorization": `Bearer ${unitInfo.token}`,
@@ -171,3 +172,24 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
         console.log(err)
     }
 })
+
+
+// images: unitInfo.formDate.get("images"),
+//             contractImage: unitInfo.formDate.get("contractImage"),
+//             name: unitInfo.formDate.get("name"),
+//             city: unitInfo.formDate.get("city"),
+//             street: unitInfo.formDate.get("street"),
+//             house_num: unitInfo.formDate.get("house_num"),
+//             code: unitInfo.formDate.get("code"),
+//             conditions: unitInfo.formDate.get("conditions"),
+//             rooms: Number(unitInfo.formDate.get("rooms")),
+//             persons: Number(unitInfo.formDate.get("persons")),
+//             children: Number(unitInfo.formDate.get("children")),
+//             beds: unitInfo.formDate.get("beds"),
+//             bathrooms: unitInfo.formDate.get("bathrooms"),
+//             apartment_area: unitInfo.formDate.get("apartment_area"),
+//             description : unitInfo.formDate.get("about"),
+//             price: Number(unitInfo.formDate.get("price")),
+//             about: unitInfo.formDate.get("about"),
+//             lat: Number(unitInfo.formDate.get("lat")),
+//             long: Number(unitInfo.formDate.get("long"))

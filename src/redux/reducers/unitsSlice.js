@@ -35,6 +35,7 @@ const unitsSlice = createSlice({
             state.isLoading = false
             console.log(action.payload)
             state.units = [...state.units, action.payload]
+            state.searchUnits = [...state.searchUnits, action.payload]
         })
         builder.addCase(addNewUnit.rejected, (state, action)=>{
             state.isLoading = false
