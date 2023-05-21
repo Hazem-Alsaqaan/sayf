@@ -32,6 +32,7 @@ const VisitorsOpinions = ({oneUnit})=>{
         }
         return()=> cleaner()
     },[])
+    console.log(usersOpinion)
     return(
         <>
         {isLoading ? <RotatingLines
@@ -46,7 +47,7 @@ const VisitorsOpinions = ({oneUnit})=>{
                     <h2>آراء الزوار</h2>
                     <span>
                         <FontAwesomeIcon icon={faStar}/>
-                        <p>{`5.0 (${usersOpinion.length} تقييم)`}</p>
+                        <p>{`${oneUnit.rating ? oneUnit.rating : 0} (${usersOpinion.length} تقييم)`}</p>
                     </span>
                 </div>
                 <div className="bottom-side">

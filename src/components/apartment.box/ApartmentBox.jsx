@@ -45,7 +45,7 @@ const ApartmentBox = ({item, render, setRender})=>{
                     icon={faHeart} style={location.pathname === "/myFavourite" && {color: "#E20D0D"}}/>
                     <img src={item?.images && item?.images[0]} alt=""/>
                     <span className="star-icon">
-                        5.0
+                        {item.rating ? item.rating : 0}
                         <FontAwesomeIcon icon={faStar}/>
                     </span>
                 </div>
@@ -53,7 +53,7 @@ const ApartmentBox = ({item, render, setRender})=>{
                     <h4>{`شقة مفروش للإيجار شارع ${item?.street}`}</h4>
                     {location.pathname === "/myFavourite" && 
                     <p>{`شقة تحتوي على ${item?.bathrooms} حمام`}</p>}
-                    <p className="rate"><span>600 \ اليوم</span>({item?.rating} تقييم)</p>
+                    <p className="rate"><span>600 \ اليوم</span>({item?.raters ? item?.raters : 0} تقييم)</p>
                     <p className="location">
                         <FontAwesomeIcon icon={faLocationDot}/>
                         {`${item?.city} - مصر`}
