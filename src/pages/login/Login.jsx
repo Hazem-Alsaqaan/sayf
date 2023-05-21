@@ -20,19 +20,16 @@ const Login =()=>{
 // handle google auth
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
-        console.log(tokenResponse);
-        console.log(tokenResponse.access_token);
             try{
                 const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`, 
                 {
                     access_token: tokenResponse.access_token
-                },
-                {
-                    headers:{
-                        Authorization: `Bearer ${tokenResponse.access_token}`
-                    }
                 })
                 console.log(res.data)
+                window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
+                window.sessionStorage.setItem("token", JSON.stringify(res.data.token))
+                dispatch(loginFulfilled(res.data))
+                navigate(redirectPath, {replace: true})
             }catch(err){
                 console.log(err)
             }

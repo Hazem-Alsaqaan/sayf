@@ -24,7 +24,6 @@ const authSlice = createSlice({
         loginRejected: (state, action)=>{
             state.isLoading = false
             state.error = true
-
         },
         //logout
         logOut: (state, action)=>{
