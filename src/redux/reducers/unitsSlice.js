@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { addNewUnit, addTMyFavourites, getAllUnits, getMostBookings, getMyBooking, getMyFavourites, getOneUnit, removeFromFavourites } from "../actions/unitsActions"
+import { addNewUnit, addTMyFavourites, getAllUnits, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, removeFromFavourites } from "../actions/unitsActions"
 
 
 const unitsSlice = createSlice({
@@ -11,6 +11,8 @@ const unitsSlice = createSlice({
         myFavourites:[],
         searchUnits: [],
         oneUnit: {},
+        notifications: [],
+        notificationsLoadng: false,
         isLoading: false,
         error: ``
     },
@@ -34,7 +36,6 @@ const unitsSlice = createSlice({
         builder.addCase(addNewUnit.fulfilled, (state, action)=>{
             state.isLoading = false
             // console.log(action.payload)
-            // state.units = [...state.units, action.payload]
             state.searchUnits = [...state.searchUnits, action.payload]
         })
         builder.addCase(addNewUnit.rejected, (state, action)=>{
@@ -121,6 +122,17 @@ const unitsSlice = createSlice({
         builder.addCase(getOneUnit.rejected, (state, action)=>{
             state.isLoading = false
             state.error = action.error
+        })
+        // get notifications
+        builder.addCase(getNotifications.pending, (state, action)=>{
+            state.notificationsLoadng = true
+        })
+        builder.addCase(getNotifications.fulfilled, (state, action)=>{
+            state.notificationsLoadng = false;
+            state.notifications =  action.payload
+        })
+        builder.addCase(getNotifications.rejected, (state, action)=>{
+            state.notificationsLoadng = false;
         })
     }
 })

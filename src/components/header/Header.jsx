@@ -4,12 +4,20 @@ import { Link, NavLink } from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBell} from "@fortawesome/free-regular-svg-icons"
 import {faCirclePlus, faCircleUser} from "@fortawesome/free-solid-svg-icons"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import UserNotifications from "../user.notifications/UserNotifications";
+import { getNotifications } from "../../redux/actions/unitsActions";
 
 const Header = ()=>{
     const {user} = useSelector((state)=> state.authSlice)
     const [toggleNotifications, setToggleNotifications]= useState(false)
+    const {token} = useSelector((state)=>state.authSlice)
+    const dispatch = useDispatch()
+
+    const handleShowNotifications = async()=>{
+        setToggleNotifications(!toggleNotifications)
+        dispatch(getNotifications(token))
+    }
     return(
         <>
             <section className="header">
@@ -42,7 +50,8 @@ const Header = ()=>{
                                 </Link>
                                 <FontAwesomeIcon 
                                 icon={faBell}
-                                onClick={()=>setToggleNotifications(!toggleNotifications)}
+                                onClick={handleShowNotifications}
+                                // onClick={()=>setToggleNotifications(!toggleNotifications)}
                                 />
                                 {
                                     toggleNotifications && <UserNotifications/>

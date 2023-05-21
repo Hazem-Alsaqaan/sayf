@@ -48,7 +48,7 @@ const ApartmentBox = ({item})=>{
                 <h4>{`${item?.street} ${item?.apartment_area} شقة مفروش للإيجار`}</h4>
                 {location.pathname === "/myFavourite" && 
                 <p>{`حمام ${item?.bathrooms}شقة تحتوي على `}</p>}
-                <p className="rate"><span>600 \ اليوم</span>({item?.about}تقييم)</p>
+                <p className="rate"><span>600 \ اليوم</span>({item?.about} تقييم)</p>
                 <p className="location">
                     <FontAwesomeIcon icon={faLocationDot}/>
                     {item?.city}

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
@@ -18,6 +18,8 @@ import RequireAuth from "./components/require.auth/RequireAuth"
 import SentCode from "./pages/sent.code/SentCode"
 import VerifyCode from "./pages/verify.code/VerifyCode"
 
+
+
 function App() {
   const [email, setEmail] = useState("")
   const [registerMail, setRegisterMail] = useState("")
@@ -32,6 +34,7 @@ function App() {
   const getEmailFromRegister = (mail)=>{
     setRegisterMail(mail)
   }
+
   return (
     <div className="App">
       <Routes>

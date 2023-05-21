@@ -79,7 +79,19 @@
     margin-left: 10px;
     font-size: 22px;
 }
-
+.result-search-box .text-container a.btn-primary {
+    margin-top: 20px;
+    font-size: 16px;
+    white-space: nowrap;
+    height: 40px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background-color: var(--purple);
+    border: 1px solid var(--purple);
+}
 /* start media screen */
 @media(max-width: 991px){
      .result-search-box .text-container h4 {

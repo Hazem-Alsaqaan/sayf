@@ -31,6 +31,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             <p>تحميل الصور</p>
                             <input
                             type="file"
+                            multiple
                             onChange={(e)=>handleUploadUnitsImgs(e)}
                             />
                         </div>

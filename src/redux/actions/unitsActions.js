@@ -170,3 +170,16 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
     }
 })
 
+// get notifications data 
+export const getNotifications = createAsyncThunk("units/getNotifications", async(token)=>{
+    try{
+        const res = await axios.get(`https://saif-production-e995.up.railway.app/reservations/my-notifications`,{
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return res.data
+    }catch(err){
+        console.log(err)
+    }
+})

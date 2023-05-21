@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
 import {faHeart} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,6 +45,10 @@ const SingleSearchBox = ({item}) => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         {`${item?.city} ${item?.street}`}
                     </p>
+                    <Link 
+                    className="btn btn-primary"
+                    to={`/showUnit/${item?._id}`}
+                    >احجز الأن</Link>
                 </div>
             </div>
         </>
