@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 
-//get all units
+//get all units page 1
 export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
     try{
         const res = await axios.get(`https://saif-production-e995.up.railway.app/houses?page=1&limit=8&allowPagination=true`, {
@@ -15,8 +15,22 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
     }
 })
 
-
-
+//get all units on other pages
+export const getUnitsPages = createAsyncThunk("units/getUnitsPages", async(item)=>{
+    try{
+        const res = await axios.get(`https://saif-production-e995.up.railway.app/houses?page=${item.page}&limit=8&allowPagination=true`,
+            {
+                headers:{
+                    Authorization: `Bearer ${item.token}`
+                }
+            }
+        )
+        return res.data.docs
+    }catch(err){
+        console.log(err)
+        throw(err.response.data.errorMessage)
+    }
+})
 
 
 

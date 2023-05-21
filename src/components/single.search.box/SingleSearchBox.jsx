@@ -35,12 +35,12 @@ const SingleSearchBox = ({item}) => {
                     <div className="text-top-side">
                         <h4>شقة مفروش للايجار</h4>
                         <div className="star-icon">
-                            {item?.rating}
+                            {item?.rating ? item?.rating : 0}
                             <FontAwesomeIcon icon={faStar} />
                         </div>
                     </div>
                     <p>{`مكونة من ${item?.rooms} غرفة تحتوي على ${item?.beds} سرير مناسبة ل ${item?.persons + item?.children - 1} - ${item?.persons + item?.children} أفراد`}</p>
-                    <p className="rate"><span>600 \ اليوم</span>({item?.raters} تقييم)</p>
+                    <p className="rate"><span>600 \ اليوم</span>({item?.raters ? item?.raters : 0} تقييم)</p>
                     <p className="location">
                         <FontAwesomeIcon icon={faLocationDot} />
                         {`${item?.city} - مصر`}

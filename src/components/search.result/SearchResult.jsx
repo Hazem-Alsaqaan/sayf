@@ -5,16 +5,22 @@ import "./SearchResult.css"
 import SortSearching from "../sort.searching/SortSearching";
 import SingleSearchBox from "../single.search.box/SingleSearchBox";
 import {RotatingLines} from "react-loader-spinner"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ReactPaginate from "react-paginate"
+import { getUnitsPages } from "../../redux/actions/unitsActions";
 
 
 const SearchResult = ()=>{
+    const dispatch = useDispatch()
     const [toggleSearchSort, setToggleSearchSort] = useState(false)
     const {searchUnits} = useSelector((state)=>state.unitsSlice)
     const {searchUnitsLoading} = useSelector((state)=>state.unitsSlice)
+    const {token} = useSelector((state)=>state.authSlice)
+    let pageCount = 500;
     
-
-    
+    let handlePageClick = (data)=>{
+        dispatch(getUnitsPages({page: data.selected + 1, token: token}))
+    }
     return(
         <>
             <section className="search-result">
@@ -57,6 +63,27 @@ const SearchResult = ()=>{
                     }
                     </div>
                     }
+                    <div className="container-paginate">
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="next >"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={2}
+                            pageCount={pageCount}
+                            previousLabel="< previous"
+                            renderOnZeroPageCount={null}
+                            containerClassName = "pagination"
+                            pageClassName="page-item"
+                            pageLinkClassName="page-link"
+                            previousClassName="page-item"
+                            previousLinkClassName="page-link"
+                            nextClassName="page-item"
+                            nextLinkClassName="page-link"
+                            breakClassName="page-item"
+                            breakLinkClassName="page-link"
+                            activeLinkClassName="active"
+                        />
+                    </div>
                 </div>
             </section>
         </>
