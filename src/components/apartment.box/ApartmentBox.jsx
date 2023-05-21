@@ -45,13 +45,13 @@ const ApartmentBox = ({item})=>{
                         <FontAwesomeIcon icon={faStar}/>
                     </span>
                 </div>
-                <h4>{`${item?.street} ${item?.apartment_area} شقة مفروش للإيجار`}</h4>
+                <h4>{`شقة مفروش للإيجار شارع ${item?.street}`}</h4>
                 {location.pathname === "/myFavourite" && 
                 <p>{`حمام ${item?.bathrooms}شقة تحتوي على `}</p>}
-                <p className="rate"><span>600 \ اليوم</span>({item?.about} تقييم)</p>
+                <p className="rate"><span>600 \ اليوم</span>({item?.rating} تقييم)</p>
                 <p className="location">
                     <FontAwesomeIcon icon={faLocationDot}/>
-                    {item?.city}
+                    {`${item?.city} - مصر`}
                 </p>
                 {location.pathname !== "/myBookings" && 
                 <Link 

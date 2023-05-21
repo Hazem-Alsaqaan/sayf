@@ -25,7 +25,7 @@ const SpecificationsConditions = ({oneUnit})=>{
                     </div>
                     <div>
                         <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682941496/sayf/809090_architecture_family_home_house_residential_icon_1_ahokpe.svg" alt=""/>
-                        <span>مساحه الشقه 6200 متر</span>
+                        <span>{`مساحة الشقة ${oneUnit.apartment_area}`}</span>
                     </div>
                     <div>
                         <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1682941534/sayf/6714576_family_home_house_insurance_investment_icon_1_fe6wn5.svg" alt=""/>
@@ -34,13 +34,7 @@ const SpecificationsConditions = ({oneUnit})=>{
                 </div>
                 <section className="description">
                     <h3>الوصف :</h3>
-                    <p>شقة مفروشة مميزة كمباوند ذا ادريس مدينة الشيخ زايد
-                        ثلاثة غرف نوم وحمامين
-                        اطلالة مميزة على حديقه
-                        جميع الغرف مكيفة
-                        فرش جديد راقي
-                        للايجار اليومي والاسبوعي والشهري
-                    </p>
+                    <p>{oneUnit.description}</p>
                 </section>
             </section>
             <section className="conditions">
@@ -52,7 +46,7 @@ const SpecificationsConditions = ({oneUnit})=>{
                 </div>
                 <div className="conditions-data">
                     <h4>شروط خاصه للمؤجر  :</h4>
-                    <p>. المحافظه علي ممتلكات المكان والنظافه</p>
+                    <p>{oneUnit.conditions}</p>
                 </div>
                 <div className="conditions-data">
                     <h4>سياسه الإلغاء والتأجيل :</h4>

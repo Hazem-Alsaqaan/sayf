@@ -35,15 +35,15 @@ const SingleSearchBox = ({item}) => {
                     <div className="text-top-side">
                         <h4>شقة مفروش للايجار</h4>
                         <div className="star-icon">
-                            5.0
+                            {item?.rating}
                             <FontAwesomeIcon icon={faStar} />
                         </div>
                     </div>
-                    <p>غرفتين غرفة تحتوي على سرير والأخرى سريرين مناسبة ل 3-4 افراد</p>
-                    <p className="rate"><span>600 \ اليوم</span>({item?.rating}تقييم)</p>
+                    <p>{`مكونة من ${item?.rooms} غرفة تحتوي على ${item?.beds} سرير مناسبة ل ${item?.persons + item?.children - 1} - ${item?.persons + item?.children} أفراد`}</p>
+                    <p className="rate"><span>600 \ اليوم</span>({item?.raters} تقييم)</p>
                     <p className="location">
                         <FontAwesomeIcon icon={faLocationDot} />
-                        {`${item?.city} ${item?.street}`}
+                        {`${item?.city} - مصر`}
                     </p>
                     <Link 
                     className="btn btn-primary"

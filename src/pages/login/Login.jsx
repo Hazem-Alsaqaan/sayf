@@ -25,7 +25,6 @@ const handleGoogleLogin = useGoogleLogin ({
                 {
                     access_token: tokenResponse.access_token
                 })
-                console.log(res.data)
                 window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
                 window.sessionStorage.setItem("token", JSON.stringify(res.data.token))
                 dispatch(loginFulfilled(res.data))
