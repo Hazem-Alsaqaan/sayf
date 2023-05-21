@@ -14,7 +14,7 @@ const MyFavourite = ()=>{
     const dispatch = useDispatch()
     const {token} = useSelector((state)=> state.authSlice)
     const {myFavourites} = useSelector((state)=>state.unitsSlice)
-    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {myFavouritesLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
         setRender(true)
@@ -35,7 +35,7 @@ const MyFavourite = ()=>{
                         <h1>مفضلتي</h1>
                     </div>
                 </section>
-                {isLoading ? <div className="loading">
+                {myFavouritesLoading ? <div className="loading">
                                 <RotatingLines
                                 strokeColor="#5500A1"
                                 strokeWidth="5"
@@ -47,7 +47,7 @@ const MyFavourite = ()=>{
                             : <>
                             {!myFavourites.length > 0 ? <h1 className="container not-found-units">لم يتم العثور على وحدات...</h1> :
                             <div className="boxes-container container">
-                                {myFavourites.map((item)=><ApartmentBox key={item._id} item={item}/>)}
+                                {myFavourites.map((item)=><ApartmentBox key={item._id} item={item} render ={render} setRender ={setRender}/>)}
                             </div>}
                         </> 
                 }

@@ -39,25 +39,6 @@ export const getMostBookings = createAsyncThunk("units/getMostBookings", async()
 
 
 
-//get my bookings
-export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=>{
-    try{
-        const res = await axios.get(`https://saif-production-e995.up.railway.app/reservations/my-reservations
-        `, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        return res.data
-    }catch(err){
-        throw(err.response.data.errorMessage)
-    }
-})
-
-
-
-
-
 
 
 
@@ -114,6 +95,48 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
 
 
 
+
+
+
+
+
+
+
+
+//get my bookings
+export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=>{
+    try{
+        const res = await axios.get(`https://saif-production-e995.up.railway.app/reservations/my-reservations`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return res.data
+    }catch(err){
+        throw(err.response.data.errorMessage)
+    }
+})
+// remove from my bookings 
+export const removeFromBookings = createAsyncThunk("units/removeFromBookings", async(item)=>{
+    console.log(item)
+    try{
+        const res = await axios.delete(`https://saif-production-e995.up.railway.app/reservations/${item.id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${item.token}`
+            }
+        })
+        console.log(res.data)
+        return res.data
+    }catch(err){
+        console.log(err)
+        throw(err.response.data.errorMessage)
+    }
+})
+
+
+
 // get one unit
 export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
     try{
@@ -127,7 +150,6 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
         throw(err.response.data.errorMessage)
     }
 })
-
 
 
 

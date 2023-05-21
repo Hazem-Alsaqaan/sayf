@@ -9,7 +9,7 @@ import {RotatingLines} from "react-loader-spinner"
 const MostBookedApartments = ()=>{
     const dispatch = useDispatch()
     const {mostBookings} = useSelector((state)=>state.unitsSlice)
-    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {mostBookingsLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
         const cleaner = ()=>{
@@ -22,7 +22,7 @@ const MostBookedApartments = ()=>{
             <section className="most-booked">
                 <div className="container">
                     <h1>أكثر الشقق حجزا لهذا الشهر</h1>
-                    { isLoading ? <RotatingLines
+                    { mostBookingsLoading ? <RotatingLines
                             strokeColor="#5500A1"
                             strokeWidth="5"
                             animationDuration="0.75"

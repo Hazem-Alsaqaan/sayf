@@ -15,7 +15,7 @@ const MyBookings = ()=>{
     const dispatch = useDispatch()
     const {token} = useSelector((state)=> state.authSlice)
     const {myBookings} = useSelector((state)=>state.unitsSlice)
-    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {myBookingsLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
         setRender(true)
@@ -34,7 +34,7 @@ const MyBookings = ()=>{
                         <h1>حجوزاتي</h1>
                     </div>
                 </section>
-                {isLoading ? 
+                {myBookingsLoading ? 
                         <div className="loading">
                             <RotatingLines
                             strokeColor="#5500A1"
@@ -50,7 +50,7 @@ const MyBookings = ()=>{
                         <div className="boxes-container container">
                             {
                                 myBookings.map((item)=>(
-                                    item.house && <ApartmentBox key={item.house._id} item={ item.house}/>
+                                    item.house && <ApartmentBox key={item.house._id} item={ item.house} render ={render} setRender ={setRender}/>
                                 ))
                             }
                         </div>

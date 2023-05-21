@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 const SearchResult = ()=>{
     const [toggleSearchSort, setToggleSearchSort] = useState(false)
     const {searchUnits} = useSelector((state)=>state.unitsSlice)
-    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {searchUnitsLoading} = useSelector((state)=>state.unitsSlice)
     
 
     
@@ -19,7 +19,7 @@ const SearchResult = ()=>{
         <>
             <section className="search-result">
                 <div className="container">
-                    {isLoading ? 
+                    {searchUnitsLoading ? 
                         <div className="loading">
                             <RotatingLines
                             strokeColor="#5500A1"

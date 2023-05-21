@@ -21,7 +21,7 @@ const UnitSwiperImages = ()=>{
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const {unitId} = useParams()
     const {oneUnit} = useSelector((state)=>state.unitsSlice)
-    const {isLoading} = useSelector((state)=>state.unitsSlice)
+    const {oneUnitLoading} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=>state.authSlice)
 
     const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const UnitSwiperImages = ()=>{
     
     return(
         <>
-        {isLoading ? 
+        {oneUnitLoading ? 
                     <RotatingLines
                     strokeColor="#5500A1"
                     strokeWidth="5"
