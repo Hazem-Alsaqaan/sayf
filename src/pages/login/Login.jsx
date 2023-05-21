@@ -21,6 +21,7 @@ const Login =()=>{
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
         console.log(tokenResponse);
+        console.log(tokenResponse.access_token);
             try{
                 const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`, 
                 {
