@@ -18,6 +18,7 @@
 }
 .single-box .image-box img{
     width: 100%;
+    max-height: 250px;
 }
 .single-box .image-box svg.fa-heart {
     position: absolute;

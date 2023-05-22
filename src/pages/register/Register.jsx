@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGooglePlus, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { registerFulfilled, registerPending, registerRejected } from "../../redux/reducers/authSlice";
+import { loginFulfilled, registerFulfilled, registerPending, registerRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Register = ({getEmailFromRegister})=>{
     const dispatch = useDispatch()
@@ -17,6 +18,26 @@ const Register = ({getEmailFromRegister})=>{
     const [confirmPassword, setConfirmPassword] = useState("")
     const {error} = useSelector((state)=>state.authSlice)
 
+    const redirectPath =  "/" || location.state?.path
+
+// handle google auth
+const handleGoogleLogin = useGoogleLogin ({
+    onSuccess: async (tokenResponse)  => {
+            try{
+                const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`, 
+                {
+                    access_token: tokenResponse.access_token
+                })
+                window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
+                window.sessionStorage.setItem("token", JSON.stringify(res.data.token))
+                dispatch(loginFulfilled(res.data))
+                navigate(redirectPath, {replace: true})
+            }catch(err){
+                console.log(err)
+            }
+        },
+    
+    });
     const handleRegister = async(e)=>{
         e.preventDefault()
         dispatch(registerPending())
@@ -122,7 +143,10 @@ const Register = ({getEmailFromRegister})=>{
                             <div className="fire-base">
                                 <p>أو قم بالتسجيل التالي</p>
                                 <div>
-                                    <FontAwesomeIcon icon={faGooglePlus}/>
+                                    <FontAwesomeIcon 
+                                    icon={faGooglePlus}
+                                    onClick={handleGoogleLogin}
+                                    />
                                     <FontAwesomeIcon icon={faSquareTwitter}/>
                                     <FontAwesomeIcon icon={faFacebook}/>
                                 </div>
