@@ -13,14 +13,9 @@ import { useSelector } from "react-redux";
 
 const LatestApartments = ()=>{
     const [latestUnits, setLatestUnits] = useState([])
-    const {token} = useSelector((state)=> state.authSlice)
     useEffect(()=>{
             const getLatestUnits = async()=>{
-                const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/newest-houses`, {
-                    headers: {
-                        Authorization: `baerar ${token}`
-                    }
-                })
+                const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/newest-houses`)
                 setLatestUnits(res.data)
             }
             return ()=> getLatestUnits()

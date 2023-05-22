@@ -16,10 +16,20 @@ const SearchResult = ()=>{
     const {searchUnits} = useSelector((state)=>state.unitsSlice)
     const {searchUnitsLoading} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=>state.authSlice)
+    const {user} = useSelector((state)=>state.authSlice)
     let pageCount = 500;
     
     let handlePageClick = (data)=>{
         dispatch(getUnitsPages({page: data.selected + 1, token: token}))
+    }
+    if(!user){
+        return(
+            <section className="search-result">
+                <div className="container">
+                <h1 className="not-found-units">من فضلك سجل دخول اولا حتى تعثر على نتائج ...</h1>
+                </div>
+            </section>
+        )
     }
     return(
         <>

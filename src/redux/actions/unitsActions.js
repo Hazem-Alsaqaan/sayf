@@ -115,8 +115,6 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
 
 
 
-
-
 //get my bookings
 export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=>{
     try{
