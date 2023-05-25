@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
+import {toast} from "react-toastify"
 
 //get all units page 1
 export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
@@ -27,7 +28,6 @@ export const getUnitsPages = createAsyncThunk("units/getUnitsPages", async(item)
         )
         return res.data.docs
     }catch(err){
-        console.log(err)
         throw(err.response.data.errorMessage)
     }
 })
@@ -66,7 +66,6 @@ export const getMyFavourites = createAsyncThunk("units/getMyFavourites", async(t
         })
         return res.data
     }catch(err){
-        // console.log(err)
         throw(err.response.data.errorMessage)
     }
 })
@@ -83,7 +82,6 @@ export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async
         )
         return res.data
     }catch(err){
-        console.log(err)
         throw(err.response.data.errorMessage)
     }
 })
@@ -99,11 +97,9 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
         })
         return res.data
     }catch(err){
-        console.log(err)
         throw(err.response.data.errorMessage)
     }
 })
-
 
 
 
@@ -198,9 +194,11 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
                 "Content-Type": "multipart/form-data;",
             }
         })
+        toast.success("تم بنجاح")
         return res.data
     }catch(err){
-        console.log(err)
+        toast.error(err.response.data.errorMessage)
+        throw(err.response.data.errorMessage)
     }
 })
 

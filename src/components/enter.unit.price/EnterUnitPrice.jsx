@@ -13,6 +13,7 @@ const EnterUnitPrice = ({enterPrice, setEnterPrice})=>{
                 <NumberAndText title={title}/>
                 <div className="inputs">
                     <input 
+                    required
                     type="text"
                     placeholder="حدد السعر المطلوب لليوم الواحد"
                     onChange={(e)=>setEnterPrice(e.target.value)}

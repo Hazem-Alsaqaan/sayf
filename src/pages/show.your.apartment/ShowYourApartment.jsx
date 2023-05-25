@@ -13,10 +13,13 @@ import EnterUnitImages from "../../components/enter.unit.images/EnterUnitImages"
 import { useDispatch, useSelector } from "react-redux";
 import EnterPersonsChildren from "../../components/enter.persons.children/EnterPersonsChildren";
 import { addNewUnit } from "../../redux/actions/unitsActions";
+import {ToastContainer } from "react-toastify"
+
 
 const ShowYourApartment = ()=>{
     const dispatch = useDispatch()
     const {token} = useSelector((state)=>state.authSlice)
+    const {errorAddNew} = useSelector((state)=>state.unitsSlice)
     const [enterName, setEnterName] = useState("")
     const [enterAdress, setEnterAdress] = useState({
         city: "",
@@ -72,6 +75,7 @@ const ShowYourApartment = ()=>{
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
+
         // // dispatch add new units
         dispatch(addNewUnit(unitInfo))
         // rest all inputs values
@@ -98,6 +102,19 @@ const ShowYourApartment = ()=>{
     }
     return(
         <>
+        { errorAddNew ? 
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        /> : ""}
         <section className="show-your-apartment single-section">
             <WhiteHeader/>
             <div className="container">

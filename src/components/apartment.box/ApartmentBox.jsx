@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
@@ -8,7 +8,7 @@ import { addTMyFavourites, getMyBooking, getMyFavourites, removeFromBookings, re
 import { useDispatch, useSelector } from "react-redux";
 
 
-const ApartmentBox = ({item, render, setRender})=>{
+const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, startDateYear,endDateDay,endDateMonth, endDateYear})=>{
     const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
     let location = useLocation();
@@ -31,14 +31,17 @@ const ApartmentBox = ({item, render, setRender})=>{
         setRender(!render)
         dispatch(getMyBooking(token))
     }
+
+    
+
     return(
         <>
             <div  
             className="single-box"
             // onClick={()=>navigate(`/showUnit/${item.id}`)}
             >
-                {location.pathname === "/myBookings" && 
-                <h4 className="date-booking-title">تم الحجز من يوم 13 يناير 2002 إلى يوم16 يناير 2022</h4>}
+                {location.pathname === "/myBookings" &&
+                <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} ${StartDateMonth} ${startDateYear} إلى يوم ${endDateDay} ${endDateMonth} ${endDateYear}`}</h4>}
                 <div className="image-box">
                     <FontAwesomeIcon 
                     onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}

@@ -14,6 +14,7 @@ const EnterUnitName = ({enterName, setEnterName})=>{
                 <NumberAndText title = {title}/>
                 <div>
                     <input 
+                    required
                     type="text"
                     placeholder="ادخل اسم مكان الشقة الخاصه بك"
                     onChange={(e)=>setEnterName(e.target.value)}

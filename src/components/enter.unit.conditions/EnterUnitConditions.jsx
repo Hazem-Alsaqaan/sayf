@@ -13,6 +13,7 @@ const EnterUnitConditions = ({enterConditions, setEnterConditions})=>{
                 <NumberAndText title={title}/>
                 <div className="inputs">
                     <textarea
+                    required
                     placeholder="ادخل اشروط للحجز"
                     onChange={(e)=>setEnterConditions(e.target.value)}
                     value={enterConditions}

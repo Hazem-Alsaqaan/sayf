@@ -13,6 +13,7 @@ const EnterAboutUnit = ({enterAboutUnit, setEnterAboutUnit})=>{
                 <NumberAndText title={title}/>
                 <div className="inputs">
                     <textarea
+                    required
                     placeholder="تفاصيل عن الشقة والمكان"
                     onChange={(e)=>setEnterAboutUnit(e.target.value)}
                     value={enterAboutUnit}

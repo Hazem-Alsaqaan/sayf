@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import "./EnterUnitLocation.css"
 import NumberAndText from "../number.and.text/NumberAndText";
-import {GoogleMap, Marker, MarkerClusterer, useJsApiLoader} from "@react-google-maps/api"
+import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
 import {RotatingLines} from "react-loader-spinner"
 
 
@@ -22,23 +22,19 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
         number: "3",
         text: "حدد موقع شقتك"
     }
-    const [latitud, setLatitud] = useState(31)
-    const [longitud, setLongitud] = useState(28)
-
-    useEffect(()=>{
-        return ()=>setEnterLocation({...enterLocation, 
-            lat: latitud,
-            long: longitud
-        })
-    },[])
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
         libraries: libraries
         })
-
-    
+    const setLatAndLng = (e)=>{
+        setEnterLocation({...enterLocation, 
+            lat: e.latLng.lat(),
+            long: e.latLng.lng()
+        })
+        console.log(enterLocation)
+    }
     return(
         <>
             <section className="enter-unit-location single-section">
@@ -53,25 +49,28 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
                     visible={true}
                     />
                 :  
+                <>
+                    
                     <GoogleMap
                     mapContainerStyle={containerStyle}
                     options={{
                         center: center,
                         zoom: 10
                     }}
-                    
+                    onClick={(e)=>setLatAndLng(e)}
                     >
                         <Marker
                             position={{
-                                lat: latitud,
-                                lng: longitud
+                                lat: enterLocation.lat ? enterLocation.lat : center.lat,
+                                lng: enterLocation.long ? enterLocation.long : center.lng
                             }}
-                        />
+                            />
                     </GoogleMap>
+                </>
                 }
                 </div>
             </section>
-        </>
+            </>
     )
 }
 export default memo(EnterUnitLocation)

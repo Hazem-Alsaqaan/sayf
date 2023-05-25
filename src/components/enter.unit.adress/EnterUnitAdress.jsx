@@ -14,24 +14,28 @@ const EnterUnitAdress = ({enterAdress, setEnterAdress})=>{
                 <NumberAndText title = {title}/>
                 <div className="inputs">
                     <input 
+                    required
                     type="text"
                     placeholder="المدينة"
                     onChange={(e)=> setEnterAdress({...enterAdress, city: e.target.value})}
                     value={enterAdress.city}
                     />
                     <input 
+                    required
                     type="text"
                     placeholder="اسم الشارع ورقم البيت"
                     onChange={(e)=> setEnterAdress({...enterAdress, street: e.target.value})}
                     value={enterAdress.street} 
                     />
-                    <input 
+                    <input
+                    required 
                     type="text"
                     placeholder="رقم الشقه او الطابق" 
                     onChange={(e)=> setEnterAdress({...enterAdress, houseNum: e.target.value})}
                     value={enterAdress.houseNum}
                     />
-                    <input 
+                    <input
+                    required 
                     type="text"
                     placeholder="الرمز البريدي" 
                     onChange={(e)=> setEnterAdress({...enterAdress, zibCode: e.target.value})}

@@ -10,15 +10,18 @@ const unitsSlice = createSlice({
         mostBookingsLoading: false,
         myBookings: [],
         myBookingsLoading: false,
+        errorMyBookings: ``,
         myFavourites:[],
         myFavouritesLoading: false,
+        errorMyFavourite: ``,
         searchUnits: [],
         searchUnitsLoading: false,
         oneUnit: {},
         oneUnitLoading: false,
         notifications: [],
         notificationsLoadng: false,
-        error: ``
+        error: ``,
+        errorAddNew: ``
     },
     extraReducers: (builder)=>{
         // get search units
@@ -55,7 +58,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(addNewUnit.rejected, (state, action)=>{
             state.searchUnitsLoading = false
-            state.error = action.error
+            state.errorAddNew = action.error
         })
 
 
@@ -84,7 +87,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(getMyBooking.rejected, (state, action)=>{
             state.myBookingsLoading = false
-            state.error = action.error
+            state.errorMyBookings = action.error
         })
         // remove from my bookings
         builder.addCase(removeFromBookings.pending , (state, action)=>{
@@ -96,7 +99,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(removeFromBookings.rejected, (state, action)=>{
             state.myBookingsLoading = false
-            state.error = action.error
+            state.errorMyBookings = action.error
         })
 
 
@@ -111,7 +114,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(getMyFavourites.rejected, (state, action)=>{
             state.myFavouritesLoading = false
-            state.error = action.error
+            state.errorMyFavourite = action.error
         })
         // add to my favourites
         builder.addCase(addTMyFavourites.pending , (state, action)=>{
@@ -123,7 +126,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(addTMyFavourites.rejected, (state, action)=>{
             state.myFavouritesLoading = false
-            state.error = action.error
+            state.errorMyFavourite = action.error
         })
         // remove from my favourites
         builder.addCase(removeFromFavourites.pending , (state, action)=>{
@@ -135,7 +138,7 @@ const unitsSlice = createSlice({
         })
         builder.addCase(removeFromFavourites.rejected, (state, action)=>{
             state.myFavouritesLoading = false
-            state.error = action.error
+            state.errorMyFavourite = action.error
         })
 
         // get one unit

@@ -13,6 +13,7 @@ const EnterPersonsChildren = ({enterPersons, setEnterPersons})=>{
                 <NumberAndText title = {title}/>
                 <div>
                     <input 
+                    required
                     type="text"
                     className="mx-1"
                     placeholder="ادخل عدد الاشخاص"
@@ -20,6 +21,7 @@ const EnterPersonsChildren = ({enterPersons, setEnterPersons})=>{
                     value={enterPersons.personNum}
                     />
                     <input 
+                    required
                     type="text"
                     className="mx-1"
                     placeholder="ادخل عدد الاطفال"

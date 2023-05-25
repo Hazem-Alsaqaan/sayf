@@ -30,6 +30,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             <FontAwesomeIcon icon={faImage}/>
                             <p>تحميل الصور</p>
                             <input
+                            required
                             type="file"
                             multiple
                             onChange={(e)=>handleUploadUnitsImgs(e)}
@@ -43,6 +44,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             <FontAwesomeIcon icon={faImage}/>
                             <p>تحميل الصور</p>
                             <input
+                            required
                             type="file"
                             onChange={(e)=>handleUploadContract(e)}
                             />

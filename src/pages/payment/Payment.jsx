@@ -25,6 +25,7 @@ const Payment =()=>{
         }
         return()=> cleaner()
     },[render])
+    console.log(oneUnit)
     return(
         <>
             <section className="payment">
