@@ -1,11 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import "./EnterUnitLocation.css"
 import NumberAndText from "../number.and.text/NumberAndText";
-import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
+import {GoogleMap, Marker, MarkerClusterer, useJsApiLoader} from "@react-google-maps/api"
 import {RotatingLines} from "react-loader-spinner"
 
 
-const containerStyle = {
+    const containerStyle = {
     width: '400px',
     height: '400px'
     };
@@ -15,18 +15,20 @@ const containerStyle = {
         lng: 31.233334
     };
     const libraries = ["places"]
-
+    
 // component 
 const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
     const title = {
         number: "3",
         text: "حدد موقع شقتك"
     }
-    
+    const [latitud, setLatitud] = useState(31)
+    const [longitud, setLongitud] = useState(28)
+
     useEffect(()=>{
         return ()=>setEnterLocation({...enterLocation, 
-            lat: "31",
-            long: "29"
+            lat: latitud,
+            long: longitud
         })
     },[])
 
@@ -35,6 +37,8 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
         googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
         libraries: libraries
         })
+
+    
     return(
         <>
             <section className="enter-unit-location single-section">
@@ -51,11 +55,17 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
                 :  
                     <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={10}
+                    options={{
+                        center: center,
+                        zoom: 10
+                    }}
+                    
                     >
                         <Marker
-                        position={center}
+                            position={{
+                                lat: latitud,
+                                lng: longitud
+                            }}
                         />
                     </GoogleMap>
                 }

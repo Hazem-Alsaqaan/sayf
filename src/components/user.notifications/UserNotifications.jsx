@@ -1,8 +1,10 @@
 import React from "react";
 import "./UserNotifications.css"
+import { useSelector } from "react-redux";
 
 
 const UserNotifications = ()=>{
+    const {notifications} = useSelector((state)=> state.unitsSlice)
     return(
         <>
             <section className="notifications">

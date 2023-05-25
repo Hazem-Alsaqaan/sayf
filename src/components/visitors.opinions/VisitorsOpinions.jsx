@@ -32,7 +32,6 @@ const VisitorsOpinions = ({oneUnit})=>{
         }
         return()=> cleaner()
     },[])
-    console.log(usersOpinion)
     return(
         <>
         {isLoading ? <RotatingLines
