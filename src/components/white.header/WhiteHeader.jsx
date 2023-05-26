@@ -44,7 +44,7 @@ const WhiteHeader = ()=>{
                         {
                             user ? 
                             <div className="notifications-btn">
-                                <Link to="/login">
+                                <Link to="/profile">
                                     <FontAwesomeIcon icon={faCircleUser}/>
                                 </Link>
                                 <FontAwesomeIcon 
