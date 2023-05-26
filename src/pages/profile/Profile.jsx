@@ -21,7 +21,7 @@ const Profile =()=>{
                         <li>
                             <div className="text-icon">
                                 <FontAwesomeIcon icon={faUser}/>
-                                <Link>إدارة الحساب</Link>
+                                <Link to="/manageAccount">إدارة الحساب</Link>
                             </div>
                             <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
                         </li>

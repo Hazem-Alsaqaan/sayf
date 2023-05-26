@@ -41,3 +41,21 @@
     margin-right: 25px;
     font-size: 38px;
 }
+/* start media screen */
+
+@media(max-width: 600px){
+    
+    .profile-body .profile-nav li .left-side {
+        font-size: 25px;
+    }
+    .profile-body .profile-nav li div.text-icon svg,
+    .profile-body .profile-nav li div.text-icon img {
+        width: 28px;
+        height: 30px;
+    }
+    .profile-body .profile-nav li div.text-icon span,
+    .profile-body .profile-nav li div.text-icon a {
+        margin-right: 15px;
+        font-size: 25px;
+    }
+}

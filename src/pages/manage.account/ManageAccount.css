@@ -1,0 +1,66 @@
+.manage-account-body {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.manage-account-body h1 {
+    font-weight: 700;
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+.manage-account-body form div {
+    display: flex;
+    flex-direction: column;
+}
+.manage-account-body form div label {
+    margin-bottom: 25px;
+    font-size: 42px;
+}
+.manage-account-body form div input {
+    font-size: 30px;
+    margin-bottom: 40px;
+    padding: 7px;
+    border: none;
+    background: rgba(237, 237, 237, 0.21);
+    box-shadow: 0px 6px 6px rgba(220, 217, 217, 0.25);
+    border-radius: 8px 8px;
+}
+.manage-account-body form div input::placeholder{
+    color: rgba(0, 0, 0, 0.33);
+}
+.manage-account-body form div input:focus{
+    outline: none;
+}
+.manage-account-body form button{
+    background-color: var(--purple);
+    color: var(--white);
+    padding: 20px;
+    width: 100%;
+    border: none;
+    border-radius: 8px 8px;
+    font-weight: 700;
+    font-size: 42px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+@media(max-width: 771px){
+    .manage-account-body h1 {
+        font-size: 30px;
+    }
+    .manage-account-body form div label ,
+    .manage-account-body form div input{
+        font-size: 20px;
+    }
+    .manage-account-body form button{
+        padding: 7px;
+        font-size: 20px;
+    }
+}
+@media(max-width: 331px){
+    .manage-account-body h1 {
+        font-size: 25px;
+    }
+}
