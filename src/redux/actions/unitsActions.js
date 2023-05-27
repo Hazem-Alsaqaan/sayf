@@ -12,6 +12,11 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
         })
         return res.data.docs
     }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
@@ -28,6 +33,11 @@ export const getUnitsPages = createAsyncThunk("units/getUnitsPages", async(item)
         )
         return res.data.docs
     }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
@@ -80,8 +90,14 @@ export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async
             }
         }
         )
+        toast.success("تم الاضافة الى المفضلة")
         return res.data
     }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
@@ -95,8 +111,14 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
                 Authorization: `Bearer ${item.token}`
             }
         })
+        toast.success("تم الحذف من المفضلة بنجاح")
         return res.data
     }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
@@ -135,10 +157,14 @@ export const removeFromBookings = createAsyncThunk("units/removeFromBookings", a
                 Authorization: `Bearer ${item.token}`
             }
         })
-        console.log(res.data)
+        toast.success("تم الحذف بنجاح")
         return res.data
     }catch(err){
-        console.log(err)
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
@@ -216,6 +242,11 @@ export const getNotifications = createAsyncThunk("units/getNotifications", async
         })
         return res.data
     }catch(err){
-        console.log(err)
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
     }
 })

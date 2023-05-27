@@ -6,6 +6,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons"
 import "./ApartmentBox.css"
 import { addTMyFavourites, getMyBooking, getMyFavourites, removeFromBookings, removeFromFavourites } from "../../redux/actions/unitsActions";
 import { useDispatch, useSelector } from "react-redux";
+import {ToastContainer} from "react-toastify"
 
 
 const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, startDateYear,endDateDay,endDateMonth, endDateYear})=>{
@@ -73,6 +74,18 @@ const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, sta
                     >إلغاء الحجز</Link>
                     }
                 </div>
+                <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             </div>
         </>
     )
