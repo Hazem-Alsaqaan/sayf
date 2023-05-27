@@ -1,0 +1,12 @@
+section.not-found {
+    min-height: 100vh;
+    direction: ltr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+section.not-found h1 {
+    color: var(--purple);
+    font-size: 55px;
+    font-weight: 700;
+}

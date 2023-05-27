@@ -19,6 +19,7 @@ import SentCode from "./pages/sent.code/SentCode"
 import VerifyCode from "./pages/verify.code/VerifyCode"
 import Profile from "./pages/profile/Profile"
 import ManageAccount from "./pages/manage.account/ManageAccount"
+import NotFound from "./pages/not.found/NotFound"
 
 
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="home" element={<HomeContent/>}/>
         </Route>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="*" element={<NotFound/>}/>
         <Route path="/manageAccount" element={<ManageAccount/>}/>
         <Route path="/myFavourite" element={<RequireAuth><MyFavourite/></RequireAuth>}/>
         <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
