@@ -1,10 +1,13 @@
 import React, { memo, useState } from "react";
 import "./ConfirmPassword.css"
 import axios from "axios";
+import {ToastContainer, toast} from "react-toastify"
+import { useNavigate } from "react-router-dom";
 
 const ConfirmPassword =({email, code})=>{
     const [newPassword, setNewPassword] = useState("")
     const [confirmNewPassword, setConfirmNewPassword] = useState("")
+    const navigate = useNavigate()
 
     const handleNewPassword = async(e)=>{
         e.preventDefault()
@@ -16,12 +19,30 @@ const ConfirmPassword =({email, code})=>{
                 password: newPassword
             })
             console.log(res.data)
+            toast.success("تم تغيير الرقم السري بنجاح")
+            navigate("/login")
         }catch(err){
-            console.log(err)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
         }
     }
     return(
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <section className="confirm-password">
                 <div className="container">
                     <h1>كلمة مرور جديدة</h1>
@@ -34,6 +55,7 @@ const ConfirmPassword =({email, code})=>{
                             type="password"
                             onChange={(e)=>setNewPassword(e.target.value)}
                             value={newPassword}
+                            required
                             />
                             <label htmlFor="confirmNewPassword">تأكيد كلمة المرور</label>
                             <input
@@ -41,6 +63,7 @@ const ConfirmPassword =({email, code})=>{
                             type="password"
                             onChange={(e)=>setConfirmNewPassword(e.target.value)}
                             value={confirmNewPassword}
+                            required
                             />
                             <button
                             >تسجيل الدخول

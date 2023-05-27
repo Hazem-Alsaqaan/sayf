@@ -2,6 +2,7 @@ import React, { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SentCode.css"
 import axios from "axios";
+import {ToastContainer, toast} from "react-toastify"
 
 const SentCode =({getMailFromSentCode})=>{
     const [email, setEmail] = useState("")
@@ -15,13 +16,29 @@ const SentCode =({getMailFromSentCode})=>{
             {phone: email})
             navigate("/confirmCode")
         }catch(err){
-            console.log(err)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
         }
         setEmail("")
     }
 
     return(
         <>
+        <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
         <section className="forget-password-content">
             <div className="container">
                 <h1>نسيت كلمة المرور</h1>

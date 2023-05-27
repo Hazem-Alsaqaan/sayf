@@ -3,6 +3,7 @@ import "./ConfirmCode.css"
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from "react-toastify"
 
 const ConfirmCode =({email, getCodeFromConfirmCode})=>{
     const {user} = useSelector((state)=> state.authSlice)
@@ -23,15 +24,30 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
                 phone: email,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
-            console.log(res.data)
             navigate("/confirmPassword")
         }catch(err){
-            console.log(err)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
         }
     }
 
     return(
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <section className="confirm-code">
                 <div className="container">
                     <h1>نسيت كلمة المرور</h1>

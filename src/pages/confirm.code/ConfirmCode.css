@@ -22,6 +22,7 @@
 }
 /* form style */
 .confirm-code .auth-form .code-input {
+    direction: ltr;
     display: flex;
     width: 100%;
     justify-content: space-evenly;

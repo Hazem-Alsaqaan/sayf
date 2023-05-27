@@ -4,6 +4,7 @@ import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {ToastContainer, toast} from "react-toastify"
 
 
 const ManageAccount = ()=>{
@@ -28,13 +29,30 @@ const ManageAccount = ()=>{
                                     Authorization: `Bearer ${token}`
                                 }
                         })
+            toast.success("تم التعديل بنجاح")
             return res.data
         }catch(err){
-            console.log(err)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
         }
     }
     return(
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <WhiteHeader/>
             <section className="manage-account-body container">
                 <h1>تعديل الملف الشخصي</h1>

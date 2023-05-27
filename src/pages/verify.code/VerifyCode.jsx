@@ -2,6 +2,7 @@ import React, { memo, useState } from "react";
 // import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from "react-toastify"
 
 const VerifyCode =({registerMail})=>{
     const navigate = useNavigate()
@@ -20,15 +21,30 @@ const VerifyCode =({registerMail})=>{
                 phone: registerMail,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
-            console.log(res.data)
             navigate("/login")
         }catch(err){
-            console.log(err)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
         }
     }
 
     return(
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <section className="confirm-code">
                 <div className="container">
                     {/* <h1>نسيت كلمة المرور</h1> */}

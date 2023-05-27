@@ -33,7 +33,11 @@ const handleGoogleLogin = useGoogleLogin ({
                 dispatch(loginFulfilled(res.data))
                 navigate(redirectPath, {replace: true})
             }catch(err){
-                console.log(err)
+                if(err.message === "Network Error"){
+                    toast.error("تأكد من اتصالك بالانترنت")
+                }else if(err.response.data.errorMessage){
+                    toast.error(err.response.data.errorMessage)
+                }
             }
         },
     
@@ -52,8 +56,9 @@ const handleGoogleLogin = useGoogleLogin ({
             dispatch(registerFulfilled(res.data))
             navigate("/verifyCode")
         }catch(err){
-            dispatch(registerRejected(err.response.data.errorMessage))
-            if(err.response.data.errorMessage){
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
                 toast.error(err.response.data.errorMessage)
             }
         }
@@ -65,10 +70,7 @@ const handleGoogleLogin = useGoogleLogin ({
 
     return(
         <>
-            <section className="register">
-            {
-                    registerError ? 
-                    <ToastContainer
+            <ToastContainer
                         position="top-center"
                         autoClose={5000}
                         hideProgressBar={false}
@@ -79,8 +81,8 @@ const handleGoogleLogin = useGoogleLogin ({
                         draggable
                         pauseOnHover
                         theme="light"
-                        /> : ""
-                }
+                        /> 
+            <section className="register">
                 <div className="container">
                     <div className="register-content">
                         <section className="landing">

@@ -5,7 +5,7 @@ import {faFacebook, faGooglePlus, faSquareTwitter} from "@fortawesome/free-brand
 import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
-import { logOut, loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
+import {  loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import {useGoogleLogin } from "@react-oauth/google"
 
@@ -49,13 +49,12 @@ const handleLogin = async(e)=>{
     dispatch(loginFulfilled(res.data))
     navigate(redirectPath, {replace: true})
     }catch(err){
-        console.log(err)
+        dispatch(loginRejected(err.message || err.response.data))
         if(err.message === "Network Error"){
-            return toast.error("تأكد من اتصالك بالانترنت")
+            toast.error("تأكد من اتصالك بالانترنت")
         }else if (err.response.data.errorMessage){
-            return toast.error(err.response.data.errorMessage)
+            toast.error(err.response.data.errorMessage)
         }
-        dispatch(loginRejected(err.response.data))
     }
     setEmail("")
     setPassword("")
