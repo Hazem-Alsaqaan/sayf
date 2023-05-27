@@ -11,7 +11,7 @@ const SentCode =({getMailFromSentCode})=>{
         e.preventDefault()
         getMailFromSentCode(email)
         try{
-            const res = await axios.post(`https://saif-production-e995.up.railway.app/phone-confirmation`, 
+            const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation`, 
             {phone: email})
             navigate("/confirmCode")
         }catch(err){

@@ -15,7 +15,7 @@ const LatestApartments = ()=>{
     const [latestUnits, setLatestUnits] = useState([])
     useEffect(()=>{
             const getLatestUnits = async()=>{
-                const res = await axios.get(`https://saif-production-e995.up.railway.app/houses/newest-houses`)
+                const res = await axios.get(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/houses/newest-houses`)
                 setLatestUnits(res.data)
             }
             return ()=> getLatestUnits()

@@ -15,7 +15,7 @@ const VerifyCode =({registerMail})=>{
     const handleVerifyCode = async(e)=>{
         e.preventDefault()
         try{
-            const res = await axios.post(`https://saif-production-e995.up.railway.app/phone-confirmation/verify`
+            const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation/verify`
             , {
                 phone: registerMail,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`

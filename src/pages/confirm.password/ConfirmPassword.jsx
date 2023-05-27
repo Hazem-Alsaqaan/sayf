@@ -9,7 +9,7 @@ const ConfirmPassword =({email, code})=>{
     const handleNewPassword = async(e)=>{
         e.preventDefault()
         try{
-            const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/reset-password`,
+            const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/reset-password`,
             {
                 phone: email,
                 code: code,

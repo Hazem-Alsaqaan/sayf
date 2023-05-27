@@ -21,7 +21,7 @@ const Login =()=>{
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
             try{
-                const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`, 
+                const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/login-googel`, 
                 {
                     access_token: tokenResponse.access_token
                 })
@@ -40,7 +40,7 @@ const handleLogin = async(e)=>{
     e.preventDefault()
     dispatch(loginPending())
     try{
-        const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login`, {
+        const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/login`, {
         phone: email,
         password: password
     })
@@ -49,10 +49,13 @@ const handleLogin = async(e)=>{
     dispatch(loginFulfilled(res.data))
     navigate(redirectPath, {replace: true})
     }catch(err){
-        dispatch(loginRejected(err.response.data))
-        if(err.response.data.errorMessage){
-            toast.error(err.response.data.errorMessage)
+        console.log(err)
+        if(err.message === "Network Error"){
+            return toast.error("تأكد من اتصالك بالانترنت")
+        }else if (err.response.data.errorMessage){
+            return toast.error(err.response.data.errorMessage)
         }
+        dispatch(loginRejected(err.response.data))
     }
     setEmail("")
     setPassword("")
