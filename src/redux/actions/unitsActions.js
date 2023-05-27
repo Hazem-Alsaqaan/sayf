@@ -197,7 +197,11 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
         toast.success("تم بنجاح")
         return res.data
     }catch(err){
-        toast.error(err.response.data.errorMessage)
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
         throw(err.response.data.errorMessage)
     }
 })
