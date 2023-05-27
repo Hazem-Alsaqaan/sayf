@@ -16,7 +16,7 @@ const Register = ({getEmailFromRegister})=>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const {error} = useSelector((state)=>state.authSlice)
+    const {registerError} = useSelector((state)=>state.authSlice)
 
     const redirectPath =  "/" || location.state?.path
 
@@ -67,7 +67,7 @@ const handleGoogleLogin = useGoogleLogin ({
         <>
             <section className="register">
             {
-                    error ? 
+                    registerError ? 
                     <ToastContainer
                         position="top-center"
                         autoClose={5000}

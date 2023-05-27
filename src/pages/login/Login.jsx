@@ -16,7 +16,7 @@ const Login =()=>{
     const redirectPath =  "/" || location.state?.path
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const {error} = useSelector((state)=> state.authSlice)
+    const {loginError} = useSelector((state)=> state.authSlice)
 // handle google auth
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
@@ -65,7 +65,7 @@ const handleLogin = async(e)=>{
         <>
             <section className="login">
             {
-                    error ? 
+                    loginError ? 
                     <ToastContainer
                         position="top-center"
                         autoClose={5000}

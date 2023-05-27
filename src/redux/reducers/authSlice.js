@@ -9,7 +9,8 @@ const authSlice = createSlice({
         userRegister: {},
         token: tokenStorage ? tokenStorage : "",
         isLoading: false,
-        error: false
+        loginError: false,
+        registerError: false
     },
     reducers: {
         // login
@@ -23,10 +24,12 @@ const authSlice = createSlice({
         },
         loginRejected: (state, action)=>{
             state.isLoading = false
-            state.error = true
+            state.loginError = true
         },
         //logout
         logOut: (state, action)=>{
+            window.sessionStorage.removeItem("user")
+            window.sessionStorage.removeItem("token")
             state.user = null
             state.token = null
         },
@@ -40,7 +43,7 @@ const authSlice = createSlice({
         },
         registerRejected: (state, action)=>{
             state.isLoading = false
-            state.error = true
+            state.registerError = true
 
         },
     }

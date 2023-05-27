@@ -41,14 +41,14 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="*" element={<NotFound/>}/>
         <Route path="/" element={<Home/>}>
           <Route index element={<HomeContent/>}/>
           <Route path="search" element={<SearchResult/>}/>
           <Route path="home" element={<HomeContent/>}/>
         </Route>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="*" element={<NotFound/>}/>
-        <Route path="/manageAccount" element={<ManageAccount/>}/>
+        <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
+        <Route path="/manageAccount" element={<RequireAuth><ManageAccount/></RequireAuth>}/>
         <Route path="/myFavourite" element={<RequireAuth><MyFavourite/></RequireAuth>}/>
         <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
         <Route path="/showYourApartment" element={<RequireAuth><ShowYourApartment/></RequireAuth>}/>

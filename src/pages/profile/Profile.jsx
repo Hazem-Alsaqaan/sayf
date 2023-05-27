@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,15 +6,30 @@ import { faChevronLeft, faGlobe, faPowerOff, faThumbsUp, faUser } from "@fortawe
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import "./Profile.css"
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyBooking } from "../../redux/actions/unitsActions";
+import { logOut } from "../../redux/reducers/authSlice";
 
 const Profile =()=>{
+    const dispatch = useDispatch()
+    const {user} = useSelector((state)=>state.authSlice)
+    const {token} = useSelector((state)=>state.authSlice)
+    const {myBookings} = useSelector((state)=>state.unitsSlice)
+    useEffect(()=>{
+        const cleaner =()=> dispatch(getMyBooking(token))
+        return()=> cleaner()
+    },[])
+
+    const handleLogOut =()=>{
+        dispatch(logOut())
+    }
     return(
         <>
             <WhiteHeader/>
             <section className="profile-body container">
                 <div className="profile-image">
-                    <img src={`https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683453987/sayf/user.notifications_kf746x.png`} alt=""/>
-                    <h2>محمد أحمد</h2>
+                    <img src={user?.photo ? user?.photo : `https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685201428/vectors/user_profile_g0jjum.png`} alt=""/>
+                    <h2>{user.username}</h2>
                 </div>
                 <nav className="profile-nav">
                     <ul>
@@ -30,7 +45,7 @@ const Profile =()=>{
                                 <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685121637/bookings_number_icon_1_jfdoix.png" alt=""/>
                                 <span>عدد الحجوزات</span>
                             </div>
-                            <p className="left-side">0</p>
+                            <p className="left-side">{myBookings.length > 0 ? myBookings.length : 0}</p>
                         </li>
                         <li>
                             <div className="text-icon">
@@ -61,7 +76,9 @@ const Profile =()=>{
                             <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
                         </li>
                         <li>
-                            <div className="text-icon">
+                            <div className="text-icon"
+                            onClick={handleLogOut}
+                            >
                                 <FontAwesomeIcon icon={faPowerOff}/>
                                 <span>تسجيل الخروج</span>
                             </div>
