@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { addNewUnit, addTMyFavourites, getAllUnits, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsPages, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
+import { addNewUnit, addTMyFavourites, addToMyBookings, getAllUnits, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsPages, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
 
 
 const unitsSlice = createSlice({
@@ -86,6 +86,18 @@ const unitsSlice = createSlice({
             state.myBookings = action.payload
         })
         builder.addCase(getMyBooking.rejected, (state, action)=>{
+            state.myBookingsLoading = false
+            state.errorMyBookings = action.error
+        })
+        // add to my bookings
+        builder.addCase(addToMyBookings.pending , (state, action)=>{
+            state.myBookingsLoading = true
+        })
+        builder.addCase(addToMyBookings.fulfilled, (state, action)=>{
+            state.myBookingsLoading = false
+            state.myBookings = action.payload
+        })
+        builder.addCase(addToMyBookings.rejected, (state, action)=>{
             state.myBookingsLoading = false
             state.errorMyBookings = action.error
         })

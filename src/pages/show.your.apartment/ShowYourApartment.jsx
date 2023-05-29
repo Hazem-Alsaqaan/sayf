@@ -75,7 +75,7 @@ const ShowYourApartment = ()=>{
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
-
+        console.log(unitInfo)
         // // dispatch add new units
         dispatch(addNewUnit(unitInfo))
         // rest all inputs values

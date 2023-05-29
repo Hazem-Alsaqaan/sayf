@@ -35,7 +35,6 @@ const UnitLocation = ()=>{
         googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
         libraries: libraries
         })
-        console.log(oneUnit)
     return(
         <>
             <div className="map-container">
@@ -49,16 +48,18 @@ const UnitLocation = ()=>{
                     />
             :
                 <GoogleMap
-                center={center}
+                center={{
+                    lat: oneUnit?.location ? oneUnit?.location?.coordinates[0] : center?.lat,
+                    lng: oneUnit?.location ? oneUnit?.location?.coordinates[1] : center?.lng
+                }}
                 zoom={10}
                 mapContainerStyle={containerStyle}
                 >
                     <Marker
                     position={{
-                        lat: location.coordinates ? location.coordinates[0] : center.lat,
-                        lng: location.coordinates ? location.coordinates[1] : center.lng,
+                        lat: oneUnit?.location ? oneUnit.location.coordinates[0] : center.lat,
+                        lng: oneUnit?.location ? oneUnit.location.coordinates[1] : center.lng,
                     }}
-                    
                     />
                 </GoogleMap>
             }

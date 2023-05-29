@@ -40,11 +40,14 @@
 .payment .container .center .booking-details .details-content div:first-child{
     border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
-.payment .container .center .booking-details .details-content div p{
+.payment .container .center .booking-details .details-content div p,
+.payment .container .center .booking-details .details-content div input[type = "date"]{
     font-size: 22px;
     color: var(--black);
     padding: 20px 15px;
     white-space: nowrap;
+    border: none;
+    background-color: rgba(237, 237, 237, 0.44);
 }
 /* payment methods container */
 .payment .container .center .payment-methods {
@@ -127,4 +130,10 @@
     color: var(--white);
     border: none;
     border-radius: 8px 8px;
+}
+
+/* stripe card element */
+
+.stripe-card-element {
+    direction: ltr;
 }

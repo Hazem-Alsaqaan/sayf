@@ -147,9 +147,36 @@ export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=
         throw(err.response.data.errorMessage)
     }
 })
+// add to my bookings
+export const addToMyBookings = createAsyncThunk("units/addToMyBookings", async(item)=>{
+    try{
+        const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/reservations`,
+        {
+            payment_method : item.payment_method,
+            price: item.price,
+            house: item.house,
+            start_date: item.start_date,
+            end_date: item.end_date,
+            paymentMethodId: item.paymentMethodId
+        }
+        ,{
+            headers: {
+                Authorization: `Bearer ${item.token}`
+            }
+        })
+        toast.success("تم الحجز بنجاح")
+        return res.data
+    }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
+    }
+})
 // remove from my bookings 
 export const removeFromBookings = createAsyncThunk("units/removeFromBookings", async(item)=>{
-    console.log(item)
     try{
         const res = await axios.delete(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/reservations/${item.id}`,
         {
@@ -157,9 +184,11 @@ export const removeFromBookings = createAsyncThunk("units/removeFromBookings", a
                 Authorization: `Bearer ${item.token}`
             }
         })
+        console.log(res.data)
         toast.success("تم الحذف بنجاح")
         return res.data
     }catch(err){
+        console.log(err)
         if(err.message === "Network Error"){
             toast.error("تأكد من اتصالك بالانترنت")
         }else if(err.response.data.errorMessage){

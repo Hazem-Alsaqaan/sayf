@@ -1,5 +1,5 @@
-import React, {memo, useEffect, useState} from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom"
+import React, {memo} from "react";
+import {Link, useLocation} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
 import {faHeart} from "@fortawesome/free-solid-svg-icons"
@@ -9,11 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {ToastContainer} from "react-toastify"
 
 
-const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, startDateYear,endDateDay,endDateMonth, endDateYear})=>{
+const ApartmentBox = ({item, render, setRender})=>{
     const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
     let location = useLocation();
-    const navigate = useNavigate()
+    // const [starting, setStarting] = useState(null)
+    // const [ending, setEnding] = useState(null)
 
     // add and remove of my favourites
     const handleAddToMyFavourites= (id)=>{
@@ -33,7 +34,49 @@ const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, sta
         dispatch(getMyBooking(token))
     }
 
-    
+    //start config date
+    // const months = [
+    //     "يناير",
+    //     "فبراير",
+    //     "مارس",
+    //     "ابريل",
+    //     "مايو",
+    //     "يونيو",
+    //     "يوليو",
+    //     "اغسطس",
+    //     "سبتمبر",
+    //     "اكتوبر",
+    //     "نوفمبر",
+    //     "ديسمبر",
+    // ];
+    // some confige to arrivel date and leaving date
+    // useEffect(()=>{
+    //     const unSubscripe = ()=>{
+    //          //start date loop
+    //         for(let i =0; i < months.length; i++){
+    //             if(i === startDate.getMonth()){
+    //                 setStartDateMonth(months[i])
+    //             }
+    //         }
+    //         // end date loop
+    //         for(let j =0; j < months.length; j++){
+    //             if(j === endDate.getMonth()){
+    //                 setEndDateMonth(months[j])
+    //             }
+    //         }
+    //     }
+    //     return()=> unSubscripe()
+    // },[])
+
+// const startDate = new Date(starting)
+// const [StartDateMonth, setStartDateMonth] = useState("")
+// const startDateDay = startDate.getDate()
+// const startDateYear = startDate.getFullYear()
+
+// const endDate = new Date(ending)
+// const [endDateMonth, setEndDateMonth] = useState("")
+// const endDateDay = endDate.getDate()
+// const endDateYear = endDate.getFullYear()
 
     return(
         <>
@@ -41,8 +84,8 @@ const ApartmentBox = ({item, render, setRender, startDateDay,StartDateMonth, sta
             className="single-box"
             // onClick={()=>navigate(`/showUnit/${item.id}`)}
             >
-                {location.pathname === "/myBookings" &&
-                <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} ${StartDateMonth} ${startDateYear} إلى يوم ${endDateDay} ${endDateMonth} ${endDateYear}`}</h4>}
+                {/* {location.pathname === "/myBookings" &&
+                <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} ${StartDateMonth} ${startDateYear} إلى يوم ${endDateDay} ${endDateMonth} ${endDateYear}`}</h4>} */}
                 <div className="image-box">
                     <FontAwesomeIcon 
                     onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}

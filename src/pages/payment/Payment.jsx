@@ -4,28 +4,104 @@ import Footer from "../../components/footer/Footer";
 import SingleSearchBox from "../../components/single.search.box/SingleSearchBox";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneUnit } from "../../redux/actions/unitsActions";
+import { addToMyBookings, getOneUnit } from "../../redux/actions/unitsActions";
 import "./Payment.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleDot} from "@fortawesome/free-regular-svg-icons"
 import {RotatingLines} from "react-loader-spinner"
+import axios from "axios";
+import {useStripe, useElements, CardElement} from "@stripe/react-stripe-js"
 
 
 const Payment =()=>{
+    const [arrivelDate, setArrivelDate] = useState("")
+    const [leavingDate, setLeavingDate] = useState("")
+    const stripe = useStripe()
+    const element = useElements()
     const [render, setRender] = useState(false)
     const {unitId} = useParams()
     const {oneUnit} = useSelector((state)=>state.unitsSlice)
     const {isLoading} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=>state.authSlice)
+    const [isProcess, setIsProcess] = useState(false)
     const dispatch = useDispatch()
     useEffect(()=>{
         setRender(true)
-        const cleaner = ()=>{
+        const cleaner =()=>{
             dispatch(getOneUnit({id:unitId, token: token}))
         }
         return()=> cleaner()
     },[render])
-    console.log(oneUnit)
+
+    // handle payment and add to my bookings
+    const submitPayment = async(e)=>{
+        e.preventDefault()
+        setIsProcess(true)
+        ///////////////////////////////////////////////////////////////////////////////////
+        const cardElement = element.getElement("card")
+        const billingInfo = {
+            phone: "+201017997927",
+        }
+        ///////////////////////////////////////////////////////////////////////////////////
+        const paymentMethodObj = await stripe.createPaymentMethod({
+            type: "card",
+            card: cardElement,
+            billing_details: billingInfo,
+        })
+        ///////////////////////////////////////////////////////////////////////////////////
+        try{
+            const paymentData = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/stripe/create-payment-intent`, 
+            "",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            const confirmedPayment = await stripe.confirmCardPayment(
+                paymentData.data.client_secret , {payment_method: paymentMethodObj.paymentMethod.id}
+            )
+            if(confirmedPayment.error){
+                console.log(confirmedPayment.error.message)
+            }
+            if(paymentData.status === "200"){
+                setIsProcess(false)
+                console.log(paymentData.status)
+            }
+            // add to my boockings
+            dispatch(addToMyBookings({
+                payment_method : "CASH",
+                price: paymentData.data.amount,
+                house: unitId,
+                start_date: arrivelDate,
+                end_date: leavingDate,
+                paymentMethodId: paymentMethodObj.paymentMethod.id,
+                token: token
+            }))
+        }catch(err){
+            console.log(err)
+            setIsProcess(false)
+        }
+        ///////////////////////////////////////////////////////////////////////////////////
+        // try{
+        //     const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/stripe`,
+        //     {
+        //         paymentMethodId: paymentMethodObj.paymentMethod.id,
+        //         amount: paymentData.data.amount
+        //     },
+        //     {
+        //         headers:{
+        //             Authorization: `Bearer ${token}`
+        //         }
+        //     })
+            
+            // console.log(res.data)
+        // }catch(err){
+        //     console.log(err)
+        //     setIsProcess(false)
+        // }
+        // console.log( payment_method,start_date,end_date,price,house)
+        
+    }
     return(
         <>
             <section className="payment">
@@ -56,8 +132,20 @@ const Payment =()=>{
                                     <p>رسوم الحجز</p>
                                 </div>
                                 <div>
-                                    <p>الاحد 12 يناير 2022</p>
-                                    <p>الاربعاء 15 يناير 2022</p>
+                                    <input
+                                    type="date"
+                                    placeholder="تاريخ الوصول"
+                                    required
+                                    onChange={(e)=>setArrivelDate(e.target.value)}
+                                    value={arrivelDate}
+                                    />
+                                    <input
+                                    type="date"
+                                    placeholder="تاريخ المغادرة"
+                                    required
+                                    onChange={(e)=>setLeavingDate(e.target.value)}
+                                    value={leavingDate}
+                                    />
                                     <p>50 جنيه</p>
                                 </div>
                             </div>
@@ -87,9 +175,25 @@ const Payment =()=>{
                             </div>
                         </section>
                     </div>
+                    <CardElement 
+                    className="stripe-card-element"
+                    options={{
+                        hidePostalCode: true,
+                        style:{
+                            base: {
+                                fontSize: "20px",
+                            },
+                            invalid:{
+                                color: "red"
+                            }
+                        }
+                    }}
+                    />
                     <div className="btn-purple">
                         <button 
                         className="btn"
+                        onClick={(e)=>submitPayment(e)}
+                        disabled={isProcess}
                         >احجز الآن
                         </button>
                     </div>

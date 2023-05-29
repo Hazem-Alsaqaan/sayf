@@ -16,59 +16,16 @@ const MyBookings = ()=>{
     const {token} = useSelector((state)=> state.authSlice)
     const {myBookings} = useSelector((state)=>state.unitsSlice)
     const {myBookingsLoading} = useSelector((state)=>state.unitsSlice)
-    const [starting, setStarting] = useState(null)
-    const [ending, setEnding] = useState(null)
 
 
     useEffect(()=>{
         setRender(true)
-        myBookings.map((item)=>{
-            setStarting(item.start_date)
-            setEnding(item.end_date)
-        })
-         //start date loop
-        for(let i =0; i < months.length; i++){
-            if(i === startDate.getMonth()){
-                setStartDateMonth(months[i])
-            }
-        }
-        // end date loop
-        for(let j =0; j < months.length; j++){
-            if(j === endDate.getMonth()){
-                setEndDateMonth(months[j])
-            }
-        }
         const cleaner = ()=>{
             dispatch(getMyBooking(token))
         }
         return()=> cleaner()
     },[render])
 
-//start config date
-const months = [
-    "يناير",
-    "فبراير",
-    "مارس",
-    "ابريل",
-    "مايو",
-    "يونيو",
-    "يوليو",
-    "اغسطس",
-    "سبتمبر",
-    "اكتوبر",
-    "نوفمبر",
-    "ديسمبر",
-];
-
-const startDate = new Date(starting)
-const [StartDateMonth, setStartDateMonth] = useState("")
-const startDateDay = startDate.getDate()
-const startDateYear = startDate.getFullYear()
-
-const endDate = new Date(ending)
-const [endDateMonth, setEndDateMonth] = useState("")
-const endDateDay = endDate.getDate()
-const endDateYear = endDate.getFullYear()
 
     return(
         <>
@@ -101,12 +58,6 @@ const endDateYear = endDate.getFullYear()
                                     item={ item.house} 
                                     render ={render} 
                                     setRender ={setRender} 
-                                    startDateDay = {startDateDay}
-                                    StartDateMonth = {StartDateMonth}
-                                    startDateYear = {startDateYear}
-                                    endDateDay = {endDateDay}
-                                    endDateMonth = {endDateMonth}
-                                    endDateYear = {endDateYear}
                                     />
                                 ))
                             }

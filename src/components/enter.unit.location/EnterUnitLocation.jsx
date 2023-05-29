@@ -22,16 +22,24 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
         number: "3",
         text: "حدد موقع شقتك"
     }
-
+    const [latitude, setLatitude] = useState(center.lat)
+    const [longitude, setLongitude] = useState(center.lng)
+    
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
         libraries: libraries
-        })
+    })
     const setLatAndLng = (e)=>{
+        setLatitude(e.latLng.lat())
+        setLongitude( e.latLng.lng())
+    }
+
+    const handleSelectValue = (e)=>{
+        e.preventDefault()
         setEnterLocation({...enterLocation, 
-            lat: e.latLng.lat(),
-            long: e.latLng.lng()
+            lat: latitude,
+            long: longitude
         })
         console.log(enterLocation)
     }
@@ -61,11 +69,15 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
                     >
                         <Marker
                             position={{
-                                lat: enterLocation.lat ? enterLocation.lat : center.lat,
-                                lng: enterLocation.long ? enterLocation.long : center.lng
+                                lat: latitude ? latitude : center.lat,
+                                lng: longitude ? longitude : center.lng
                             }}
                             />
                     </GoogleMap>
+                    <button
+                    className="btn btn-primary"
+                    onClick={(e)=>handleSelectValue(e)}
+                    >تحديد</button>
                 </>
                 }
                 </div>
