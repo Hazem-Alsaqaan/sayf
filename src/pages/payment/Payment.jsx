@@ -11,7 +11,7 @@ import {faCircleDot} from "@fortawesome/free-regular-svg-icons"
 import {RotatingLines} from "react-loader-spinner"
 import axios from "axios";
 import {useStripe, useElements, CardElement} from "@stripe/react-stripe-js"
-
+import {ToastContainer, toast} from "react-toastify"
 
 const Payment =()=>{
     const [arrivelDate, setArrivelDate] = useState("")
@@ -61,11 +61,7 @@ const Payment =()=>{
                 paymentData.data.client_secret , {payment_method: paymentMethodObj.paymentMethod.id}
             )
             if(confirmedPayment.error){
-                console.log(confirmedPayment.error.message)
-            }
-            if(paymentData.status === "200"){
-                setIsProcess(false)
-                console.log(paymentData.status)
+                toast.error(confirmedPayment.error.message)
             }
             // add to my boockings
             dispatch(addToMyBookings({
@@ -77,33 +73,31 @@ const Payment =()=>{
                 paymentMethodId: paymentMethodObj.paymentMethod.id,
                 token: token
             }))
-        }catch(err){
-            console.log(err)
             setIsProcess(false)
+        }catch(err){
+            setIsProcess(false)
+            if(err.message === "Network Error"){
+                toast.error("تأكد من اتصالك بالانترنت")
+            }else if(err.response.data.errorMessage){
+                toast.error(err.response.data.errorMessage)
+            }
+            throw(err.response.data.errorMessage)
         }
-        ///////////////////////////////////////////////////////////////////////////////////
-        // try{
-        //     const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/stripe`,
-        //     {
-        //         paymentMethodId: paymentMethodObj.paymentMethod.id,
-        //         amount: paymentData.data.amount
-        //     },
-        //     {
-        //         headers:{
-        //             Authorization: `Bearer ${token}`
-        //         }
-        //     })
-            
-            // console.log(res.data)
-        // }catch(err){
-        //     console.log(err)
-        //     setIsProcess(false)
-        // }
-        // console.log( payment_method,start_date,end_date,price,house)
-        
     }
     return(
         <>
+            <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        /> 
             <section className="payment">
                 <WhiteHeader/>
                 <div className="container">
@@ -158,7 +152,21 @@ const Payment =()=>{
                                     <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683109494/sayf/Master_Card_cjfbti.png" alt=""/>
                                     <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683109480/sayf/VISA_gji22j.png" alt=""/>
                                 </div>
-                                <div className="center-side">
+                                <CardElement 
+                                    className="stripe-card-element"
+                                    options={{
+                                        hidePostalCode: true,
+                                        style:{
+                                            base: {
+                                                fontSize: "20px",
+                                            },
+                                            invalid:{
+                                                color: "red"
+                                            }
+                                        }
+                                    }}
+                                    />
+                                {/* <div className="center-side">
                                     <p>رقم البطاقه</p>
                                     <input type="text"/>
                                 </div>
@@ -168,27 +176,14 @@ const Payment =()=>{
                                         <input type="date"/>
                                     </div>
                                     <div>
-                                        <p>CVV</p>
+                                        <p>CVC</p>
                                         <input className="cvv" type="text"/>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </section>
                     </div>
-                    <CardElement 
-                    className="stripe-card-element"
-                    options={{
-                        hidePostalCode: true,
-                        style:{
-                            base: {
-                                fontSize: "20px",
-                            },
-                            invalid:{
-                                color: "red"
-                            }
-                        }
-                    }}
-                    />
+                   
                     <div className="btn-purple">
                         <button 
                         className="btn"

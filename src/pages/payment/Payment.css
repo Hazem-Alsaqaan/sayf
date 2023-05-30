@@ -133,7 +133,7 @@
 }
 
 /* stripe card element */
-
-.stripe-card-element {
+.stripe-card-element{
     direction: ltr;
+    margin-top: 50px;
 }
