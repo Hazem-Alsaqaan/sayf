@@ -1,13 +1,14 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import "./EnterUnitLocation.css"
 import NumberAndText from "../number.and.text/NumberAndText";
-import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
+import {Circle, GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
 import {RotatingLines} from "react-loader-spinner"
-
+import GooglePlacesAutocomplete  from "react-google-places-autocomplete"
+import {geocodeByAddress, getLatLng}  from "react-google-places-autocomplete"
 
     const containerStyle = {
-    width: '400px',
-    height: '400px'
+    width: "300px",
+    height: "300px"
     };
     
     const center = {
@@ -24,25 +25,25 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
     }
     const [latitude, setLatitude] = useState(center.lat)
     const [longitude, setLongitude] = useState(center.lng)
-    
+    const librariesRef = React.useRef(libraries)
     const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
-        libraries: libraries
-    })
-    const setLatAndLng = (e)=>{
-        setLatitude(e.latLng.lat())
-        setLongitude( e.latLng.lng())
+            googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
+            id: 'google-map-script',
+            libraries:  librariesRef.current
+        })
+    
+    const handleOnDragEnd = (e)=>{
+        setLatitude(e.latLng.lat)
+        setLongitude(e.latLng.lng)
     }
-
     const handleSelectValue = (e)=>{
         e.preventDefault()
         setEnterLocation({...enterLocation, 
             lat: latitude,
             long: longitude
         })
-        console.log(enterLocation)
     }
+    const [mapZoom, setMapZoom] = useState(10)
     return(
         <>
             <section className="enter-unit-location single-section">
@@ -58,24 +59,49 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
                     />
                 :  
                 <>
-                    
+                    <GooglePlacesAutocomplete
+                            selectProps={{
+                                placeholder: "ابحث عن المكان", 
+                                onChange : (e)=>geocodeByAddress(e.label).then((result)=>getLatLng(result[0])
+                                .then(({ lat, lng }) =>{
+                                setLatitude(lat)
+                                setLongitude(lng)
+                            }
+                                ))
+                            }}
+                            apiKey={import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY}
+                            />
                     <GoogleMap
                     mapContainerStyle={containerStyle}
                     options={{
-                        center: center,
-                        zoom: 10
+                        center: {
+                            lat: latitude, 
+                            lng: longitude
+                        },
+                        zoom: mapZoom
                     }}
-                    onClick={(e)=>setLatAndLng(e)}
+                    onCenterChanged={()=>setMapZoom(15)}
                     >
                         <Marker
+                            key={Math.random(latitude)}
                             position={{
-                                lat: latitude ? latitude : center.lat,
-                                lng: longitude ? longitude : center.lng
+                                lat: latitude || center.lat,
+                                lng: longitude || center.lng
                             }}
+                            draggable={true}
+                            onDragEnd={(e)=>handleOnDragEnd(e)}
                             />
+                            <Circle
+                            center={{
+                                lat:latitude,
+                                lng:longitude
+                            }}
+                            radius={1000}
+                            />
+                            
                     </GoogleMap>
                     <button
-                    className="btn btn-primary"
+                    className="btn-map-selection"
                     onClick={(e)=>handleSelectValue(e)}
                     >تحديد</button>
                 </>

@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import "./UintLocation.css"
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getOneUnit } from "../../redux/actions/unitsActions";
 import {GoogleMap, Marker, useJsApiLoader} from "@react-google-maps/api"
 import {RotatingLines} from "react-loader-spinner"
+import { useDispatch, useSelector } from "react-redux";
+import { getOneUnit } from "../../redux/actions/unitsActions";
+import { useParams } from "react-router-dom";
 
 
 const libraries = ["places"]
@@ -14,10 +14,22 @@ const containerStyle = {
     };
 
 const UnitLocation = ()=>{
-    const {unitId} = useParams()
     const {oneUnit} = useSelector((state)=>state.unitsSlice)
-    const dispatch = useDispatch()
     const {token} = useSelector((state)=>state.authSlice)
+    const {unitId} = useParams()
+    const dispatch = useDispatch()
+    const librariesRef = React.useRef(libraries)
+
+    const center = useMemo(()=>({
+        lat: oneUnit?.location?.coordinates[0],
+        lng: oneUnit?.location?.coordinates[1]
+    }),[])
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
+        id: 'google-map-script',
+        libraries: librariesRef.current
+        })
+
 
     useEffect(()=>{
         const cleaner = ()=>{
@@ -25,16 +37,7 @@ const UnitLocation = ()=>{
         }
         return()=> cleaner()
     },[])
-
-    const center = useMemo(()=>({
-        lat: 30.033333,
-        lng: 31.233334
-    }),[])
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: import.meta.env.VITE_SOME_KEY_GOOGLE_MAP_KEY,
-        libraries: libraries
-        })
+        // console.log(center)
     return(
         <>
             <div className="map-container">
@@ -48,17 +51,20 @@ const UnitLocation = ()=>{
                     />
             :
                 <GoogleMap
-                center={{
-                    lat: oneUnit?.location ? oneUnit?.location?.coordinates[0] : center?.lat,
-                    lng: oneUnit?.location ? oneUnit?.location?.coordinates[1] : center?.lng
+                options={{
+                    center: {
+                        lat: center.lat, 
+                        lng: center.lng
+                    },
+                    zoom: 13
                 }}
-                zoom={10}
                 mapContainerStyle={containerStyle}
                 >
                     <Marker
+                    key={Math.random(center.lat)}
                     position={{
-                        lat: oneUnit?.location ? oneUnit.location.coordinates[0] : center.lat,
-                        lng: oneUnit?.location ? oneUnit.location.coordinates[1] : center.lng,
+                        lat: center.lat,
+                        lng: center.lng 
                     }}
                     />
                 </GoogleMap>

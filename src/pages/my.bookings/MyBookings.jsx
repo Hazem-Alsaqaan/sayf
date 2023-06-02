@@ -54,10 +54,13 @@ const MyBookings = ()=>{
                                 myBookings.map((item)=>(
                                     item.house && 
                                     <ApartmentBox 
-                                    key={item.house._id} 
+                                    key={item._id} 
                                     item={ item.house} 
                                     render ={render} 
                                     setRender ={setRender} 
+                                    starting = {item.start_date}
+                                    ending = {item.end_date}
+                                    bookingItem = {item}
                                     />
                                 ))
                             }

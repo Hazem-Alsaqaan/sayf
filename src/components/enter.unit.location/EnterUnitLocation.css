@@ -1,7 +1,33 @@
-
-.enter-unit-location .select-location {
-    overflow: hidden;
+.enter-unit-location{
+    position: relative;
+    width: 300px;
+    margin-left: 20px;
 }
-.enter-unit-location .select-location img{
-    width: 100%;
+.enter-unit-location .select-location {
+    position: relative;
+}
+.enter-unit-location .css-b62m3t-container{
+    margin-bottom: 10px;
+    width: 300px
+}
+.enter-unit-location .btn-map-selection {
+    width: 300px;
+    background-color: var(--purple);
+    color: var(--white);
+    padding: 7px;
+    border: none;
+    border-radius: 8px 8px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0px;
+}
+/* start media screen */
+
+@media(max-width: 471px){
+    .enter-unit-location,
+    .enter-unit-location .css-b62m3t-container,
+    .enter-unit-location .btn-map-selection {
+        width: 300px;
+    }
 }

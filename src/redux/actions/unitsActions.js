@@ -181,7 +181,8 @@ export const removeFromBookings = createAsyncThunk("units/removeFromBookings", a
         const res = await axios.delete(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/reservations/${item.id}`,
         {
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         console.log(res.data)
