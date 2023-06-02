@@ -24,7 +24,7 @@ const Register = ({getEmailFromRegister})=>{
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
             try{
-                const res = await axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`, 
+                const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/login-googel`, 
                 {
                     access_token: tokenResponse.access_token
                 })
@@ -46,7 +46,7 @@ const handleGoogleLogin = useGoogleLogin ({
         e.preventDefault()
         dispatch(registerPending())
         try{
-            const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/signup`,
+            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/signup`,
             {
                 username: username,
                 password:password,

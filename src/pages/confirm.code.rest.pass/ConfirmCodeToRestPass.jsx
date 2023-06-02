@@ -1,11 +1,11 @@
 import React, { memo, useState } from "react";
-import "./ConfirmCode.css"
+import "./ConfirmCodeToRestPass.css"
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify"
 
-const ConfirmCode =({email, getCodeFromConfirmCode})=>{
+const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
     const {user} = useSelector((state)=> state.authSlice)
     const navigate = useNavigate()
     const[firstNum, setFirstNum] = useState(0)
@@ -19,7 +19,7 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
         e.preventDefault()
         getCodeFromConfirmCode(`${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`)
         try{
-            const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/check-code-to-reset`
+            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation/verify.app/auth/check-code-to-reset`
             , {
                 phone: email,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
@@ -108,4 +108,4 @@ const ConfirmCode =({email, getCodeFromConfirmCode})=>{
         </>
     )
 }
-export default memo(ConfirmCode)
+export default memo(ConfirmCodeToRestPass)

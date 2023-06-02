@@ -17,7 +17,7 @@ const VisitorsOpinions = ({oneUnit})=>{
         setIsLoading(true)
         const cleaner = async()=>{
             try{
-                const res = await axios.get(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/houses/rates/${unitId}?page=1&limit=8&allowPagination=true`,
+                const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/rates/${unitId}?page=1&limit=8&allowPagination=true`,
                 {
                     headers: {
                         Authorization: `bearer ${token}`

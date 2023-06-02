@@ -107,7 +107,6 @@ const unitsSlice = createSlice({
         })
         builder.addCase(removeFromBookings.fulfilled, (state, action)=>{
             state.myBookingsLoading = false
-            state.myBookings = action.payload
         })
         builder.addCase(removeFromBookings.rejected, (state, action)=>{
             state.myBookingsLoading = false
@@ -146,7 +145,6 @@ const unitsSlice = createSlice({
         })
         builder.addCase(removeFromFavourites.fulfilled, (state, action)=>{
             state.myFavouritesLoading = false
-            state.myFavourites = action.payload
         })
         builder.addCase(removeFromFavourites.rejected, (state, action)=>{
             state.myFavouritesLoading = false

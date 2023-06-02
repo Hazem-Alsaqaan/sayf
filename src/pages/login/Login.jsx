@@ -21,7 +21,7 @@ const Login =()=>{
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
             try{
-                const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/login-googel`, 
+                const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/login-googel`, 
                 {
                     access_token: tokenResponse.access_token
                 })
@@ -40,7 +40,7 @@ const handleLogin = async(e)=>{
     e.preventDefault()
     dispatch(loginPending())
     try{
-        const res = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/auth/login`, {
+        const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/login`, {
         phone: email,
         password: password
     })

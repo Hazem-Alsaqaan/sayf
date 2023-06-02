@@ -23,7 +23,7 @@ const ManageAccount = ()=>{
         formData.append("address", profileAddress)
         formData.append("birthdate", profileBirthDay)
         try{
-            const res = await axios.patch(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/users/profile`,formData,
+            const res = await axios.patch(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/profile`,formData,
                             {
                                 headers: {
                                     Authorization: `Bearer ${token}`

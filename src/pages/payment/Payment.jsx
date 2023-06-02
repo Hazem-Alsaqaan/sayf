@@ -50,7 +50,7 @@ const Payment =()=>{
         })
         ///////////////////////////////////////////////////////////////////////////////////
         try{
-            const paymentData = await axios.post(`https://nestjs-now-saif3-e59v8g2z9-osamakamelmohamed6-gmailcom.vercel.app/stripe/create-payment-intent`, 
+            const paymentData = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/stripe/create-payment-intent`, 
             "",
             {
                 headers: {

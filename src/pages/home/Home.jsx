@@ -4,11 +4,24 @@ import Header from "../../components/header/Header";
 import SearchData from "../../components/search.data/SearchData";
 import Footer from "../../components/footer/Footer";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 const Home =()=>{
     return(
         <>
+        <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <div className="home">
                 <section className="home-page-landing">
                     <Header/>
