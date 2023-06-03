@@ -1,33 +1,43 @@
 import React from "react";
 import "./UserNotifications.css"
 import { useSelector } from "react-redux";
-
+import { RotatingLines } from "react-loader-spinner"
+import SingleNotification from "./SingleNotification";
 
 const UserNotifications = ()=>{
     const {notifications} = useSelector((state)=> state.unitsSlice)
+    const {notificationsLoadng} = useSelector((state)=> state.unitsSlice)
+
+    
+
     return(
         <>
             <section className="notifications">
-                <div className="notifications-boxes">
-                    <div className="box">
-                        <div className="image">
-                            <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683453987/sayf/user.notifications_kf746x.png" alt=""/>
-                        </div>
-                        <p className="text">قام محمد احمد بحجز الشقه الخاصه بك من يوم الاحد 12 ل 17 يناير </p>
+                {
+                    notificationsLoadng ? 
+                    <div className="loading">
+                        <RotatingLines
+                        strokeColor="#5500A1"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="96"
+                        visible={true}
+                        /> 
+                    </div> 
+                    :
+                    <div className="notifications-boxes">
+                        {
+                            notifications.map((item)=>
+                                <SingleNotification
+                                key={item._id}
+                                item = {item}
+                                startingdate = {item.start_date}
+                                endingdate = {item.end_date}
+                                />
+                                )
+                        }
                     </div>
-                    <div className="box">
-                        <div className="image">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlwj2YK4IT8kJKQS7a57mwtW1tDedIj4lobQ&usqp=CAU" alt=""/>
-                        </div>
-                        <p className="text">قام محمد احمد بحجز الشقه الخاصه بك من يوم الاحد 12 ل 17 يناير </p>
-                    </div>
-                    <div className="box">
-                        <div className="image">
-                            <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1683453987/sayf/user.notifications_kf746x.png" alt=""/>
-                        </div>
-                        <p className="text">قام محمد احمد بحجز الشقه الخاصه بك من يوم الاحد 12 ل 17 يناير </p>
-                    </div>
-                </div>
+                    }
             </section>
         </>
     )

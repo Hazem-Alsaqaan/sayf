@@ -51,7 +51,6 @@ const Header = ()=>{
                                 <FontAwesomeIcon 
                                 icon={faBell}
                                 onClick={handleShowNotifications}
-                                // onClick={()=>setToggleNotifications(!toggleNotifications)}
                                 />
                                 {
                                     toggleNotifications && <UserNotifications/>

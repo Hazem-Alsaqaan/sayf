@@ -4,11 +4,20 @@
     top: calc(100% + 10px);
     width: 130%;
     z-index: 15;
+    background-color: #ffffff7e;
+
+}
+.notifications .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .notifications .notifications-boxes {
     background-color: var(--white);
     border-radius: 8px 8px;
     padding: 18px 10px;
+    height: 400px;
+    overflow: auto;
 }
 .notifications .notifications-boxes .box {
     background-color: rgba(237, 237, 237, 0.44);
@@ -19,7 +28,7 @@
 }
 .notifications .notifications-boxes .box p {
     font-size: 13px;
-    line-height: 15px;
+    line-height: 18px;
 }
 
 .notifications .notifications-boxes .box .image img {
