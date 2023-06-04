@@ -130,8 +130,6 @@ const handleLogin = async(e)=>{
                                     icon={faGooglePlus}
                                     onClick={handleGoogleLogin}
                                     />
-                                    <FontAwesomeIcon icon={faSquareTwitter}/>
-                                    <FontAwesomeIcon icon={faFacebook}/>
                                 </div>
                             </div>
                         </section>

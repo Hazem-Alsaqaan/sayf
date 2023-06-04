@@ -149,8 +149,6 @@ const handleGoogleLogin = useGoogleLogin ({
                                     icon={faGooglePlus}
                                     onClick={handleGoogleLogin}
                                     />
-                                    <FontAwesomeIcon icon={faSquareTwitter}/>
-                                    <FontAwesomeIcon icon={faFacebook}/>
                                 </div>
                             </div>
                         </section>

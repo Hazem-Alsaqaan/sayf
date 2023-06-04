@@ -19,12 +19,12 @@ const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
         e.preventDefault()
         getCodeFromConfirmCode(`${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`)
         try{
-            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation/verify.app/auth/check-code-to-reset`
+            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/check-code-to-reset`
             , {
                 phone: email,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
-            navigate("/confirmPassword")
+            navigate("/confirmPassword")  //auth rest password
         }catch(err){
             if(err.message === "Network Error"){
                 toast.error("تأكد من اتصالك بالانترنت")
