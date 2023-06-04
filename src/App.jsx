@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
-import ConfirmPassword from "./pages/confirm.password/ConfirmPassword"
 import Home from "./pages/home/Home"
 import MyBookings from "./pages/my.bookings/MyBookings"
 import ShowYourApartment from "./pages/show.your.apartment/ShowYourApartment"
@@ -21,6 +20,7 @@ import ManageAccount from "./pages/manage.account/ManageAccount"
 import NotFound from "./pages/not.found/NotFound"
 import ConfirmCodeToRestPass from "./pages/confirm.code.rest.pass/ConfirmCodeToRestPass"
 import AddRating from "./pages/add.rating/AddRating"
+import ChangePassword from "./pages/change.password/ChangePassword"
 
 
 
@@ -58,7 +58,7 @@ function App() {
         <Route path="/verifyCode" element={<VerifyCode registerMail ={registerMail}/>}/>
         <Route path="/sentCode" element={<SentCode getMailFromSentCode = {getMailFromSentCode}/>}/>
         <Route path="/confirmCode" element={<ConfirmCodeToRestPass email = {email} getCodeFromConfirmCode = {getCodeFromConfirmCode}/>}/>
-        <Route path="/confirmPassword" element={<ConfirmPassword email ={email}  code ={code}/>}/>
+        <Route path="/changePassword" element={<RequireAuth><ChangePassword/></RequireAuth>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId/addRating" element={<RequireAuth><AddRating /></RequireAuth>}/>
         <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>

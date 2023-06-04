@@ -1,25 +1,30 @@
 import React, { memo, useState } from "react";
-import "./ConfirmPassword.css"
+import "./ChangePassword.css"
 import axios from "axios";
 import {ToastContainer, toast} from "react-toastify"
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const ConfirmPassword =({email, code})=>{
+const ChangePassword =()=>{
+    const {token} = useSelector((state)=> state.authSlice)
+    const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
-    const [confirmNewPassword, setConfirmNewPassword] = useState("")
     const navigate = useNavigate()
 
     const handleNewPassword = async(e)=>{
         e.preventDefault()
         try{
-            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/reset-password`,
+            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/change-password`,
             {
-                phone: email,
-                code: code,
-                password: newPassword
+                oldPassword: oldPassword,
+                newPassword: newPassword
+            },
+            {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
             })
-            console.log(res.data)
-            toast.success("تم تغيير الرقم السري بنجاح")
+            toast.success("تم تغيير كلمة المرور بنجاح")
             navigate("/login")
         }catch(err){
             if(err.message === "Network Error"){
@@ -28,6 +33,8 @@ const ConfirmPassword =({email, code})=>{
                 toast.error(err.response.data.errorMessage)
             }
         }
+        setOldPassword("")
+        setNewPassword("")
     }
     return(
         <>
@@ -49,7 +56,15 @@ const ConfirmPassword =({email, code})=>{
                     <h2>قم بادخال كلمة مرور قوية حتى تتمكن من حماية حسابك</h2>
                     <section className="auth-form">
                         <form onSubmit={(e)=>handleNewPassword(e)}>
-                            <label htmlFor="newPassword">كلمة المرور</label>
+                            <label htmlFor="oldPassword">كلمة المرور القديمة</label>
+                            <input
+                            id="oldPassword"
+                            type="password"
+                            onChange={(e)=>setOldPassword(e.target.value)}
+                            value={oldPassword}
+                            required
+                            />
+                            <label htmlFor="newPassword">كلمة المرور الجديدة</label>
                             <input
                             id="newPassword"
                             type="password"
@@ -57,16 +72,8 @@ const ConfirmPassword =({email, code})=>{
                             value={newPassword}
                             required
                             />
-                            <label htmlFor="confirmNewPassword">تأكيد كلمة المرور</label>
-                            <input
-                            id="confirmNewPassword"
-                            type="password"
-                            onChange={(e)=>setConfirmNewPassword(e.target.value)}
-                            value={confirmNewPassword}
-                            required
-                            />
                             <button
-                            >تسجيل الدخول
+                            >تغيير كلمة المرور
                             </button>
                         </form>
                     </section>
@@ -75,4 +82,4 @@ const ConfirmPassword =({email, code})=>{
         </>
     )
 }
-export default memo(ConfirmPassword)
+export default memo(ChangePassword)
