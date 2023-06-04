@@ -26,7 +26,7 @@ const SingleSearchBox = ({item}) => {
         <>
             <div className="result-search-box">
                 <div className="image-container">
-                    <img src={item?.images[0]} alt="" />
+                    <img src={item?.images ? item?.images[0] : ""} alt="" />
                     <FontAwesomeIcon 
                     onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
                     icon={faHeart} />

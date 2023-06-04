@@ -20,6 +20,7 @@ import Profile from "./pages/profile/Profile"
 import ManageAccount from "./pages/manage.account/ManageAccount"
 import NotFound from "./pages/not.found/NotFound"
 import ConfirmCodeToRestPass from "./pages/confirm.code.rest.pass/ConfirmCodeToRestPass"
+import AddRating from "./pages/add.rating/AddRating"
 
 
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/confirmCode" element={<ConfirmCodeToRestPass email = {email} getCodeFromConfirmCode = {getCodeFromConfirmCode}/>}/>
         <Route path="/confirmPassword" element={<ConfirmPassword email ={email}  code ={code}/>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
+        <Route path="/showUnit/:unitId/addRating" element={<RequireAuth><AddRating /></RequireAuth>}/>
         <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>
           <Route index element={<UnitSwiperImages/>}/>
           <Route path="images" element={<UnitSwiperImages/>}/>

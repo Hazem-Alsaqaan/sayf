@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import "./ShowUnit.css"
 import SpecificationsConditions from "../../components/specifications/SpecificationsConditions";
@@ -28,12 +28,15 @@ const ShowUnit = ()=>{
         <>
             <div className="show-unit">
                 <WhiteHeader />
-                <div className="container">
+                <div className="container show-unit-body">
                     <NestedNavigate/>
                     <Outlet/>
                     <SpecificationsConditions oneUnit ={oneUnit}/>
                     <Ratings/>
                     <VisitorsOpinions oneUnit ={oneUnit}/>
+                    <div className="btn-link-purple">
+                        <Link to={`/showUnit/${oneUnit._id}/addRating`}>تقييم الشقة</Link>
+                    </div>
                 </div>
                 <Footer/>
             </div>

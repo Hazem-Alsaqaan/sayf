@@ -56,7 +56,7 @@ const UnitLocation = ()=>{
                         lat: center.lat, 
                         lng: center.lng
                     },
-                    zoom: 13
+                    zoom: 8
                 }}
                 mapContainerStyle={containerStyle}
                 >

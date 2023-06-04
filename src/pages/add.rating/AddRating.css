@@ -1,0 +1,76 @@
+.add-rating-body{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.add-rating .user-add-rating{
+    margin-top: 100px;
+}
+.add-rating .user-add-rating .user-rate-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30px;
+    margin: 25px 0px;
+    color: var(--purple);
+}
+.add-rating .user-add-rating .user-rate-content span{
+    direction: ltr;
+    display: flex;
+}
+.add-rating .user-add-rating .user-rate-content p{
+    white-space: nowrap;
+}
+.add-rating .user-add-rating .user-rate-content span svg{
+    cursor: pointer;
+    color: #ccc;
+}
+.add-rating .write-rating{
+    margin: 100px 0px;
+}
+.add-rating .write-rating p {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.add-rating .write-rating textarea {
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.add-rating .write-rating textarea:focus{
+    outline: none;
+}
+.add-rating .user-add-rating  .btn-purple{
+    display: flex;
+    justify-content: center;
+}
+.add-rating .user-add-rating  .btn-purple button{
+    background-color: var(--purple);
+    color: var(--white);
+    padding: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 8px 8px;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* start media screen */
+@media(max-width: 491px){
+    .add-rating .user-add-rating .user-rate-content{
+        font-size: 22px;
+    }
+    .add-rating .write-rating p {
+        font-size: 28px;
+    }
+}
+@media(max-width: 350px){
+    .add-rating .user-add-rating .user-rate-content{
+        font-size: 16px;
+    }
+    .add-rating .write-rating p {
+        font-size: 22px;
+    }
+}

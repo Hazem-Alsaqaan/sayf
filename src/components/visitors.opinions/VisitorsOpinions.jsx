@@ -46,7 +46,7 @@ const VisitorsOpinions = ({oneUnit})=>{
                     <h2>آراء الزوار</h2>
                     <span>
                         <FontAwesomeIcon icon={faStar}/>
-                        <p>{`${oneUnit.rating ? oneUnit.rating : 0} (${usersOpinion.length} تقييم)`}</p>
+                        <p>{`${oneUnit.rating ? oneUnit.rating.toFixed(1) : 0} (${usersOpinion.length} تقييم)`}</p>
                     </span>
                 </div>
                 <div className="bottom-side">
@@ -55,7 +55,7 @@ const VisitorsOpinions = ({oneUnit})=>{
                             <div key={item._id} className="opinion-single-box">
                                 <div className="up-side">
                                     <h6>{item.user.username}</h6>
-                                    <h5>{item.rating}</h5>
+                                    <h5>{item.rating.toFixed(1)}</h5>
                                 </div>
                                 <p className="date">{item.createdAt}</p>
                                 <p className="description">{item.feedback}</p>
