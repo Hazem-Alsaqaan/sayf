@@ -3,11 +3,11 @@ import axios from "axios"
 import {toast} from "react-toastify"
 
 //get all units page 1
-export const getAllUnits = createAsyncThunk("units/getAllUnits", async(token)=>{
+export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
     try{
-        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?page=1&limit=8&allowPagination=true`, {
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?city=${item.city}&minimum_price=${item.minimum_price}&highest_price=${item.highest_price}&persons=${item.persons}&rooms=${item.rooms}&children=${item.children}&page=1&limit=8&allowPagination=true`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${item.token}`
             }
         })
         return res.data.docs

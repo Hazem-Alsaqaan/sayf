@@ -11,7 +11,7 @@ const SpecificationsConditions = ({oneUnit})=>{
         <div className="static-specifications">
             <div>
                 <h1>شقة مفروشة للايجار</h1>
-                <p>600 \ اليوم</p>
+                <p>{`${oneUnit.price} /\ اليوم`}</p>
             </div>
             <Link to= {`/showUnit/${unitId}/payment`} className="btn">احجز الأن</Link>
         </div>
@@ -42,7 +42,7 @@ const SpecificationsConditions = ({oneUnit})=>{
                 <div className="conditions-data">
                     <h4>شروط عامة  :</h4>
                     <p>. دفع مبلغ 50 جنيه عند الحجز بشكل اساسي</p>
-                    <p>. عدم دفع مبلغ 50 جنيه عند الحجز علي قوائم الانتظار</p>
+                    <p>. عدم دفع مبلغ 50 جنيه عند الحجز يضعك علي قوائم الانتظار</p>
                 </div>
                 <div className="conditions-data">
                     <h4>شروط خاصه للمؤجر  :</h4>
@@ -51,7 +51,7 @@ const SpecificationsConditions = ({oneUnit})=>{
                 <div className="conditions-data">
                     <h4>سياسه الإلغاء والتأجيل :</h4>
                     <p>. عند الإلغاء تدفع ال 50  للمؤجر</p>
-                    <p>. يوجد امكانيه التأجيل مره واحده فقط وإلا سيتم خصم مبلغ ال 50 لمؤجر</p>
+                    <p>. يوجد امكانيه التأجيل مره واحده فقط وإلا سيتم خصم مبلغ ال 50 للمؤجر</p>
                 </div>
             </section>
         </div>

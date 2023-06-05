@@ -8,6 +8,14 @@ import { getAllUnits } from "../../redux/actions/unitsActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const SearchData = ()=>{
+    const[cityInSearch, setCityInSearch] = useState("")
+    const [personsInSearch, setPersonsInSearch] = useState(0)
+    const [childInSearch, setChildInSearch] = useState(0)
+    const [roomsInSearch, setRoomsInSearch] = useState(0)
+    const [minRang, setMinRang] = useState(0)
+    const [maxRang, setMaxRang] = useState(0)
+
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {token} = useSelector((state)=>state.authSlice)
@@ -15,7 +23,15 @@ const SearchData = ()=>{
     const handleSearch = (e)=>{
         e.preventDefault()
         navigate("/search")
-        dispatch(getAllUnits(token))
+        dispatch(getAllUnits({
+            token: token,
+            city: cityInSearch,
+            persons: personsInSearch,
+            rooms: roomsInSearch,
+            children: childInSearch,
+            minimum_price: minRang,
+            highest_price: maxRang,
+        }))
     }
     return(
         <>
@@ -23,8 +39,15 @@ const SearchData = ()=>{
                 <div className="container">
                     <form onSubmit={(e)=>handleSearch(e)}>
                         <div className="top-part">
-                            <Search/>
-                            <PersonsAndRoom/>
+                            <Search setCityInSearch = {setCityInSearch} cityInSearch = {cityInSearch}/>
+                            <PersonsAndRoom
+                            personsInSearch = {personsInSearch}
+                            setPersonsInSearch = {setPersonsInSearch}
+                            childInSearch = {childInSearch}
+                            setChildInSearch = {setChildInSearch}
+                            roomsInSearch = {roomsInSearch}
+                            setRoomsInSearch = {setRoomsInSearch}
+                            />
                         </div>
                         <div className="bottom-part">
                             <input
@@ -35,7 +58,12 @@ const SearchData = ()=>{
                             type="date"
                             placeholder="تاريخ المغادرة"
                             />
-                            <SelectPrice/>
+                            <SelectPrice
+                            minRang={minRang}
+                            setMinRang={setMinRang}
+                            maxRang={maxRang}
+                            setMaxRang={setMaxRang}
+                            />
                             <button 
                             type="submit"
                             className="btn btn-primary"

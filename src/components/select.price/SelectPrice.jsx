@@ -3,10 +3,8 @@ import "./SelectPrice.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const SelectPrice =()=>{
+const SelectPrice =({minRang, setMinRang, maxRang, setMaxRang})=>{
     const [selectPriceToggle, setSelectPriceToggle] = useState(false)
-    const [minRang, setMinRang] = useState(0);
-    const [maxRang, setMaxRang] = useState(0)
 
     return(
         <>

@@ -76,7 +76,6 @@ const endDate = new Date(ending)
 const [endDateMonth, setEndDateMonth] = useState("")
 const endDateDay = endDate.getDate()
 const endDateYear = endDate.getFullYear()
-
     return(
         <>
             <div  
@@ -91,7 +90,7 @@ const endDateYear = endDate.getFullYear()
                     icon={faHeart} style={location.pathname === "/myFavourite" && {color: "#E20D0D"}}/>
                     <img src={item?.images && item?.images[0]} alt=""/>
                     <span className="star-icon">
-                        {item.rating ? item.rating : 0}
+                        {item.rating ? item.rating.toFixed(1) : 0}
                         <FontAwesomeIcon icon={faStar}/>
                     </span>
                 </div>
@@ -99,7 +98,7 @@ const endDateYear = endDate.getFullYear()
                     <h4>{`شقة مفروش للإيجار شارع ${item?.street}`}</h4>
                     {location.pathname === "/myFavourite" && 
                     <p>{`شقة تحتوي على ${item?.bathrooms} حمام`}</p>}
-                    <p className="rate"><span>600 \ اليوم</span>({item?.raters ? item?.raters : 0} تقييم)</p>
+                    <p className="rate"><span>{`${item.price} /\ اليوم`}</span>({item?.raters ? item?.raters : 0} تقييم)</p>
                     <p className="location">
                         <FontAwesomeIcon icon={faLocationDot}/>
                         {`${item?.city} - مصر`}

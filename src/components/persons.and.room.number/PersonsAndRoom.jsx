@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { faChevronDown, faMinus, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PersonsAndRoom.css"
 
-const PersonsAndRoom = ()=>{
+const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, setChildInSearch, roomsInSearch, setRoomsInSearch})=>{
     const [selectToggle, setSelectToggle] = useState(false)
-    const [room, setRoom] = useState(0)
-    const [person, setPerson] = useState(0)
-    const [children, setChildren] = useState(0)
+
 
     return(
         <>
@@ -15,7 +13,7 @@ const PersonsAndRoom = ()=>{
             <div className="selection">
                 <div className="selection-title">
                     <FontAwesomeIcon icon={faUser}/>
-                    <span>{` ${room} غرفة - ${person} شخص - ${children} طفل `}</span>
+                    <span>{` ${roomsInSearch} غرفة - ${personsInSearch} شخص - ${childInSearch} طفل `}</span>
                 </div>
                 <FontAwesomeIcon icon={faChevronDown}
                 onClick={()=>setSelectToggle(!selectToggle)}
@@ -29,12 +27,12 @@ const PersonsAndRoom = ()=>{
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setRoom(room + 1)}
+                            onClick={()=>setRoomsInSearch(roomsInSearch + 1)}
                             />
-                        <span>{room}</span>
+                        <span>{roomsInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setRoom(room > 0 ? room - 1 : room)}
+                            onClick={()=>setRoomsInSearch(roomsInSearch > 0 ? roomsInSearch - 1 : roomsInSearch)}
                             />
                     </div>
                 </section>
@@ -43,12 +41,12 @@ const PersonsAndRoom = ()=>{
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setPerson(person + 1)}
+                            onClick={()=>setPersonsInSearch(personsInSearch + 1)}
                             />
-                        <span>{person}</span>
+                        <span>{personsInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setPerson(person > 0 ? person - 1 : person)}
+                            onClick={()=>setPersonsInSearch(personsInSearch > 0 ? personsInSearch - 1 : personsInSearch)}
                             />
                     </div>
                 </section>
@@ -57,12 +55,12 @@ const PersonsAndRoom = ()=>{
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setChildren(children + 1)}
+                            onClick={()=>setChildInSearch(childInSearch + 1)}
                             />
-                        <span>{children}</span>
+                        <span>{childInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setChildren(children > 0 ? children - 1 : children)}
+                            onClick={()=>setChildInSearch(childInSearch > 0 ? childInSearch - 1 : childInSearch)}
                             />
                     </div>
                 </section>
@@ -73,4 +71,4 @@ const PersonsAndRoom = ()=>{
     )
 }
 
-export default PersonsAndRoom
+export default memo(PersonsAndRoom)

@@ -16,7 +16,7 @@ const Footer = ()=>{
                                     <Link to="/">الرئيسية</Link>
                                 </li>
                                 <li>
-                                    <Link to="/">حسابي</Link>
+                                    <Link to="/profile">حسابي</Link>
                                 </li>
                                 <li>
                                     <Link to="/">الشروط والاحكام</Link>
