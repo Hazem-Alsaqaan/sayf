@@ -21,6 +21,7 @@ import NotFound from "./pages/not.found/NotFound"
 import ConfirmCodeToRestPass from "./pages/confirm.code.rest.pass/ConfirmCodeToRestPass"
 import AddRating from "./pages/add.rating/AddRating"
 import ChangePassword from "./pages/change.password/ChangePassword"
+import RestPassword from "./pages/rest.password/RestPassword"
 
 
 
@@ -58,6 +59,7 @@ function App() {
         <Route path="/verifyCode" element={<VerifyCode registerMail ={registerMail}/>}/>
         <Route path="/sentCode" element={<SentCode getMailFromSentCode = {getMailFromSentCode}/>}/>
         <Route path="/confirmCode" element={<ConfirmCodeToRestPass email = {email} getCodeFromConfirmCode = {getCodeFromConfirmCode}/>}/>
+        <Route path="/restPassword" element={<RestPassword email = {email} code = {code}/>}/>
         <Route path="/changePassword" element={<RequireAuth><ChangePassword/></RequireAuth>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId/addRating" element={<RequireAuth><AddRating /></RequireAuth>}/>

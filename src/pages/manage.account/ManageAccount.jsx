@@ -81,7 +81,7 @@ const ManageAccount = ()=>{
                             <label htmlFor="userEmail" >البريد الإلكتروني</label>
                             <input
                             id="userEmail"
-                            placeholder={user.email}
+                            placeholder={user.email || user.phone}
                             disabled
                             type="email"/>
                         </div>
