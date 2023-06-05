@@ -32,6 +32,12 @@ const SearchData = ()=>{
             minimum_price: minRang,
             highest_price: maxRang,
         }))
+        setCityInSearch("")
+        setPersonsInSearch(0)
+        setChildInSearch(0)
+        setRoomsInSearch(0)
+        setMinRang(0)
+        setMaxRang(0)
     }
     return(
         <>
