@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -23,6 +23,8 @@ const UnitSwiperImages = ()=>{
     const {oneUnit} = useSelector((state)=>state.unitsSlice)
     const {oneUnitLoading} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=>state.authSlice)
+
+
 
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -60,7 +62,8 @@ const UnitSwiperImages = ()=>{
                         {oneUnit.images.map((item, index)=>{
                             return (<SwiperSlide key={index}>
                                         <img src={item} alt=""/>
-                                    </SwiperSlide>)
+                                    </SwiperSlide>
+                                    )
                         })}
                         
                 </Swiper>

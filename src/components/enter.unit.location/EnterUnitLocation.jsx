@@ -43,7 +43,7 @@ const EnterUnitLocation = ({enterLocation, setEnterLocation})=>{
             long: longitude
         })
     }
-    const [mapZoom, setMapZoom] = useState(10)
+    const [mapZoom, setMapZoom] = useState(8)
     return(
         <>
             <section className="enter-unit-location single-section">
