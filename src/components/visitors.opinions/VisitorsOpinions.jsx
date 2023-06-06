@@ -58,6 +58,7 @@ const VisitorsOpinions = ({oneUnit})=>{
                                     <h5>{item.rating.toFixed(1)}</h5>
                                 </div>
                                 <p className="date">{item.createdAt}</p>
+                                {/* <p className="date">{`${new Date(item.createdAt).getDate()} - ${new Date(usersOpinion[0].createdAt).getMonth()+1} - ${new Date(usersOpinion[0].createdAt).getFullYear()}`}</p> */}
                                 <p className="description">{item.feedback}</p>
                             </div>
                         )

@@ -15,6 +15,8 @@ const SearchData = ()=>{
     const [minRang, setMinRang] = useState(0)
     const [maxRang, setMaxRang] = useState(0)
 
+// const[startDate, setStartDate] = useState("")
+// const[endDate, setEndDate] = useState("")
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -59,10 +61,12 @@ const SearchData = ()=>{
                             <input
                             type="date"
                             placeholder="تاريخ الوصول"
+                            // onChange={(e)=>setStartDate(e.target.value)}
                             />
                             <input
                             type="date"
                             placeholder="تاريخ المغادرة"
+                            // onChange={(e)=>setEndDate(e.target.value)}
                             />
                             <SelectPrice
                             minRang={minRang}
