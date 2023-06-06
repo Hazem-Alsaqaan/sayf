@@ -24,7 +24,7 @@ const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
                 phone: email,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
-            navigate("/confirmPassword")  //auth rest password
+            navigate("/restPassword")  //auth rest password
         }catch(err){
             if(err.message === "Network Error"){
                 toast.error("تأكد من اتصالك بالانترنت")
