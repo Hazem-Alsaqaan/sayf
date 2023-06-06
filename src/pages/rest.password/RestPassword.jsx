@@ -18,7 +18,9 @@ const RestPassword =({email, code})=>{
                 password: restPassword
             })
             toast.success("تم اعادة كلمة المرور ")
-            // navigate("/login")
+            setTimeout(() => {
+                navigate("/login")
+            }, 1500);
         }catch(err){
             console.log(err)
             if(err.message === "Network Error"){
@@ -28,7 +30,6 @@ const RestPassword =({email, code})=>{
             }
         }
         setOldPassword("")
-        setNewPassword("")
     }
     return(
         <>

@@ -18,20 +18,7 @@ const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
     const handleConfirmCode = async(e)=>{
         e.preventDefault()
         getCodeFromConfirmCode(`${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`)
-        try{
-            const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/check-code-to-reset`
-            , {
-                phone: email,
-                code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
-            })
-            navigate("/restPassword")  //auth rest password
-        }catch(err){
-            if(err.message === "Network Error"){
-                toast.error("تأكد من اتصالك بالانترنت")
-            }else if(err.response.data.errorMessage){
-                toast.error(err.response.data.errorMessage)
-            }
-        }
+        navigate("/restPassword")
     }
 
     return(

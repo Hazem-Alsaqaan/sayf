@@ -44,12 +44,24 @@
 .cities-locations .cities-slider .box-city{
     transition-duration: .6s;
 }
+.cities-locations .cities-slider .box-city .box-cities-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #5500A2;
+    border-radius: 12px;
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}
+/* .cities-locations .cities-slider .box-city img{
+} */
 .cities-locations .cities-slider .box-city div.box-text {
     margin: 15px 0px;
 }
 .cities-locations .cities-slider .box-city div.box-text h2{
     font-weight: 700;
-    font-size: 30px;
+    font-size: 28px;
 }
 .cities-locations .cities-slider .box-city div.box-text  p{
     font-weight: 400;
