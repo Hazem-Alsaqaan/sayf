@@ -22,6 +22,8 @@ import ConfirmCodeToRestPass from "./pages/confirm.code.rest.pass/ConfirmCodeToR
 import AddRating from "./pages/add.rating/AddRating"
 import ChangePassword from "./pages/change.password/ChangePassword"
 import RestPassword from "./pages/rest.password/RestPassword"
+import TirmsOfUse from "./pages/tirms.of.use/TirmsOfUse"
+import PrivacyPolicy from "./pages/privacy.policy/PrivacyPolicy"
 
 
 
@@ -49,6 +51,8 @@ function App() {
           <Route path="search" element={<SearchResult/>}/>
           <Route path="home" element={<HomeContent/>}/>
         </Route>
+        <Route path="/tirms-of-use" element={<TirmsOfUse/>}/>
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
         <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
         <Route path="/manageAccount" element={<RequireAuth><ManageAccount/></RequireAuth>}/>
         <Route path="/myFavourite" element={<RequireAuth><MyFavourite/></RequireAuth>}/>

@@ -19,10 +19,10 @@ const Footer = ()=>{
                                     <Link to="/profile">حسابي</Link>
                                 </li>
                                 <li>
-                                    <Link to="/">الشروط والاحكام</Link>
+                                    <Link to="/tirms-of-use">الشروط والاحكام</Link>
                                 </li>
                                 <li>
-                                    <Link to="/">سياسة الخصوصية</Link>
+                                    <Link to="/privacy-policy">سياسة الخصوصية</Link>
                                 </li>
                             </ul>
                         </nav>
