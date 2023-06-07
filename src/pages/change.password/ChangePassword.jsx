@@ -4,9 +4,12 @@ import axios from "axios";
 import {ToastContainer, toast} from "react-toastify"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import WhiteHeader from "../../components/white.header/WhiteHeader";
+import Footer from "../../components/footer/Footer";
 
 const ChangePassword =()=>{
     const {token} = useSelector((state)=> state.authSlice)
+    const [usernameChangePass, setUsernameChangePass] = useState("")
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const navigate = useNavigate()
@@ -35,6 +38,7 @@ const ChangePassword =()=>{
         }
         setOldPassword("")
         setNewPassword("")
+        setUsernameChangePass("")
     }
     return(
         <>
@@ -50,23 +54,34 @@ const ChangePassword =()=>{
                 pauseOnHover
                 theme="light"
                 />
-            <section className="confirm-password">
+            <WhiteHeader/>
+            <section className="change-password">
                 <div className="container">
-                    <h1>كلمة مرور جديدة</h1>
-                    <h2>قم بادخال كلمة مرور قوية حتى تتمكن من حماية حسابك</h2>
+                    <h1>تغيير كلمة المرور</h1>
                     <section className="auth-form">
                         <form onSubmit={(e)=>handleNewPassword(e)}>
-                            <label htmlFor="oldPassword">كلمة المرور القديمة</label>
+                            <label htmlFor="usernameChangePass">اسم المستخدم</label>
+                            <input
+                            id="usernameChangePass"
+                            placeholder="اسم المستخدم"
+                            type="text"
+                            onChange={(e)=>setUsernameChangePass(e.target.value)}
+                            value={usernameChangePass}
+                            required
+                            />
+                            <label htmlFor="oldPassword">كلمة المرور الحاليه</label>
                             <input
                             id="oldPassword"
+                            placeholder="كلمة المرور الحاليه"
                             type="password"
                             onChange={(e)=>setOldPassword(e.target.value)}
                             value={oldPassword}
                             required
                             />
-                            <label htmlFor="newPassword">كلمة المرور الجديدة</label>
+                            <label htmlFor="newPassword">كلمة المرور الجديده</label>
                             <input
                             id="newPassword"
+                            placeholder="كلمة المرور الجديده"
                             type="password"
                             onChange={(e)=>setNewPassword(e.target.value)}
                             value={newPassword}
@@ -79,6 +94,7 @@ const ChangePassword =()=>{
                     </section>
                 </div>
             </section>
+            <Footer/>
         </>
     )
 }
