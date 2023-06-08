@@ -79,22 +79,22 @@ const endDateYear = endDate.getFullYear()
     return(
         <>
             <div  
-            className="single-box"
-            // onClick={()=>navigate(`/showUnit/${item.id}`)}
-            >
+            className="single-box">
                 {location.pathname === "/myBookings" &&
                 <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} ${StartDateMonth} ${startDateYear} إلى يوم ${endDateDay} ${endDateMonth} ${endDateYear}`}</h4>}
                 <div className="image-box">
                     <FontAwesomeIcon 
                     onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
                     icon={faHeart} style={location.pathname === "/myFavourite" && {color: "#E20D0D"}}/>
-                    <img src={item?.images && item?.images[0]} alt=""/>
+                    <div className="apartmentBox-image-box">
+                        <img src={item?.images && item?.images[0]} alt=""/>
+                    </div>
                     <span className="star-icon">
                         {item.rating ? item.rating.toFixed(1) : 0}
                         <FontAwesomeIcon icon={faStar}/>
                     </span>
                 </div>
-                <div>
+                <div className="apartmentBox-text-content">
                     <h4>{`شقة مفروش للإيجار شارع ${item?.street}`}</h4>
                     {location.pathname === "/myFavourite" && 
                     <p>{`شقة تحتوي على ${item?.bathrooms} حمام`}</p>}
@@ -103,17 +103,23 @@ const endDateYear = endDate.getFullYear()
                         <FontAwesomeIcon icon={faLocationDot}/>
                         {`${item?.city} - مصر`}
                     </p>
-                    {location.pathname !== "/myBookings" ?
-                    <Link 
-                    className="btn btn-primary"
-                    to={`/showUnit/${item?._id}`}
-                    >احجز الأن</Link>
-                    :
+                    {location.pathname === "/myBookings" ?
                     <Link 
                         className="btn btn-primary"
                         onClick={()=>handleRemoveFromMyBookings(bookingItem?._id)}
                     >إلغاء الحجز</Link>
-                    
+                    : location.pathname === "/myUnits" ?
+                    <Link 
+                    className="btn btn-primary"
+                    to={`/myUnits/${item?._id}`}
+                    >الحجوزات</Link>
+                    : location.pathname === `/myUnits/${item?._id}` ?
+                    ""
+                    :
+                    <Link 
+                    className="btn btn-primary"
+                    to={`/showUnit/${item?._id}`}
+                    >احجز الأن</Link>
                     }
                 </div>
                 <ToastContainer

@@ -24,6 +24,8 @@ import ChangePassword from "./pages/change.password/ChangePassword"
 import RestPassword from "./pages/rest.password/RestPassword"
 import TirmsOfUse from "./pages/tirms.of.use/TirmsOfUse"
 import PrivacyPolicy from "./pages/privacy.policy/PrivacyPolicy"
+import MyUnits from "./pages/my.units/MyUnits"
+import HouseReservations from "./pages/house.reservations/HouseReservations"
 
 
 
@@ -72,6 +74,8 @@ function App() {
           <Route path="images" element={<UnitSwiperImages/>}/>
           <Route path="location" element={<UnitLocation/>}/>
         </Route>
+        <Route path="/myUnits" element={<RequireAuth><MyUnits/></RequireAuth>}/>
+        <Route path="/myUnits/:unitId" element={<RequireAuth><HouseReservations/></RequireAuth>}/>
       </Routes>
     </div>
   )

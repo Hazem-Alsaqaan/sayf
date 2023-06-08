@@ -278,3 +278,41 @@ export const getNotifications = createAsyncThunk("units/getNotifications", async
         throw(err.response.data.errorMessage)
     }
 })
+
+// get units owned by user
+export const getUnitsOwnedByUser = createAsyncThunk("units/getUnitsOwndByyUser", async(token)=>{
+    try{
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/user-houses`, {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return res.data
+    }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
+    }
+})
+
+//get house reservations
+export const getHouseReservations = createAsyncThunk("units/getHouseReservations", async(item)=>{
+    try{
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/house-reservations/${item.id}`,{
+            headers:{
+                Authorization: `Bearer ${item.token}`
+            }
+        })
+        return res.data
+    }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
+    }
+})

@@ -16,9 +16,13 @@
 .single-box .image-box {
     position: relative;
 }
+.single-box .image-box .apartmentBox-image-box{
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
 .single-box .image-box img{
     width: 100%;
-    max-height: 250px;
 }
 .single-box .image-box svg.fa-heart {
     position: absolute;
@@ -28,6 +32,7 @@
     font-size: 22px;
     cursor: pointer;
     transition-duration: .3s;
+    z-index: 10;
 }
 .single-box .image-box svg.fa-heart:hover {
     color: var(--red);
@@ -80,4 +85,58 @@
     font-weight: 700;
     background-color: var(--purple);
     border: 1px solid var(--purple);
+}
+
+/* start media screen */
+@media(max-width: 771px){
+    .single-box a.btn-primary {
+        margin-top: 20px;
+        font-size: 18px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        background-color: var(--purple);
+        border: 1px solid var(--purple);
+    }
+}
+@media(max-width: 410px){
+    .single-box .date-booking-title {
+        color: var(--purple);
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    .single-box .image-box svg.fa-heart {
+        font-size: 18px;
+    }
+    .single-box .image-box .star-icon {
+        font-size: 18px;
+    }
+    .single-box .image-box .star-icon svg.fa-star{
+        font-size: 18px;
+        margin-right: 5px;
+    }
+    .single-box h4,
+    .single-box p {
+        margin-top: 7px;
+    }
+    .single-box h4 {
+        font-size: 20px;
+    }
+    .single-box p.rate{
+        font-size: 18px;
+    }
+    .single-box p.rate span{
+        margin-left: 15px;
+        font-size: 18px;
+    }
+    .single-box p.location {
+        font-size: 18px;
+    }
+    .single-box p.location svg{
+        margin-left: 5px;
+        font-size: 18px;
+    }
 }

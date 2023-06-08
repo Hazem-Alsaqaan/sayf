@@ -1,0 +1,28 @@
+.my-units {
+    min-height: 100vh;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.my-units .loading{
+    display: flex;
+    justify-content: center;
+}
+.my-units h1 {
+    font-size: 55px;
+    font-weight: 700;
+    text-align: center;
+}
+.my-units .my-units-body {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+    gap: 30px;
+}
+@media(max-width: 771px){
+    .my-units .my-units-body{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px , 1fr));
+        gap: 20px;
+    }
+}

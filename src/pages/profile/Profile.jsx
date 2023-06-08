@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faGlobe, faPowerOff, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faGlobe, faHome, faPowerOff, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import "./Profile.css"
 import { Link } from "react-router-dom";
@@ -49,6 +49,13 @@ const Profile =()=>{
                         </li>
                         <li>
                             <div className="text-icon">
+                                <FontAwesomeIcon icon={faHome} />
+                                <Link to="/myUnits">الشقق المعروضه</Link>
+                            </div>
+                            <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
+                        </li>
+                        <li>
+                            <div className="text-icon">
                                 <FontAwesomeIcon icon={faThumbsUp} />
                                 <span>تقييمك</span>
                             </div>
@@ -64,14 +71,14 @@ const Profile =()=>{
                         <li>
                             <div className="text-icon">
                                 <FontAwesomeIcon icon={faCircleCheck} />
-                                <span>شروط الإستخدام</span>
+                                <Link to="/tirms-of-use">شروط الإستخدام</Link>
                             </div>
                             <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
                         </li>
                         <li>
                             <div className="text-icon">
                                 <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685122365/locker_icon_1_faieya.png" alt=""/>
-                                <span>سياسة الخصوصية</span>
+                                <Link to="/privacy-policy">سياسة الخصوصية</Link>
                             </div>
                             <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
                         </li>

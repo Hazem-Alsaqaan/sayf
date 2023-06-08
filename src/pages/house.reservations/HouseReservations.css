@@ -1,0 +1,54 @@
+.house-reservations{
+    min-height: 100vh;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.house-reservations h1 {
+    font-size: 55px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 80px;
+}
+.house-reservations .single-box{
+    box-shadow: 0px 2.5px 2.5px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-bottom: 35px;
+}
+.house-reservations .single-box .apartmentBox-text-content{
+    padding: 25px;
+}
+.house-reservations .single-box .image-box .apartmentBox-image-box{
+    height: 600px;
+}
+
+.house-reservations .users-reservations .house-reservations-single-box {
+    padding: 25px;
+    margin-bottom: 12px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 6px rgba(220, 217, 217, 0.384);
+}
+.house-reservations .users-reservations .house-reservations-single-box p {
+    font-size: 25px;
+    font-weight: 700;
+}
+.house-reservations .users-reservations .house-reservations-single-box p span {
+    color: var(--purple);
+}
+
+
+/* start media screen */
+@media(max-width: 771px){
+    .house-reservations .users-reservations .house-reservations-single-box p {
+        font-size: 20px;
+    }
+}
+@media(max-width: 610px){
+    .house-reservations .users-reservations .house-reservations-single-box p {
+        font-size: 18px;
+    }
+}
+@media(max-width: 420px){
+    .house-reservations .users-reservations .house-reservations-single-box p {
+        font-size: 16px;
+    }
+}

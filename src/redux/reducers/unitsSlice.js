@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { addNewUnit, addTMyFavourites, addToMyBookings, getAllUnits, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsPages, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
+import { addNewUnit, addTMyFavourites, addToMyBookings, getAllUnits, getHouseReservations, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsOwnedByUser, getUnitsPages, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
 
 
 const unitsSlice = createSlice({
@@ -20,6 +20,10 @@ const unitsSlice = createSlice({
         oneUnitLoading: false,
         notifications: [],
         notificationsLoadng: false,
+        unitsOwnedByUser: [],
+        unitsOwnedByUserLoading: false,
+        houseReservations: [],
+        houseReservationsLoading: false,
         error: ``,
         errorAddNew: ``
     },
@@ -173,6 +177,28 @@ const unitsSlice = createSlice({
         })
         builder.addCase(getNotifications.rejected, (state, action)=>{
             state.notificationsLoadng = false;
+        })
+        // get units owned by user
+        builder.addCase(getUnitsOwnedByUser.pending, (state, action)=>{
+            state.unitsOwnedByUserLoading = true
+        })
+        builder.addCase(getUnitsOwnedByUser.fulfilled, (state, action)=>{
+            state.unitsOwnedByUserLoading = false;
+            state.unitsOwnedByUser =  action.payload
+        })
+        builder.addCase(getUnitsOwnedByUser.rejected, (state, action)=>{
+            state.unitsOwnedByUserLoading = false;
+        })
+        // get house reservations
+        builder.addCase(getHouseReservations.pending, (state, action)=>{
+            state.houseReservationsLoading = true
+        })
+        builder.addCase(getHouseReservations.fulfilled, (state, action)=>{
+            state.houseReservationsLoading = false;
+            state.houseReservations =  action.payload
+        })
+        builder.addCase(getHouseReservations.rejected, (state, action)=>{
+            state.houseReservationsLoading = false;
         })
     }
 })
