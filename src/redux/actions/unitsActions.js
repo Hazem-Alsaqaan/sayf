@@ -2,16 +2,17 @@ import {createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 import {toast} from "react-toastify"
 
-//get all units page 1
+//get all units page 1 Search
 export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
     try{
-        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?city=${item.city}&minimum_price=${item.minimum_price}&highest_price=${item.highest_price}&persons=${item.persons}&rooms=${item.rooms}&children=${item.children}&page=1&limit=8&allowPagination=true`, {
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?city=${item.city}&minimum_price=${item.minimum_price}&highest_price=${item.highest_price}&persons=${item.persons}&rooms=${item.rooms}&children=${item.children}&page=${item.page}&limit=8&allowPagination=true`, {
             headers: {
                 Authorization: `Bearer ${item.token}`
             }
         })
         return res.data.docs
     }catch(err){
+        console.log(err)
         if(err.message === "Network Error"){
             toast.error("تأكد من اتصالك بالانترنت")
         }else if(err.response.data.errorMessage){
@@ -21,18 +22,18 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
     }
 })
 
-//get all units on other pages
-export const getUnitsPages = createAsyncThunk("units/getUnitsPages", async(item)=>{
+// get units by Search descriptions
+export const getUnitsSearchDescription = createAsyncThunk("units/getUnitsSearchDescription", async(item)=>{
     try{
-        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?page=${item.page}&limit=8&allowPagination=true`,
-            {
-                headers:{
-                    Authorization: `Bearer ${item.token}`
-                }
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/search-all?mostRated=${item.mostRated}&minmumRated=${item.minmumRated}&heighestPrice=${item.heighestPrice}&minimumPrice=${item.minimumPrice}&popularity=${item.popularity}&page=${item.page}&limit=8&allowPagination=true`,{
+            headers:{
+                Authorization: `Bearer ${item.token}`
             }
-        )
+        })
+        console.log(res.data)
         return res.data.docs
     }catch(err){
+        console.log(err)
         if(err.message === "Network Error"){
             toast.error("تأكد من اتصالك بالانترنت")
         }else if(err.response.data.errorMessage){
@@ -43,19 +44,6 @@ export const getUnitsPages = createAsyncThunk("units/getUnitsPages", async(item)
 })
 
 
-
-
-// get most units bookings
-export const getMostBookings = createAsyncThunk("units/getMostBookings", async()=>{
-    try{
-        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/most-reserved`)
-        const mapData =  res.data.map((item)=> item._id.house).map((item)=> item) 
-        const finalResult = mapData.filter((item)=> item.length > 0)
-        return finalResult
-    }catch(err){
-        throw(err.response.data.errorMessage)
-    }
-})
 
 
 
@@ -197,6 +185,28 @@ export const removeFromBookings = createAsyncThunk("units/removeFromBookings", a
     }
 })
 
+// get most units bookings
+export const getMostBookings = createAsyncThunk("units/getMostBookings", async()=>{
+    try{
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/most-reserved`)
+        const mapData =  res.data.map((item)=> item._id.house).map((item)=> item) 
+        const finalResult = mapData.filter((item)=> item.length > 0)
+        return finalResult
+    }catch(err){
+        throw(err.response.data.errorMessage)
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 // get one unit
@@ -212,8 +222,6 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
         throw(err.response.data.errorMessage)
     }
 })
-
-
 
 
 

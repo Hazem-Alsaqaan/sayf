@@ -33,6 +33,8 @@ function App() {
   const [email, setEmail] = useState("")
   const [registerMail, setRegisterMail] = useState("")
   const [code, setCode] = useState("")
+  const [pageNumber, setPageNumber] = useState(1)
+
 
   const getMailFromSentCode = (mail)=>{
     setEmail(mail)
@@ -48,9 +50,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<NotFound/>}/>
-        <Route path="/" element={<Home/>}>
+        <Route path="/" element={<Home pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>}>
           <Route index element={<HomeContent/>}/>
-          <Route path="search" element={<SearchResult/>}/>
+          <Route path="search" element={<SearchResult pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>}/>
           <Route path="home" element={<HomeContent/>}/>
         </Route>
         <Route path="/tirms-of-use" element={<TirmsOfUse/>}/>

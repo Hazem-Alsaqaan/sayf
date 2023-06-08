@@ -2,11 +2,16 @@ import React, { memo, useState } from "react";
 import { faChevronDown, faMinus, faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PersonsAndRoom.css"
+import { useDispatch, useSelector } from "react-redux";
+import { setChildInSearch, setPersonsInSearch, setRoomsInSearch } from "../../redux/reducers/searchDataSlice";
 
-const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, setChildInSearch, roomsInSearch, setRoomsInSearch})=>{
+const PersonsAndRoom = ()=>{
     const [selectToggle, setSelectToggle] = useState(false)
 
-
+    const dispatch = useDispatch()
+    const {personsInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {childInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {roomsInSearch} = useSelector((state)=>state.searchDataSlice)
     return(
         <>
         <section className="selection-component">
@@ -27,12 +32,12 @@ const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, set
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setRoomsInSearch(roomsInSearch + 1)}
+                            onClick={()=>dispatch(setRoomsInSearch(roomsInSearch + 1))}
                             />
                         <span>{roomsInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setRoomsInSearch(roomsInSearch > 0 ? roomsInSearch - 1 : roomsInSearch)}
+                            onClick={()=>dispatch(setRoomsInSearch(roomsInSearch > 0 ? roomsInSearch - 1 : roomsInSearch))}
                             />
                     </div>
                 </section>
@@ -41,12 +46,12 @@ const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, set
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setPersonsInSearch(personsInSearch + 1)}
+                            onClick={()=>dispatch(setPersonsInSearch(personsInSearch + 1))}
                             />
                         <span>{personsInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setPersonsInSearch(personsInSearch > 0 ? personsInSearch - 1 : personsInSearch)}
+                            onClick={()=>dispatch(setPersonsInSearch(personsInSearch > 0 ? personsInSearch - 1 : personsInSearch))}
                             />
                     </div>
                 </section>
@@ -55,12 +60,12 @@ const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, set
                     <div className="select-number">
                         <FontAwesomeIcon 
                             icon={faPlus}
-                            onClick={()=>setChildInSearch(childInSearch + 1)}
+                            onClick={()=>dispatch(setChildInSearch(childInSearch + 1))}
                             />
                         <span>{childInSearch}</span>
                         <FontAwesomeIcon 
                             icon={faMinus}
-                            onClick={()=>setChildInSearch(childInSearch > 0 ? childInSearch - 1 : childInSearch)}
+                            onClick={()=>dispatch(setChildInSearch(childInSearch > 0 ? childInSearch - 1 : childInSearch))}
                             />
                     </div>
                 </section>
@@ -72,3 +77,5 @@ const PersonsAndRoom = ({personsInSearch, setPersonsInSearch, childInSearch, set
 }
 
 export default memo(PersonsAndRoom)
+
+

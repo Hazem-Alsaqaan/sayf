@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./Home.css"
 import Header from "../../components/header/Header";
 import SearchData from "../../components/search.data/SearchData";
@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 
-const Home =()=>{
+const Home =({pageNumber, setPageNumber})=>{
     return(
         <>
         <ToastContainer
@@ -26,7 +26,7 @@ const Home =()=>{
                 <section className="home-page-landing">
                     <Header/>
                     <div className="container landing-content">
-                        <SearchData/>
+                        <SearchData pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>
                     </div>
                 </section>
                 <Outlet/>
@@ -35,4 +35,4 @@ const Home =()=>{
         </>
     )
 }
-export default Home
+export default memo(Home)

@@ -7,20 +7,39 @@ import SingleSearchBox from "../single.search.box/SingleSearchBox";
 import {RotatingLines} from "react-loader-spinner"
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate"
-import { getUnitsPages } from "../../redux/actions/unitsActions";
+import { getAllUnits } from "../../redux/actions/unitsActions";
 
 
-const SearchResult = ()=>{
+const SearchResult = ({setPageNumber, pageNumber})=>{
     const dispatch = useDispatch()
+    const {cityInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {personsInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {childInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {roomsInSearch} = useSelector((state)=>state.searchDataSlice)
+    const {minRang} = useSelector((state)=>state.searchDataSlice)
+    const {maxRang} = useSelector((state)=>state.searchDataSlice)
+
     const [toggleSearchSort, setToggleSearchSort] = useState(false)
     const {searchUnits} = useSelector((state)=>state.unitsSlice)
     const {searchUnitsLoading} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=>state.authSlice)
     const {user} = useSelector((state)=>state.authSlice)
+
+
     let pageCount = 500;
     
     let handlePageClick = (data)=>{
-        dispatch(getUnitsPages({page: data.selected + 1, token: token}))
+        setPageNumber(data.selected + 1)
+        dispatch(getAllUnits({
+            token: token,
+            city: cityInSearch,
+            persons: personsInSearch,
+            rooms: roomsInSearch,
+            children: childInSearch,
+            minimum_price: minRang,
+            highest_price: maxRang,
+            page: data.selected + 1
+        }))
     }
     if(!user){
         return(
@@ -60,7 +79,7 @@ const SearchResult = ()=>{
                                         <FontAwesomeIcon icon={faArrowUpLong}/>
                                     </div>
                                     {
-                                        toggleSearchSort && <SortSearching/> 
+                                        toggleSearchSort && <SortSearching setToggleSearchSort = {setToggleSearchSort} pageNumber = {pageNumber}/> 
                                     }
                                 </div>
                             </div>
