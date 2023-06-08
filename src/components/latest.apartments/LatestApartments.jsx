@@ -12,14 +12,16 @@ import { useSelector } from "react-redux";
 
 
 const LatestApartments = ()=>{
+    const [latestRender, setLatestRender] = useState(false)
     const [latestUnits, setLatestUnits] = useState([])
     useEffect(()=>{
+        setLatestRender(true)
             const getLatestUnits = async()=>{
                 const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/newest-houses`)
                 setLatestUnits(res.data)
             }
             return ()=> getLatestUnits()
-    },[])
+    },[latestRender])
     return(
         <>
         <section className="latest-apartments">

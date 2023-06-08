@@ -8,15 +8,17 @@ import {RotatingLines} from "react-loader-spinner"
 
 const MostBookedApartments = ()=>{
     const dispatch = useDispatch()
+    const [mostRender, setMostRender] = useState(false)
     const {mostBookings} = useSelector((state)=>state.unitsSlice)
     const {mostBookingsLoading} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
+        setMostRender(true)
         const cleaner = ()=>{
             dispatch(getMostBookings())
         }
         return()=> cleaner()
-    },[])
+    },[mostRender])
     return (
         <>
             <section className="most-booked">
