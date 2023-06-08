@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import {BrowserRouter} from "react-router-dom"
 import {Provider} from "react-redux"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 import store from './redux/store/store'
 import 'react-toastify/dist/ReactToastify.css';
 import {GoogleOAuthProvider} from "@react-oauth/google"
 import {loadStripe} from "@stripe/stripe-js"
 import {Elements} from "@stripe/react-stripe-js"
+
+
 
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLISH_ABLE_KEY)
 
