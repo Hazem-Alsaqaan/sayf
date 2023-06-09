@@ -81,7 +81,7 @@ const endDateYear = endDate.getFullYear()
             <div  
             className="single-box">
                 {location.pathname === "/myBookings" &&
-                <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} ${StartDateMonth} ${startDateYear} إلى يوم ${endDateDay} ${endDateMonth} ${endDateYear}`}</h4>}
+                <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} / ${startDate.getMonth() + 1} / ${startDateYear} إلى يوم ${endDateDay} / ${endDate.getMonth() + 1} / ${endDateYear}`}</h4>}
                 <div className="image-box">
                     <FontAwesomeIcon 
                     onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}

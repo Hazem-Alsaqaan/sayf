@@ -14,12 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import EnterPersonsChildren from "../../components/enter.persons.children/EnterPersonsChildren";
 import { addNewUnit } from "../../redux/actions/unitsActions";
 import {ToastContainer } from "react-toastify"
+import { RotatingLines } from "react-loader-spinner";
 
 
 const ShowYourApartment = ()=>{
     const dispatch = useDispatch()
     const {token} = useSelector((state)=>state.authSlice)
-    const {errorAddNew} = useSelector((state)=>state.unitsSlice)
+    const {searchUnitsLoading} = useSelector((state)=>state.unitsSlice)
     const [enterName, setEnterName] = useState("")
     const [enterAdress, setEnterAdress] = useState({
         city: "",
@@ -75,7 +76,6 @@ const ShowYourApartment = ()=>{
 //handle submit unit data and information function 
     const handleSubmitUnitData = (e)=>{
         e.preventDefault()
-        console.log(unitInfo)
         // // dispatch add new units
         dispatch(addNewUnit(unitInfo))
         // rest all inputs values
@@ -131,7 +131,17 @@ const ShowYourApartment = ()=>{
                         <div className="btn-purple">
                             <button 
                             className="btn"
-                            >اعرض شقتك
+                            >{searchUnitsLoading ? 
+                                <div className="loading">
+                                    <RotatingLines
+                                    strokeColor="#fff"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="30"
+                                    visible={true}
+                                    /> 
+                                </div>
+                            : "اعرض شقتك"}
                             </button>
                     </div>
                     </form>

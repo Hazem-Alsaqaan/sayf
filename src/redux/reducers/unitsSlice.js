@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import { addNewUnit, addTMyFavourites, addToMyBookings, getAllUnits, getHouseReservations, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsOwnedByUser, getUnitsSearchDescription, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
+import { addNewUnit, addTMyFavourites, addToMyBookings, getAllUnits, getHouseReservations, getMostBookings, getMyBooking, getMyFavourites, getNotifications, getOneUnit, getUnitsOwnedByUser, getUnitsSearchDescription, getUsersOpinion, removeFromBookings, removeFromFavourites } from "../actions/unitsActions"
 
 
 const unitsSlice = createSlice({
@@ -24,6 +24,8 @@ const unitsSlice = createSlice({
         unitsOwnedByUserLoading: false,
         houseReservations: [],
         houseReservationsLoading: false,
+        usersOpinion: [],
+        usersOpinionLoading: false,
         error: ``,
         errorAddNew: ``
     },
@@ -200,6 +202,17 @@ const unitsSlice = createSlice({
         })
         builder.addCase(getHouseReservations.rejected, (state, action)=>{
             state.houseReservationsLoading = false;
+        })
+        // get users opinion
+        builder.addCase(getUsersOpinion.pending, (state, action)=>{
+            state.usersOpinionLoading = true
+        })
+        builder.addCase(getUsersOpinion.fulfilled, (state, action)=>{
+            state.usersOpinionLoading = false;
+            state.usersOpinion =  action.payload
+        })
+        builder.addCase(getUsersOpinion.rejected, (state, action)=>{
+            state.usersOpinionLoading = false;
         })
     }
 })

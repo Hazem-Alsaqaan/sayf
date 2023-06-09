@@ -324,3 +324,23 @@ export const getHouseReservations = createAsyncThunk("units/getHouseReservations
         throw(err.response.data.errorMessage)
     }
 })
+
+// get users opinion
+export const getUsersOpinion = createAsyncThunk("units/getUsersOpinion", async(item)=>{
+    try{
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/rates/${item.id}?page=1&limit=8&allowPagination=true`,
+        {
+            headers: {
+                Authorization: `bearer ${item.token}`
+            }
+        })
+        return res.data.docs
+    }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
+    }
+})
