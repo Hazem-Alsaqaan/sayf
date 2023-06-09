@@ -38,8 +38,9 @@ const MyUnits = ()=>{
                             /> 
                         </div>:
             <div className="my-units-body">
-                {
+                {unitsOwnedByUser.length > 0 ? 
                     unitsOwnedByUser.map((item)=><ApartmentBox key={item._id} item={item}/>)
+                    :<h2>لا يوجد شيء لعرضه...</h2>
                 }
             </div>}
         </section>

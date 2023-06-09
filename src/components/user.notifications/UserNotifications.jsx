@@ -26,7 +26,7 @@ const UserNotifications = ()=>{
                     </div> 
                     :
                     <div className="notifications-boxes">
-                        {
+                        {notifications.length > 0 ?
                             notifications.map((item)=>
                                 <SingleNotification
                                 key={item._id}
@@ -35,6 +35,8 @@ const UserNotifications = ()=>{
                                 endingdate = {item.end_date}
                                 />
                                 )
+                            :
+                            <h5>لا يوجد شيء لعرضه...</h5>
                         }
                     </div>
                     }

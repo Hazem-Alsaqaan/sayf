@@ -49,7 +49,7 @@ return(
                 <div className="image">
                     <img src={item.customer ? item.customer.photo : "https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685201428/vectors/user_profile_g0jjum.png"} alt=""/>
                 </div>
-                <p className="text">{`قام ${item.customer ? item.customer.username : "unknown"} بحجز الشقة الخاصة بك من يوم ${startDateDay} ${StartDateMonth} ل ${endDateDay} ${endDateMonth}`}</p>
+                <p className="text">{`قام ${item.customer ? item.customer.username : "unknown"} بحجز الشقة الخاصة بك من يوم ${startDateDay} / ${startDate.getMonth()+1} / ${startDate.getFullYear()} ل ${endDateDay} / ${endDate.getMonth()+1} / ${endDate.getFullYear()}`}</p>
             </div>
         </>
     )

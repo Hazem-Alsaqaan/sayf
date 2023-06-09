@@ -5,7 +5,6 @@
     width: 130%;
     z-index: 15;
     background-color: #ffffff7e;
-
 }
 .notifications .loading {
     display: flex;
@@ -17,6 +16,7 @@
     border-radius: 8px 8px;
     padding: 18px 10px;
     height: 400px;
+    border: 2px solid #f1f5f9;
     overflow: auto;
 }
 .notifications .notifications-boxes .box {
