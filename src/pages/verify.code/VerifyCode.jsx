@@ -18,7 +18,7 @@ const VerifyCode =({registerMail})=>{
         try{
             const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation/verify`
             , {
-                phone: registerMail,
+                phone: `+2${registerMail}`,
                 code: `${firstNum}${secondNum}${thirdNum}${fourdNum}${fiveNum}${sixNum}`
             })
             navigate("/login")
@@ -48,7 +48,7 @@ const VerifyCode =({registerMail})=>{
             <section className="confirm-code">
                 <div className="container">
                     {/* <h1>نسيت كلمة المرور</h1> */}
-                    <h2>{`تم إرسال الكود على البريد الالكتروني ${registerMail ? registerMail : "unknown"}`}</h2>
+                    <h2>{`تم إرسال الكود على رقم الموبايل ${registerMail ? registerMail : "unknown"}`}</h2>
                     <section className="auth-form">
                         <form onSubmit={(e)=>handleVerifyCode(e)}>
                             <label>الرمز التأكيدي</label>

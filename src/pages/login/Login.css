@@ -60,6 +60,20 @@
 .login .container .auth-form form {
     margin-bottom: 20px;
 }
+.auth-form form .mobile-number{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.auth-form form .mobile-number .user-mobile-number{
+    flex: 1;
+}
+.auth-form form .mobile-number .country-key{
+    direction: ltr;
+    width: 40px;
+    font-weight: 700;
+    color: var(--purple);
+
+}
 .auth-form form label{
     color: var(--purple);
     font-size: 20px;

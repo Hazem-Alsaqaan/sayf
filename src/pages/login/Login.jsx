@@ -8,6 +8,7 @@ import "./Login.css"
 import {  loginFulfilled, loginPending, loginRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import {useGoogleLogin } from "@react-oauth/google"
+import { RotatingLines } from "react-loader-spinner";
 
 const Login =()=>{
     const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const Login =()=>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const {loginError} = useSelector((state)=> state.authSlice)
+    const {loginLoading} = useSelector((state)=> state.authSlice)
 // handle google auth
 const handleGoogleLogin = useGoogleLogin ({
     onSuccess: async (tokenResponse)  => {
@@ -41,7 +43,7 @@ const handleLogin = async(e)=>{
     dispatch(loginPending())
     try{
         const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/login`, {
-        phone: email,
+        phone: `+2${email}`,
         password: password
     })
     window.sessionStorage.setItem("user", JSON.stringify(res.data.user))
@@ -93,15 +95,24 @@ const handleLogin = async(e)=>{
                         </section>
                         <section className="auth-form">
                             <form onSubmit={(e)=>handleLogin(e)}>
-                                <label htmlFor="email">البريد الالكتروني</label>
-                                <input
-                                id="email"
-                                name="email" 
-                                type="text"
-                                onChange={(e)=>setEmail(e.target.value)}
-                                value={email}
-                                required
-                                />
+                                <label htmlFor="email">رقم الموبايل</label>
+                                <div className="mobile-number">
+                                    <input
+                                        id="email"
+                                        name="email" 
+                                        type="text"
+                                        onChange={(e)=>setEmail(e.target.value)}
+                                        value={email}
+                                        className="user-mobile-number"
+                                        required
+                                        />
+                                    <input
+                                    className="country-key"
+                                    type="text"
+                                    value="+ 2"
+                                    disabled
+                                    />
+                                </div>
                                 <label htmlFor="password">كلمة المرور</label>
                                 <input
                                 id="password"
@@ -117,7 +128,16 @@ const handleLogin = async(e)=>{
                                 >نسيت كلمة المرور؟</Link>
                                 <button
                                 type="submit"
-                                >تسجيل الدخول</button>
+                                >{loginLoading ? 
+                                    <RotatingLines
+                                    strokeColor="#fff"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="30"
+                                    visible={true}
+                                    />:
+                                    "تسجيل الدخول"
+                                }</button>
                             </form>
                             <div className="new-account">
                                 <span>ليس لديك حساب؟ </span>
@@ -140,41 +160,3 @@ const handleLogin = async(e)=>{
     )
 }
 export default Login
-
-
-
-// useEffect(()=>{
-//     const unsubscrip = onAuthStateChanged(auth, (user)=>{
-//         return user
-//     })
-//     return()=> unsubscrip()
-// },[])
-// //  handle signin with firebase
-// const handleGoogleAuth = ()=>{
-//     const provider = new GoogleAuthProvider()
-//     signInWithPopup(auth, provider).then((data)=>{
-//         if(data.user){
-//             // console.log(data.user.accessToken)
-//             try{
-//                     axios.post(`https://saif-production-e995.up.railway.app/auth/login-googel`,{
-//                     access_token: `Bearer ${data.user.accessToken}`
-//                 }).then((res)=>{
-//                     console.log(res.data)
-//                     window.sessionStorage.setItem("user", JSON.stringify(data.user))
-//                     window.sessionStorage.setItem("token", JSON.stringify(data.user.accessToken))
-//                     dispatch(loginFulfilled(data.user))
-//                     navigate(redirectPath, {replace: true})
-//                 })
-                
-//             }catch(err){
-//                 console.log(err)
-//             }
-            
-//         }else{
-//             dispatch(logOut())
-//             window.sessionStorage.removeItem("user")
-//             window.sessionStorage.removeItem("token")
-//         }
-//     })
-    
-// }

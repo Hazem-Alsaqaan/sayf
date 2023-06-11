@@ -38,7 +38,7 @@ const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
             <section className="confirm-code">
                 <div className="container">
                     <h1>نسيت كلمة المرور</h1>
-                    <h2>{`تم إرسال الكود على البريد الالكتروني ${email ? email : "unknown"}`}</h2>
+                    <h2>{`تم إرسال الكود على رقم الموبايل ${email ? email : "unknown"}`}</h2>
                     <section className="auth-form">
                         <form onSubmit={(e)=>handleConfirmCode(e)}>
                             <label>الرمز التأكيدي</label>

@@ -13,7 +13,7 @@ const SentCode =({getMailFromSentCode})=>{
         getMailFromSentCode(email)
         try{
             const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/phone-confirmation`, 
-            {phone: email})
+            {phone: `+2${email}`})
             navigate("/confirmCode")
         }catch(err){
             if(err.message === "Network Error"){
@@ -42,16 +42,25 @@ const SentCode =({getMailFromSentCode})=>{
         <section className="forget-password-content">
             <div className="container">
                 <h1>نسيت كلمة المرور</h1>
-                <h2>من فضلك أدخل البريد الالكتروني الذي استخدمته في التسجيل</h2>
+                <h2>من فضلك أدخل رقم الموبايل الذي استخدمته في التسجيل</h2>
                 <section className="auth-form">
                     <form onSubmit={(e)=>handleConfirmEmail(e)}>
-                        <label>البريد الالكتروني</label>
-                        <input
-                        type="text"
-                        required
-                        onChange={(e)=>setEmail(e.target.value)}
-                        value={email}
-                        />
+                        <label>رقم الموبايل</label>
+                        <div className="mobile-number">
+                            <input
+                            type="text"
+                            required
+                            onChange={(e)=>setEmail(e.target.value)}
+                            className="user-mobile-number"
+                            value={email}
+                            />
+                            <input
+                            className="country-key"
+                            type="text"
+                            value="+ 2"
+                            disabled
+                            />
+                        </div>
                         <button>التالي</button>
                     </form>
                 </section>

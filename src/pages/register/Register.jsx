@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginFulfilled, registerFulfilled, registerPending, registerRejected } from "../../redux/reducers/authSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import { useGoogleLogin } from "@react-oauth/google";
+import { RotatingLines } from "react-loader-spinner";
 
 const Register = ({getEmailFromRegister})=>{
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const Register = ({getEmailFromRegister})=>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const {registerError} = useSelector((state)=>state.authSlice)
+    const {registerLoading} = useSelector((state)=>state.authSlice)
 
     const redirectPath =  "/" || location.state?.path
 
@@ -50,7 +51,7 @@ const handleGoogleLogin = useGoogleLogin ({
             {
                 username: username,
                 password:password,
-                phone: email
+                phone: `+2${email}`
             })
             getEmailFromRegister(email)
             dispatch(registerFulfilled(res.data))
@@ -107,15 +108,24 @@ const handleGoogleLogin = useGoogleLogin ({
                                 onChange={(e)=> setUsername(e.target.value)}
                                 value={username}
                                 />
-                                <label htmlFor="email">البريد الالكتروني</label>
-                                <input
-                                id="email"
-                                name="email" 
-                                type="text"
-                                required
-                                onChange={(e)=>setEmail(e.target.value)}
-                                value={email}
-                                />
+                                <label htmlFor="email">رقم الموبايل</label>
+                                <div className="mobile-number">
+                                    <input
+                                    id="email"
+                                    name="email" 
+                                    type="text"
+                                    className="user-mobile-number"
+                                    required
+                                    onChange={(e)=>setEmail(e.target.value)}
+                                    value={email}
+                                        />
+                                    <input
+                                        className="country-key"
+                                        type="text"
+                                        value="+ 2"
+                                        disabled
+                                        />
+                                </div>
                                 <label htmlFor="password">كلمة المرور</label>
                                 <input
                                 id="password"
@@ -136,7 +146,16 @@ const handleGoogleLogin = useGoogleLogin ({
                                 />
                                 <button
                                 type="submit"
-                                >إنشاء حساب</button>
+                                >{registerLoading ? 
+                                    <RotatingLines
+                                    strokeColor="#fff"
+                                    strokeWidth="5"
+                                    animationDuration="0.75"
+                                    width="30"
+                                    visible={true}
+                                    />:
+                                    "إنشاء حساب"
+                                }</button>
                             </form>
                             <div className="new-account">
                                 <span>لديك حساب بالفعل؟</span>
