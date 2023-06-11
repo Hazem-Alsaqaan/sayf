@@ -32,7 +32,7 @@ const LatestApartments = ()=>{
                 <Swiper
                     slidesPerView={2.5}
                     centeredSlides={true}
-                    spaceBetween={30}
+                    spaceBetween={15}
                     grabCursor={true}
                     loop={true}
                     pagination={true}

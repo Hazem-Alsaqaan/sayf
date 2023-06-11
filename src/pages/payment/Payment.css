@@ -137,3 +137,12 @@
     direction: ltr;
     margin-top: 50px;
 }
+
+/* start media screen */
+@media(max-width: 430px){
+    .payment .container .center .booking-details .details-content div p,
+    .payment .container .center .booking-details .details-content div input[type = "date"]{
+        font-size: 17px;
+        padding: 20px 12px;
+    }
+}

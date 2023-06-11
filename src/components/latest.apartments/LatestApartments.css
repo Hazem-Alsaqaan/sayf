@@ -60,6 +60,10 @@
         font-size: 18px;
         font-weight: 700;
     }
+    .latest-apartments .swiper-slide {
+        margin-left: 12px !important;
+        min-width: 250px;
+        }
 }
 @media(max-width: 520px){
     .latest-apartments  .swiper-slide .title-slide {
@@ -67,6 +71,9 @@
         font-size: 14px;
         font-weight: 700;
     }
+    .latest-apartments .swiper-slide {
+        margin-left: 7px !important;
+        }
 }
 @media(max-width: 412px){
     .latest-apartments  .swiper-slide .title-slide {

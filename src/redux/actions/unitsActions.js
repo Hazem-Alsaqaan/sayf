@@ -12,7 +12,6 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
         })
         return res.data.docs
     }catch(err){
-        console.log(err)
         if(err.message === "Network Error"){
             toast.error("تأكد من اتصالك بالانترنت")
         }else if(err.response.data.errorMessage){
@@ -22,7 +21,7 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
     }
 })
 
-// get units by Search descriptions
+// get units by Search descriptions (sort by)
 export const getUnitsSearchDescription = createAsyncThunk("units/getUnitsSearchDescription", async(item)=>{
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/search-all?mostRated=${item.mostRated}&minmumRated=${item.minmumRated}&heighestPrice=${item.heighestPrice}&minimumPrice=${item.minimumPrice}&popularity=${item.popularity}&page=${item.page}&limit=8&allowPagination=true`,{
@@ -30,10 +29,8 @@ export const getUnitsSearchDescription = createAsyncThunk("units/getUnitsSearchD
                 Authorization: `Bearer ${item.token}`
             }
         })
-        console.log(res.data)
         return res.data.docs
     }catch(err){
-        console.log(err)
         if(err.message === "Network Error"){
             toast.error("تأكد من اتصالك بالانترنت")
         }else if(err.response.data.errorMessage){

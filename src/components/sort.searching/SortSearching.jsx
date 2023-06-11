@@ -81,7 +81,7 @@ const SortSearching = ({setToggleSearchSort, pageNumber})=>{
                         onClick={()=>setMinimumPrice(!minimumPrice)}
                         />
                     </div>
-                    <button className="btn btn-warning"
+                    <button className="btn-sort-search"
                     onClick={(e)=>sortSearchByDescription(e)}
                     >تم</button>
                 </form>

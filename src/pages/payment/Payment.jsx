@@ -166,24 +166,9 @@ const Payment =()=>{
                                         }
                                     }}
                                     />
-                                {/* <div className="center-side">
-                                    <p>رقم البطاقه</p>
-                                    <input type="text"/>
-                                </div>
-                                <div className="bottom-side">
-                                    <div>
-                                        <p>تاريخ الإنتهاء</p>
-                                        <input type="date"/>
-                                    </div>
-                                    <div>
-                                        <p>CVC</p>
-                                        <input className="cvv" type="text"/>
-                                    </div>
-                                </div> */}
                             </div>
                         </section>
                     </div>
-                   
                     <div className="btn-purple">
                         <button 
                         className="btn"
