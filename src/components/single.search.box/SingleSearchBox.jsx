@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
 import {faHeart} from "@fortawesome/free-solid-svg-icons"
@@ -14,11 +14,15 @@ const SingleSearchBox = ({item}) => {
     const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
     let location = useLocation();
+    const [favHeart, setFavHeart] = useState(false)
+
 
     const handleAddToMyFavourites= (id)=>{
+        setFavHeart(true)
         dispatch(addTMyFavourites({id: id, token: token}))
     }
     const handleRemoveFromMyFavourites= (id)=>{
+        setFavHeart(false)
         dispatch(removeFromFavourites({id: id, token: token}))
     }
     return (
@@ -27,8 +31,8 @@ const SingleSearchBox = ({item}) => {
                 <div className="image-container">
                     <img src={item?.images ? item?.images[0] : ""} alt="" />
                     <FontAwesomeIcon 
-                    onClick={item.favourites.includes(user.id)? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
-                    icon={faHeart} style={ item.favourites.includes(user.id)  ? {color: "#E20D0D"} : {color: "fff"}}/>
+                    onClick={favHeart || item.favourites.includes(user.id)? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
+                    icon={faHeart} style={favHeart || item.favourites.includes(user.id)  ? {color: "#E20D0D"} : {color: "fff"}}/>
                 </div>
                 <div className="text-container">
                     <div className="text-top-side">
