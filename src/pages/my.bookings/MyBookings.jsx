@@ -56,8 +56,8 @@ const MyBookings = ()=>{
                                     <ApartmentBox 
                                     key={item._id} 
                                     item={ item.house} 
-                                    render ={render} 
-                                    setRender ={setRender} 
+                                    renderMyBookings ={render} 
+                                    setRenderMyBookings ={setRender} 
                                     starting = {item.start_date}
                                     ending = {item.end_date}
                                     bookingItem = {item}

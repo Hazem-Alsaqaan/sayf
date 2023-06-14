@@ -18,10 +18,10 @@ const MyFavourite = ()=>{
 
     useEffect(()=>{
         setRender(true)
-        const cleaner = ()=>{
+        const cleanerGetFavourites = ()=>{
             dispatch(getMyFavourites(token))
         }
-        return()=> cleaner()
+        return()=> cleanerGetFavourites()
     },[render])
 
     
@@ -47,7 +47,7 @@ const MyFavourite = ()=>{
                             : <>
                             {!myFavourites.length > 0 ? <h1 className="container not-found-units">لم يتم العثور على وحدات...</h1> :
                             <div className="boxes-container container">
-                                {myFavourites.map((item)=><ApartmentBox key={item._id} item={item} render ={render} setRender ={setRender}/>)}
+                                {myFavourites.map((item)=><ApartmentBox key={item._id} item={item} favRender ={render} setFavRender ={setRender} />)}
                             </div>}
                         </> 
                 }

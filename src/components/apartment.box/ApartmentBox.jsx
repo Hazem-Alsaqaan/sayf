@@ -4,68 +4,79 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
 import {faHeart} from "@fortawesome/free-solid-svg-icons"
 import "./ApartmentBox.css"
-import { addTMyFavourites, getMyBooking, getMyFavourites, removeFromBookings, removeFromFavourites } from "../../redux/actions/unitsActions";
+import { addTMyFavourites, removeFromBookings, removeFromFavourites } from "../../redux/actions/unitsActions";
 import { useDispatch, useSelector } from "react-redux";
 import {ToastContainer} from "react-toastify"
 
 
-const ApartmentBox = ({item, render, setRender, starting, ending, bookingItem})=>{
+const ApartmentBox = ({item, renderMyBookings, setRenderMyBookings, starting, ending, bookingItem, favRender, setFavRender})=>{
+    const {user} = useSelector((state)=> state.authSlice)
     const {token} = useSelector((state)=> state.authSlice)
-    const {myBookings} = useSelector((state)=>state.unitsSlice)
     const dispatch = useDispatch()
     let location = useLocation();
+    const [favHeart, setFavHeart] = useState(false)
 
     // add and remove of my favourites
     const handleAddToMyFavourites= (id)=>{
+        setFavHeart(true)
         dispatch(addTMyFavourites({id: id, token: token}))
-        dispatch(getMyFavourites(token))
+        if(location.pathname === "/myFavourite"){
+            setFavRender(!favRender)
+        }
     }
+    // remove from favourites
     const handleRemoveFromMyFavourites= (id)=>{
+        setFavHeart(false)
         dispatch(removeFromFavourites({id: id, token: token}))
-        setRender(!render)
-        dispatch(getMyFavourites(token))
+        if(location.pathname === "/myFavourite"){
+            setFavRender(!favRender)
+        }
     }
+
 
     // add and remove from my bookings
     const handleRemoveFromMyBookings= (id)=>{
         dispatch(removeFromBookings({id: id, token: token}))
-        setRender(!render)
-        dispatch(getMyBooking(token))
-    }
-// console.log(myBookings[myBookings.length - 1]._id)
-    //start config date
-    const months = [
-        "يناير",
-        "فبراير",
-        "مارس",
-        "ابريل",
-        "مايو",
-        "يونيو",
-        "يوليو",
-        "اغسطس",
-        "سبتمبر",
-        "اكتوبر",
-        "نوفمبر",
-        "ديسمبر",
-    ];
-    // some confige to arrivel date and leaving date
-    useEffect(()=>{
-        const unSubscripe = ()=>{
-             //start date loop
-            for(let i =0; i < months.length; i++){
-                if(i === startDate.getMonth()){
-                    setStartDateMonth(months[i])
-                }
-            }
-            // end date loop
-            for(let j =0; j < months.length; j++){
-                if(j === endDate.getMonth()){
-                    setEndDateMonth(months[j])
-                }
-            }
+        if(location.pathname === "/myBookings"){
+            setRenderMyBookings(!renderMyBookings)
         }
-        return()=> unSubscripe()
-    },[])
+    }
+    //start config date
+    // const months = [
+    //     "يناير",
+    //     "فبراير",
+    //     "مارس",
+    //     "ابريل",
+    //     "مايو",
+    //     "يونيو",
+    //     "يوليو",
+    //     "اغسطس",
+    //     "سبتمبر",
+    //     "اكتوبر",
+    //     "نوفمبر",
+    //     "ديسمبر",
+    // ];
+
+    // some confige to arrivel date and leaving date
+    // useEffect(()=>{
+    //     const unSubscripe = ()=>{
+    //          //start date loop
+    //         for(let i =0; i < months.length; i++){
+    //             if(i === startDate.getMonth()){
+    //                 setStartDateMonth(months[i])
+    //             }
+    //         }
+    //         // end date loop
+    //         for(let j =0; j < months.length; j++){
+    //             if(j === endDate.getMonth()){
+    //                 setEndDateMonth(months[j])
+    //             }
+    //         }
+    //     }
+    //     return()=> unSubscripe()
+    // },[])
+// location.pathname === "/myFavourite"
+
 
 const startDate = new Date(starting)
 const [StartDateMonth, setStartDateMonth] = useState("")
@@ -76,6 +87,8 @@ const endDate = new Date(ending)
 const [endDateMonth, setEndDateMonth] = useState("")
 const endDateDay = endDate.getDate()
 const endDateYear = endDate.getFullYear()
+
+
     return(
         <>
             <div  
@@ -84,8 +97,8 @@ const endDateYear = endDate.getFullYear()
                 <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} / ${startDate.getMonth() + 1} / ${startDateYear} إلى يوم ${endDateDay} / ${endDate.getMonth() + 1} / ${endDateYear}`}</h4>}
                 <div className="image-box">
                     <FontAwesomeIcon 
-                    onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
-                    icon={faHeart} style={location.pathname === "/myFavourite" && {color: "#E20D0D"}}/>
+                    onClick={favHeart || item.favourites.includes(user.id) ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
+                    icon={faHeart} style={favHeart || item.favourites.includes(user.id) ? {color: "#E20D0D"} : {color: "fff"}}/>
                     <div className="apartmentBox-image-box">
                         <img src={item?.images && item?.images[0]} alt=""/>
                     </div>

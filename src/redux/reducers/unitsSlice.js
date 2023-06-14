@@ -30,13 +30,14 @@ const unitsSlice = createSlice({
         errorAddNew: ``
     },
     extraReducers: (builder)=>{
-        // get search units
+        // get search units || all units
         builder.addCase(getAllUnits.pending , (state, action)=>{
             state.searchUnitsLoading = true
         })
         builder.addCase(getAllUnits.fulfilled, (state, action)=>{
             state.searchUnitsLoading = false
             state.searchUnits = action.payload
+            state.units = action.payload
         })
         builder.addCase(getAllUnits.rejected, (state, action)=>{
             state.searchUnitsLoading = false

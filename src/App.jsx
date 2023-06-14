@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
@@ -28,13 +28,11 @@ import MyUnits from "./pages/my.units/MyUnits"
 import HouseReservations from "./pages/house.reservations/HouseReservations"
 
 
-
 function App() {
   const [email, setEmail] = useState("")
   const [registerMail, setRegisterMail] = useState("")
   const [code, setCode] = useState("")
   const [pageNumber, setPageNumber] = useState(1)
-
 
   const getMailFromSentCode = (mail)=>{
     setEmail(mail)

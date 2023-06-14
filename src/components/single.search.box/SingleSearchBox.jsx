@@ -10,17 +10,16 @@ import { addTMyFavourites, getMyFavourites, removeFromFavourites } from "../../r
 
 const SingleSearchBox = ({item}) => {
     const navigate = useNavigate()
+    const {user} = useSelector((state)=> state.authSlice)
     const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
     let location = useLocation();
 
     const handleAddToMyFavourites= (id)=>{
         dispatch(addTMyFavourites({id: id, token: token}))
-        dispatch(getMyFavourites(token))
     }
     const handleRemoveFromMyFavourites= (id)=>{
         dispatch(removeFromFavourites({id: id, token: token}))
-        dispatch(getMyFavourites(token))
     }
     return (
         <>
@@ -28,8 +27,8 @@ const SingleSearchBox = ({item}) => {
                 <div className="image-container">
                     <img src={item?.images ? item?.images[0] : ""} alt="" />
                     <FontAwesomeIcon 
-                    onClick={location.pathname === "/myFavourite" ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
-                    icon={faHeart} />
+                    onClick={item.favourites.includes(user.id)? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
+                    icon={faHeart} style={ item.favourites.includes(user.id)  ? {color: "#E20D0D"} : {color: "fff"}}/>
                 </div>
                 <div className="text-container">
                     <div className="text-top-side">

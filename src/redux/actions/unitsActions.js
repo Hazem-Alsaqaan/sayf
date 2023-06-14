@@ -221,7 +221,7 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
 })
 
 
-
+// add a new unit
 export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>{
     try{
         const formData = new FormData()
@@ -265,6 +265,8 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
     }
 })
 
+
+
 // get notifications data 
 export const getNotifications = createAsyncThunk("units/getNotifications", async(token)=>{
     try{
@@ -283,6 +285,10 @@ export const getNotifications = createAsyncThunk("units/getNotifications", async
         throw(err.response.data.errorMessage)
     }
 })
+
+
+
+
 
 // get units owned by user
 export const getUnitsOwnedByUser = createAsyncThunk("units/getUnitsOwndByyUser", async(token)=>{
