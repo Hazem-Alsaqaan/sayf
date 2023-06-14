@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,27 +9,61 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyBooking } from "../../redux/actions/unitsActions";
 import { logOut } from "../../redux/reducers/authSlice";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Profile =()=>{
     const dispatch = useDispatch()
-    const {user} = useSelector((state)=>state.authSlice)
+    const [profileRender, setProfileRender] = useState(false)
+    const [userProfile, setUserProfile] = useState({})
     const {token} = useSelector((state)=>state.authSlice)
     const {myBookings} = useSelector((state)=>state.unitsSlice)
+
     useEffect(()=>{
-        const cleaner =()=> dispatch(getMyBooking(token))
-        return()=> cleaner()
-    },[])
+        setProfileRender(true)
+        const cleanerGetUserProfile = async()=> {
+            dispatch(getMyBooking(token))
+            try{
+                const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/profile`, {
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setUserProfile(res.data)
+            }catch(err){
+                if(err.message === "Network Error"){
+                    toast.error("تأكد من اتصالك بالانترنت")
+                }else if(err.response.data.errorMessage){
+                    toast.error(err.response.data.errorMessage)
+                }
+                throw(err.response.data.errorMessage)
+            }
+        }
+        return()=> cleanerGetUserProfile()
+    },[profileRender])
 
     const handleLogOut =()=>{
         dispatch(logOut())
     }
     return(
         <>
+        <ToastContainer
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        />
             <WhiteHeader/>
             <section className="profile-body container">
                 <div className="profile-image">
-                    <img src={user?.photo ? user?.photo : `https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685201428/vectors/user_profile_g0jjum.png`} alt=""/>
-                    <h2>{user.username}</h2>
+                    <img src={userProfile?.photo ? userProfile?.photo : `https://res.cloudinary.com/dkhu7rt8n/image/upload/v1685201428/vectors/user_profile_g0jjum.png`} alt=""/>
+                    <h2>{userProfile.username}</h2>
                 </div>
                 <nav className="profile-nav">
                     <ul>

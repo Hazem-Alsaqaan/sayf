@@ -13,7 +13,6 @@ const ManageAccount = ()=>{
     const {user} = useSelector((state)=> state.authSlice)
     const [profilePhoto, setProfilePhoto] = useState("")
     const [profileUsername, SetProfileUsername] = useState("")
-    // const [profilePhone, setProfilePhone] = useState("")
     const [profileBirthDay, setProfileBirthDay] = useState("")
     const [profileAddress, setProfileAddress] = useState("")
     const handleUpdateProfileData = async(e)=>{
@@ -73,17 +72,9 @@ const ManageAccount = ()=>{
                             id="userUsername"
                             placeholder="إسم المستخدم"
                             type="text"
-                            required
+                            // required
                             onChange={(e)=>SetProfileUsername(e.target.value)}
                             />
-                        </div>
-                        <div>
-                            <label htmlFor="userEmail" >البريد الإلكتروني</label>
-                            <input
-                            id="userEmail"
-                            placeholder={user.email || user.phone}
-                            disabled
-                            type="email"/>
                         </div>
                         <div>
                             <label htmlFor="userBirthDay" >تاريخ الميلاد</label>
