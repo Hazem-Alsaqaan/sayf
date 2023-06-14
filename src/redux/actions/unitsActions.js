@@ -347,3 +347,24 @@ export const getUsersOpinion = createAsyncThunk("units/getUsersOpinion", async(i
         throw(err.response.data.errorMessage)
     }
 })
+
+
+
+// get profile page user date
+export const getUserProfileData = createAsyncThunk("units/getUserProfileData", async(token)=>{
+    try{
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/profile`, {
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return res.data
+    }catch(err){
+        if(err.message === "Network Error"){
+            toast.error("تأكد من اتصالك بالانترنت")
+        }else if(err.response.data.errorMessage){
+            toast.error(err.response.data.errorMessage)
+        }
+        throw(err.response.data.errorMessage)
+    }
+})

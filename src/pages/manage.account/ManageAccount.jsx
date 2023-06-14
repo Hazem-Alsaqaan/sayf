@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ManageAccount.css"
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {ToastContainer, toast} from "react-toastify"
 import { Link } from "react-router-dom";
+import { getUserProfileData } from "../../redux/actions/unitsActions";
 
 
 const ManageAccount = ()=>{
+    const {userProfile} = useSelector((state)=>state.unitsSlice)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        const cleanerUserProfileData = ()=>{
+            dispatch(getUserProfileData(token))
+        }
+        return()=> cleanerUserProfileData()
+    },[])
     const {token} = useSelector((state)=> state.authSlice)
     const {user} = useSelector((state)=> state.authSlice)
     const [profilePhoto, setProfilePhoto] = useState("")
     const [profileUsername, SetProfileUsername] = useState("")
     const [profileBirthDay, setProfileBirthDay] = useState("")
     const [profileAddress, setProfileAddress] = useState("")
+
     const handleUpdateProfileData = async(e)=>{
         e.preventDefault()
         const formData = new FormData()
@@ -70,7 +81,7 @@ const ManageAccount = ()=>{
                             <label htmlFor="userUsername" >إسم المستخدم</label>
                             <input
                             id="userUsername"
-                            placeholder="إسم المستخدم"
+                            placeholder={userProfile?.username}
                             type="text"
                             // required
                             onChange={(e)=>SetProfileUsername(e.target.value)}
@@ -80,7 +91,7 @@ const ManageAccount = ()=>{
                             <label htmlFor="userBirthDay" >تاريخ الميلاد</label>
                             <input
                             id="userBirthDay"
-                            placeholder="تاريخ الميلاد"
+                            placeholder={userProfile?.birthdate && userProfile.birthdate}
                             type="date"
                             onChange={(e)=>setProfileBirthDay(e.target.value)}
                             />
@@ -89,9 +100,10 @@ const ManageAccount = ()=>{
                             <label htmlFor="userAddress" >العنوان</label>
                             <input
                             id="userAddress"
-                            placeholder="العنوان"
+                            placeholder={userProfile?.address && userProfile?.address}
                             type="text"
-                            onChange={(e)=>setProfileAddress(e.target.value)}/>
+                            onChange={(e)=>setProfileAddress(e.target.value)}
+                            />
                         </div>
                         <Link to="/changePassword" className="change-password-link">تغيير كلمة المرور</Link>
                         <button>تعديل</button>

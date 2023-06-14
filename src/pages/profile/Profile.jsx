@@ -7,37 +7,22 @@ import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import "./Profile.css"
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyBooking } from "../../redux/actions/unitsActions";
+import { getMyBooking, getUserProfileData } from "../../redux/actions/unitsActions";
 import { logOut } from "../../redux/reducers/authSlice";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const Profile =()=>{
     const dispatch = useDispatch()
     const [profileRender, setProfileRender] = useState(false)
-    const [userProfile, setUserProfile] = useState({})
     const {token} = useSelector((state)=>state.authSlice)
+    const {userProfile} = useSelector((state)=>state.unitsSlice)
     const {myBookings} = useSelector((state)=>state.unitsSlice)
 
     useEffect(()=>{
         setProfileRender(true)
         const cleanerGetUserProfile = async()=> {
             dispatch(getMyBooking(token))
-            try{
-                const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/profile`, {
-                    headers:{
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                setUserProfile(res.data)
-            }catch(err){
-                if(err.message === "Network Error"){
-                    toast.error("تأكد من اتصالك بالانترنت")
-                }else if(err.response.data.errorMessage){
-                    toast.error(err.response.data.errorMessage)
-                }
-                throw(err.response.data.errorMessage)
-            }
+            dispatch(getUserProfileData(token))
         }
         return()=> cleanerGetUserProfile()
     },[profileRender])
