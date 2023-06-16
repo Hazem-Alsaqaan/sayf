@@ -8,6 +8,7 @@ import { getHouseReservations, getOneUnit } from "../../redux/actions/unitsActio
 import ApartmentBox from "../../components/apartment.box/ApartmentBox";
 
 const HouseReservations = ()=>{
+    const [houseReservationsRender, setHouseReservationsRender] = useState(false)
     const {unitId} =  useParams()
     const dispatch = useDispatch()
     const {houseReservations} = useSelector((state)=> state.unitsSlice)
@@ -15,12 +16,13 @@ const HouseReservations = ()=>{
     const {token} = useSelector((state)=> state.authSlice)
 
     useEffect(()=>{
+        setHouseReservationsRender(true)
         const cleanerHouseReservations = ()=>{
             dispatch(getHouseReservations({id: unitId, token: token}))
             dispatch(getOneUnit({id: unitId, token: token}))
         }
         return()=>cleanerHouseReservations()
-    },[])
+    },[houseReservationsRender])
 
     return(
         <>
