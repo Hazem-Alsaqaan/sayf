@@ -1,5 +1,5 @@
 import React, {memo, useEffect, useState} from "react";
-import {Link, useLocation} from "react-router-dom"
+import {Link, useLocation, useParams} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
 import {faHeart} from "@fortawesome/free-solid-svg-icons"
@@ -10,6 +10,7 @@ import {ToastContainer} from "react-toastify"
 
 
 const ApartmentBox = ({item, renderMyBookings, setRenderMyBookings, starting, ending, bookingItem, favRender, setFavRender})=>{
+    const {unitId} =  useParams()
     const {user} = useSelector((state)=> state.authSlice)
     const {token} = useSelector((state)=> state.authSlice)
     const dispatch = useDispatch()
@@ -96,9 +97,11 @@ const endDateYear = endDate.getFullYear()
                 {location.pathname === "/myBookings" &&
                 <h4 className="date-booking-title">{`تم الحجز من يوم ${startDateDay} / ${startDate.getMonth() + 1} / ${startDateYear} إلى يوم ${endDateDay} / ${endDate.getMonth() + 1} / ${endDateYear}`}</h4>}
                 <div className="image-box">
-                    <FontAwesomeIcon 
-                    onClick={favHeart || item.favourites.includes(user.id) ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
-                    icon={faHeart} style={favHeart || item.favourites.includes(user.id) ? {color: "#E20D0D"} : {color: "fff"}}/>
+                    {location.pathname !== `/myUnits/${unitId}`?
+                        <FontAwesomeIcon 
+                        onClick={favHeart || item.favourites.includes(user.id) ? ()=>handleRemoveFromMyFavourites(item?._id) : ()=>handleAddToMyFavourites(item?._id)}
+                        icon={faHeart} style={favHeart || item.favourites.includes(user.id) ? {color: "#E20D0D"} : {color: "fff"}}/>
+                        :""}
                     <div className="apartmentBox-image-box">
                         <img src={item?.images && item?.images[0]} alt=""/>
                     </div>
