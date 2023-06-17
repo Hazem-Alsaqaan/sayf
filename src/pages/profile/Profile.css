@@ -16,6 +16,7 @@
 .profile-body .profile-image h2{
     margin: 35px 0px;
     font-size: 44px;
+    text-align: center;
 }
 .profile-body .profile-nav li {
     display: flex;
@@ -44,7 +45,9 @@
 /* start media screen */
 
 @media(max-width: 600px){
-    
+    .profile-body .profile-image h2{
+        font-size: 35px;
+    }
     .profile-body .profile-nav li .left-side {
         font-size: 25px;
     }
