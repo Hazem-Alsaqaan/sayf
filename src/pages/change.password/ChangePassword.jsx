@@ -8,6 +8,7 @@ import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 
 const ChangePassword =()=>{
+    const {userProfile} = useSelector((state)=>state.unitsSlice)
     const {token} = useSelector((state)=> state.authSlice)
     const [usernameChangePass, setUsernameChangePass] = useState("")
     const [oldPassword, setOldPassword] = useState("")
@@ -63,7 +64,7 @@ const ChangePassword =()=>{
                             <label htmlFor="usernameChangePass">اسم المستخدم</label>
                             <input
                             id="usernameChangePass"
-                            placeholder="اسم المستخدم"
+                            placeholder={userProfile.username}
                             type="text"
                             onChange={(e)=>setUsernameChangePass(e.target.value)}
                             value={usernameChangePass}

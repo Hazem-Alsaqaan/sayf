@@ -13,7 +13,7 @@ const RestPassword =({email, code})=>{
         try{
             const res = await axios.post(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/auth/reset-password`,
             {
-                phone: email,
+                phone: `+2${email}`,
                 code: code,
                 password: restPassword
             })
@@ -22,7 +22,6 @@ const RestPassword =({email, code})=>{
                 navigate("/login")
             }, 1500);
         }catch(err){
-            console.log(err)
             if(err.message === "Network Error"){
                 toast.error("تأكد من اتصالك بالانترنت")
             }else if(err.response.data.errorMessage){
