@@ -5,7 +5,6 @@ import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {ToastContainer, toast} from "react-toastify"
-import { Link } from "react-router-dom";
 import { getUserProfileData } from "../../redux/actions/unitsActions";
 
 
@@ -105,7 +104,6 @@ const ManageAccount = ()=>{
                             onChange={(e)=>setProfileAddress(e.target.value)}
                             />
                         </div>
-                        <Link to="/changePassword" className="change-password-link">تغيير كلمة المرور</Link>
                         <button>تعديل</button>
                 </form>
             </section>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import WhiteHeader from "../../components/white.header/WhiteHeader";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faGlobe, faHome, faPowerOff, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faGlobe, faHome, faLock, faPowerOff, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import "./Profile.css"
 import { Link } from "react-router-dom";
@@ -56,6 +56,13 @@ const Profile =()=>{
                             <div className="text-icon">
                                 <FontAwesomeIcon icon={faUser}/>
                                 <Link to="/manageAccount">إدارة الحساب</Link>
+                            </div>
+                            <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
+                        </li>
+                        <li>
+                            <div className="text-icon">
+                                <img src="https://res.cloudinary.com/dkhu7rt8n/image/upload/v1687003506/sayf/622405_lock_security_password_protect_safety_icon_1_xutwon.svg" alt=""/>
+                                <Link to="/changePassword">تغيير كلمه المرور</Link>
                             </div>
                             <FontAwesomeIcon className="left-side" icon={faChevronLeft}/>
                         </li>
