@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 // import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,12 +6,35 @@ import {ToastContainer, toast} from "react-toastify"
 
 const VerifyCode =({registerMail})=>{
     const navigate = useNavigate()
-    const[firstNum, setFirstNum] = useState(0)
-    const[secondNum, setSecondNum] = useState(0)
-    const[thirdNum, setThirdNum] = useState(0)
-    const[fourdNum, setFourdNum] = useState(0)
-    const[fiveNum, setFiveNum] = useState(0)
-    const[sixNum, setSixNum] = useState(0)
+    const[firstNum, setFirstNum] = useState("")
+    const[secondNum, setSecondNum] = useState("")
+    const[thirdNum, setThirdNum] = useState("")
+    const[fourdNum, setFourdNum] = useState("")
+    const[fiveNum, setFiveNum] = useState("")
+    const[sixNum, setSixNum] = useState("")
+
+    const firstRef = useRef()
+    const secondRef = useRef()
+    const thirdRef = useRef()
+    const fourdRef = useRef()
+    const fiveRef = useRef()
+    const sixRef = useRef()
+
+    if(firstNum !== ""){
+        secondRef.current.select()
+    }
+    if(secondNum !== ""){
+        thirdRef.current.select()
+    }
+    if(thirdNum !== ""){
+        fourdRef.current.select()
+    }
+    if(fourdNum !== ""){
+        fiveRef.current.select()
+    }
+    if(fiveNum !== ""){
+        sixRef.current.select()
+    }
 
     const handleVerifyCode = async(e)=>{
         e.preventDefault()
@@ -59,6 +82,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setFirstNum(e.target.value)}
                                 value={firstNum}
+                                ref={firstRef}
                                 />
                                 <input
                                 type="tel"
@@ -66,6 +90,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setSecondNum(e.target.value)}
                                 value={secondNum}
+                                ref={secondRef}
                                 />
                                 <input
                                 type="tel"
@@ -73,6 +98,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setThirdNum(e.target.value)}
                                 value={thirdNum}
+                                ref={thirdRef}
                                 />
                                 <input
                                 type="tel"
@@ -80,6 +106,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setFourdNum(e.target.value)}
                                 value={fourdNum}
+                                ref={fourdRef}
                                 />
                                 <input
                                 type="tel"
@@ -87,6 +114,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setFiveNum(e.target.value)}
                                 value={fiveNum}
+                                ref={fiveRef}
                                 />
                                 <input
                                 type="tel"
@@ -94,6 +122,7 @@ const VerifyCode =({registerMail})=>{
                                 required
                                 onChange={(e)=>setSixNum(e.target.value)}
                                 value={sixNum}
+                                ref={sixRef}
                                 />
                             </div>
                             {/* time */}

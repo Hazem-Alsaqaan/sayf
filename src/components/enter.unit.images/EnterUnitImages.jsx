@@ -19,6 +19,7 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
     const handleUploadUnitsImgs = (e)=>{
         setEnterImages({...enterImages, unitImages: e.target.files})
     }
+
     return(
         <>
             <section className="enter-unit-images-contract single-section">
@@ -36,7 +37,6 @@ const EnterUnitImages = ({enterImages, setEnterImages})=>{
                             onChange={(e)=>handleUploadUnitsImgs(e)}
                             />
                         </div>
-                        
                     </section>
                     <section className="unit-contract-image">
                         <h5>2- ادخل صورة لعقد الشقه</h5>
