@@ -26,9 +26,22 @@ import TirmsOfUse from "./pages/tirms.of.use/TirmsOfUse"
 import PrivacyPolicy from "./pages/privacy.policy/PrivacyPolicy"
 const MyUnits = React.lazy(()=>import("./pages/my.units/MyUnits"))
 import HouseReservations from "./pages/house.reservations/HouseReservations"
+import { RotatingLines } from "react-loader-spinner"
+
 
 
 function App() {
+  // spinner loader pages to add fallback
+  const mainPagesLoader = <div className="main-pages-loading-spinner">
+                            <RotatingLines
+                              strokeColor="#5500A1"
+                              strokeWidth="5"
+                              animationDuration="0.75"
+                              width="100"
+                              visible={true}
+                              />
+                          </div>
+  // ################################################################### //
   const [email, setEmail] = useState("")
   const [registerMail, setRegisterMail] = useState("")
   const [code, setCode] = useState("")
@@ -48,7 +61,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<NotFound/>}/>
-        <Route path="/" element={<React.Suspense fallback="جاري التحميل..."><Home pageNumber = {pageNumber} setPageNumber = {setPageNumber}/></React.Suspense>}>
+        <Route path="/" element={<React.Suspense fallback={mainPagesLoader}><Home pageNumber = {pageNumber} setPageNumber = {setPageNumber}/></React.Suspense>}>
           <Route index element={<HomeContent/>}/>
           <Route path="search" element={<SearchResult pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>}/>
           <Route path="home" element={<HomeContent/>}/>
@@ -57,9 +70,9 @@ function App() {
         <Route path="/privacy-policy" element={<RequireAuth><PrivacyPolicy/></RequireAuth>}/>
         <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
         <Route path="/manageAccount" element={<RequireAuth><ManageAccount/></RequireAuth>}/>
-        <Route path="/myFavourite" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyFavourite/></React.Suspense></RequireAuth>}/>
-        <Route path="/myBookings" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyBookings/></React.Suspense></RequireAuth>}/>
-        <Route path="/showYourApartment" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><ShowYourApartment/></React.Suspense></RequireAuth>}/>
+        <Route path="/myFavourite" element={<RequireAuth><React.Suspense fallback={mainPagesLoader}><MyFavourite/></React.Suspense></RequireAuth>}/>
+        <Route path="/myBookings" element={<RequireAuth><React.Suspense fallback={mainPagesLoader}><MyBookings/></React.Suspense></RequireAuth>}/>
+        <Route path="/showYourApartment" element={<RequireAuth><React.Suspense fallback={mainPagesLoader}><ShowYourApartment/></React.Suspense></RequireAuth>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register getEmailFromRegister ={getEmailFromRegister}/>}/>
         <Route path="/verifyCode" element={<VerifyCode registerMail ={registerMail}/>}/>
@@ -69,12 +82,12 @@ function App() {
         <Route path="/changePassword" element={<RequireAuth><ChangePassword/></RequireAuth>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId/addRating" element={<RequireAuth><AddRating /></RequireAuth>}/>
-        <Route path="/showUnit/:unitId" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><ShowUnit/></React.Suspense></RequireAuth>}>
+        <Route path="/showUnit/:unitId" element={<RequireAuth><React.Suspense fallback={mainPagesLoader}><ShowUnit/></React.Suspense></RequireAuth>}>
           <Route index element={<UnitSwiperImages/>}/>
           <Route path="images" element={<UnitSwiperImages/>}/>
           <Route path="location" element={<UnitLocation/>}/>
         </Route>
-        <Route path="/myUnits" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyUnits/></React.Suspense></RequireAuth>}/>
+        <Route path="/myUnits" element={<RequireAuth><React.Suspense fallback={mainPagesLoader}><MyUnits/></React.Suspense></RequireAuth>}/>
         <Route path="/myUnits/:unitId" element={<RequireAuth><HouseReservations/></RequireAuth>}/>
       </Routes>
     </div>

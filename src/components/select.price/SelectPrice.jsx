@@ -28,7 +28,7 @@ const SelectPrice =()=>{
                                 <input
                                 type="number"
                                 onChange={(e)=> dispatch(setMinRang(e.target.value))}
-                                value={minRang}
+                                value={minRang >= 0 && minRang}
                                 />
                             </div>
                             <div>
@@ -36,7 +36,7 @@ const SelectPrice =()=>{
                                 <input
                                 type="number"
                                 onChange={(e)=> dispatch(setMaxRang(e.target.value))}
-                                value={maxRang}
+                                value={maxRang >= 0 && maxRang}
                                 />
                             </div>
                             <div 
