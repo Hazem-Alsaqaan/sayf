@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
@@ -8,13 +8,10 @@ const RequireAuth = ({children})=>{
     const location = useLocation()
 
     if(!user){
-        return <Navigate to="/login" state={{path: location.pathname}}/>
+        return <Navigate to="/login" state={{path: location.pathname}} replace={true}/>
     }
-    return(
-        <>
-        {children}
-        </>
-    )
+    return children
+    
 }
 
-export default RequireAuth
+export default memo(RequireAuth)

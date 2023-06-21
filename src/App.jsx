@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import {Routes, Route} from "react-router-dom"
 import Login from "./pages/login/Login"
 import Register from "./pages/register/Register"
-import Home from "./pages/home/Home"
-import MyBookings from "./pages/my.bookings/MyBookings"
-import ShowYourApartment from "./pages/show.your.apartment/ShowYourApartment"
-import MyFavourite from "./pages/my.favourite/MyFavourite"
-import ShowUnit from "./pages/show.unit/ShowUnit"
+const Home = React.lazy(()=> import("./pages/home/Home"))
+const MyBookings = React.lazy(()=> import("./pages/my.bookings/MyBookings"))
+const ShowYourApartment = React.lazy(()=> import("./pages/show.your.apartment/ShowYourApartment"))
+const MyFavourite = React.lazy(()=>import("./pages/my.favourite/MyFavourite"))
+const ShowUnit = React.lazy(()=>import("./pages/show.unit/ShowUnit"))
 import UnitSwiperImages from "./components/unit.swiper.images/UnitSwiperImages"
 import UnitLocation from "./components/unit.location/UnitLocation"
 import Payment from "./pages/payment/Payment"
@@ -24,7 +24,7 @@ import ChangePassword from "./pages/change.password/ChangePassword"
 import RestPassword from "./pages/rest.password/RestPassword"
 import TirmsOfUse from "./pages/tirms.of.use/TirmsOfUse"
 import PrivacyPolicy from "./pages/privacy.policy/PrivacyPolicy"
-import MyUnits from "./pages/my.units/MyUnits"
+const MyUnits = React.lazy(()=>import("./pages/my.units/MyUnits"))
 import HouseReservations from "./pages/house.reservations/HouseReservations"
 
 
@@ -48,18 +48,18 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<NotFound/>}/>
-        <Route path="/" element={<Home pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>}>
+        <Route path="/" element={<React.Suspense fallback="جاري التحميل..."><Home pageNumber = {pageNumber} setPageNumber = {setPageNumber}/></React.Suspense>}>
           <Route index element={<HomeContent/>}/>
           <Route path="search" element={<SearchResult pageNumber = {pageNumber} setPageNumber = {setPageNumber}/>}/>
           <Route path="home" element={<HomeContent/>}/>
         </Route>
-        <Route path="/tirms-of-use" element={<TirmsOfUse/>}/>
-        <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+        <Route path="/tirms-of-use" element={<RequireAuth><TirmsOfUse/></RequireAuth>}/>
+        <Route path="/privacy-policy" element={<RequireAuth><PrivacyPolicy/></RequireAuth>}/>
         <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>}/>
         <Route path="/manageAccount" element={<RequireAuth><ManageAccount/></RequireAuth>}/>
-        <Route path="/myFavourite" element={<RequireAuth><MyFavourite/></RequireAuth>}/>
-        <Route path="/myBookings" element={<RequireAuth><MyBookings/></RequireAuth>}/>
-        <Route path="/showYourApartment" element={<RequireAuth><ShowYourApartment/></RequireAuth>}/>
+        <Route path="/myFavourite" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyFavourite/></React.Suspense></RequireAuth>}/>
+        <Route path="/myBookings" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyBookings/></React.Suspense></RequireAuth>}/>
+        <Route path="/showYourApartment" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><ShowYourApartment/></React.Suspense></RequireAuth>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register getEmailFromRegister ={getEmailFromRegister}/>}/>
         <Route path="/verifyCode" element={<VerifyCode registerMail ={registerMail}/>}/>
@@ -69,12 +69,12 @@ function App() {
         <Route path="/changePassword" element={<RequireAuth><ChangePassword/></RequireAuth>}/>
         <Route path="/showUnit/:unitId/payment" element={<RequireAuth><Payment /></RequireAuth>}/>
         <Route path="/showUnit/:unitId/addRating" element={<RequireAuth><AddRating /></RequireAuth>}/>
-        <Route path="/showUnit/:unitId" element={<RequireAuth><ShowUnit/></RequireAuth>}>
+        <Route path="/showUnit/:unitId" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><ShowUnit/></React.Suspense></RequireAuth>}>
           <Route index element={<UnitSwiperImages/>}/>
           <Route path="images" element={<UnitSwiperImages/>}/>
           <Route path="location" element={<UnitLocation/>}/>
         </Route>
-        <Route path="/myUnits" element={<RequireAuth><MyUnits/></RequireAuth>}/>
+        <Route path="/myUnits" element={<RequireAuth><React.Suspense fallback="جاري التحميل..."><MyUnits/></React.Suspense></RequireAuth>}/>
         <Route path="/myUnits/:unitId" element={<RequireAuth><HouseReservations/></RequireAuth>}/>
       </Routes>
     </div>

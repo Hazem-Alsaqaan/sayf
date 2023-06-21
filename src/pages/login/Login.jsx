@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import  {Link, useLocation, useNavigate} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faFacebook, faGooglePlus, faSquareTwitter} from "@fortawesome/free-brands-svg-icons"
+import { faGooglePlus} from "@fortawesome/free-brands-svg-icons"
 import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
 import "./Login.css"
@@ -14,7 +14,7 @@ const Login =()=>{
     const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
-    const redirectPath =  "/" || location.state?.path
+    const redirectPath = location.state?.path || "/"
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const {loginError} = useSelector((state)=> state.authSlice)
@@ -32,7 +32,12 @@ const handleGoogleLogin = useGoogleLogin ({
                 dispatch(loginFulfilled(res.data))
                 navigate(redirectPath, {replace: true})
             }catch(err){
-                console.log(err)
+                // console.log(err)
+                if(err.message === "Network Error"){
+                    toast.error("تأكد من اتصالك بالانترنت")
+                }else if (err.message){
+                    toast.error(err.message)
+                }
             }
         },
     
@@ -95,28 +100,22 @@ const handleLogin = async(e)=>{
                         </section>
                         <section className="auth-form">
                             <form onSubmit={(e)=>handleLogin(e)}>
-                                <label htmlFor="email">رقم الموبايل</label>
+                                <label htmlFor="email-login">رقم الموبايل</label>
                                 <div className="mobile-number">
                                     <input
-                                        id="email"
-                                        name="email" 
+                                        id="email-login"
+                                        name="email-login" 
                                         type="text"
                                         onChange={(e)=>setEmail(e.target.value)}
                                         value={email}
                                         className="user-mobile-number"
                                         required
                                         />
-                                    <input
-                                    className="country-key"
-                                    type="text"
-                                    value="+ 2"
-                                    disabled
-                                    />
                                 </div>
-                                <label htmlFor="password">كلمة المرور</label>
+                                <label htmlFor="password-login">كلمة المرور</label>
                                 <input
-                                id="password"
-                                name="password"  
+                                id="password-login"
+                                name="password-login"  
                                 type="password"
                                 onChange={(e)=>setPassword(e.target.value)}
                                 value={password}
@@ -159,4 +158,4 @@ const handleLogin = async(e)=>{
         </>
     )
 }
-export default Login
+export default memo(Login)

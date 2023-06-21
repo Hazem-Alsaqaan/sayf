@@ -7,7 +7,8 @@ export const getAllUnits = createAsyncThunk("units/getAllUnits", async(item)=>{
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses?city=${item.city}&minimum_price=${item.minimum_price}&highest_price=${item.highest_price}&persons=${item.persons}&rooms=${item.rooms}&children=${item.children}&page=${item.page}&limit=8&allowPagination=true`, {
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data.docs
@@ -26,7 +27,8 @@ export const getUnitsSearchDescription = createAsyncThunk("units/getUnitsSearchD
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/search-all?mostRated=${item.mostRated}&minmumRated=${item.minmumRated}&heighestPrice=${item.heighestPrice}&minimumPrice=${item.minimumPrice}&popularity=${item.popularity}&page=${item.page}&limit=8&allowPagination=true`,{
             headers:{
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data.docs
@@ -56,7 +58,8 @@ export const getMyFavourites = createAsyncThunk("units/getMyFavourites", async(t
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/myFavourites`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -71,7 +74,8 @@ export const addTMyFavourites = createAsyncThunk("units/addTMyFavourites", async
         {id: item.id},
         {
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         }
         )
@@ -93,7 +97,8 @@ export const removeFromFavourites = createAsyncThunk("units/removeFromFavourites
         {id: item.id},
         {
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         toast.success("تم الحذف من المفضلة بنجاح")
@@ -124,7 +129,8 @@ export const getMyBooking = createAsyncThunk("units/getMyBooking", async(token)=
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/my-reservations`,
         {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -146,7 +152,8 @@ export const addToMyBookings = createAsyncThunk("units/addToMyBookings", async(i
         }
         ,{
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         toast.success("تم الحجز بنجاح")
@@ -185,7 +192,10 @@ export const removeFromBookings = createAsyncThunk("units/removeFromBookings", a
 // get most units bookings
 export const getMostBookings = createAsyncThunk("units/getMostBookings", async()=>{
     try{
-        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/most-reserved`)
+        const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/most-reserved`,
+        {headers:{
+                "Content-Type": "application/json"
+        }})
         const mapData =  res.data.map((item)=> item._id.house).map((item)=> item) 
         const finalResult = mapData.filter((item)=> item.length > 0)
         return finalResult
@@ -211,7 +221,8 @@ export const getOneUnit = createAsyncThunk("units/getOneUnit", async(item)=>{
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/${item.id}`, {
             headers: {
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -250,7 +261,7 @@ export const addNewUnit = createAsyncThunk("units/addNewUnit", async(unitInfo)=>
         {
             headers: {
                 "Authorization": `Bearer ${unitInfo.token}`,
-                "Content-Type": "multipart/form-data;",
+                "Content-Type": "multipart/form-data",
             }
         })
         toast.success("تم بنجاح")
@@ -272,7 +283,8 @@ export const getNotifications = createAsyncThunk("units/getNotifications", async
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/my-notifications`,{
             headers:{
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -295,7 +307,8 @@ export const getUnitsOwnedByUser = createAsyncThunk("units/getUnitsOwndByyUser",
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/user-houses`, {
             headers:{
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -314,7 +327,8 @@ export const getHouseReservations = createAsyncThunk("units/getHouseReservations
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/reservations/house-reservations/${item.id}`,{
             headers:{
-                Authorization: `Bearer ${item.token}`
+                Authorization: `Bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data
@@ -334,7 +348,8 @@ export const getUsersOpinion = createAsyncThunk("units/getUsersOpinion", async(i
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/houses/rates/${item.id}?page=1&limit=8&allowPagination=true`,
         {
             headers: {
-                Authorization: `bearer ${item.token}`
+                Authorization: `bearer ${item.token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data.docs
@@ -355,7 +370,8 @@ export const getUserProfileData = createAsyncThunk("units/getUserProfileData", a
     try{
         const res = await axios.get(`https://nestjs-now-saif3-osamakamelmohamed6-gmailcom.vercel.app/users/profile`, {
             headers:{
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         })
         return res.data

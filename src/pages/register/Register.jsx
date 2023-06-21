@@ -119,12 +119,6 @@ const handleGoogleLogin = useGoogleLogin ({
                                     onChange={(e)=>setEmail(e.target.value)}
                                     value={email}
                                         />
-                                    <input
-                                        className="country-key"
-                                        type="text"
-                                        value="+ 2"
-                                        disabled
-                                        />
                                 </div>
                                 <label htmlFor="password">كلمة المرور</label>
                                 <input
