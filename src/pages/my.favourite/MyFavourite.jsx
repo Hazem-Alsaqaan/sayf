@@ -6,6 +6,7 @@ import ApartmentBox from "../../components/apartment.box/ApartmentBox";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyFavourites } from "../../redux/actions/unitsActions";
 import {RotatingLines} from "react-loader-spinner"
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -28,6 +29,11 @@ const MyFavourite = ()=>{
 
     return(
         <>
+        <Helmet>
+            <title>صيـف | مفضلتي </title>
+            <meta name="description" content=" شقة للإيجار. توافر جيد وأسعار رائعة لإيجار الشقق. احجز الشقة المناسبة ،اعرض شقتك للايجار ، حدد موقعك ، احجز اونلاين واختر أفضل العروض لإقامتك."/>
+            <meta name="keywords" content="سكن، إقامة, فندق, الفنادق, عروض خاصة، شقق مصيفية ، أسعار مغرية، عطل نهاية الأسبوع، قضاء العطل في المدينة، صفقات, اقتصادي، رخيص، حسم، توفير"/>
+        </Helmet>
             <div className="favourite">
                 <section className="favourite-page-landing">
                     <Header/>

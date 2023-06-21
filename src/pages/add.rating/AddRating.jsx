@@ -11,6 +11,7 @@ import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import Footer from "../../components/footer/Footer"
+import { Helmet } from "react-helmet-async";
 
 const AddRating = ()=>{
     const [cleanPlace, setCleanPlace] = useState(0)
@@ -68,6 +69,11 @@ const handleSubmitRating = async()=>{
 
     return(
         <>
+        <Helmet>
+            <title>صيـف |  اضف تقييم</title>
+            <meta name="description" content=" شقة للإيجار. توافر جيد وأسعار رائعة لإيجار الشقق. احجز الشقة المناسبة ،اعرض شقتك للايجار ، حدد موقعك ، احجز اونلاين واختر أفضل العروض لإقامتك."/>
+            <meta name="keywords" content="سكن، إقامة, فندق, الفنادق, عروض خاصة، شقق مصيفية ، أسعار مغرية، عطل نهاية الأسبوع، قضاء العطل في المدينة، صفقات, اقتصادي، رخيص، حسم، توفير"/>
+        </Helmet>
         <div className="add-rating">
             <WhiteHeader/>
             <div className="add-rating-body container">

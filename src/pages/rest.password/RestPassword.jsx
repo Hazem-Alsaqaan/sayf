@@ -3,6 +3,7 @@ import "./RestPassword.css"
 import axios from "axios";
 import {ToastContainer, toast} from "react-toastify"
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const RestPassword =({email, code})=>{
     const [restPassword, setRestPassword] = useState("")
@@ -32,6 +33,11 @@ const RestPassword =({email, code})=>{
     }
     return(
         <>
+        <Helmet>
+            <title>صيـف | إعادة كلمة المرور </title>
+            <meta name="description" content=" شقة للإيجار. توافر جيد وأسعار رائعة لإيجار الشقق. احجز الشقة المناسبة ،اعرض شقتك للايجار ، حدد موقعك ، احجز اونلاين واختر أفضل العروض لإقامتك."/>
+            <meta name="keywords" content="سكن، إقامة, فندق, الفنادق, عروض خاصة، شقق مصيفية ، أسعار مغرية، عطل نهاية الأسبوع، قضاء العطل في المدينة، صفقات, اقتصادي، رخيص، حسم، توفير"/>
+        </Helmet>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

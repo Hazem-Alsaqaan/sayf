@@ -3,6 +3,7 @@ import "./ConfirmCodeToRestPass.css"
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify"
+import { Helmet } from "react-helmet-async";
 
 const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
     const {user} = useSelector((state)=> state.authSlice)
@@ -48,6 +49,11 @@ const ConfirmCodeToRestPass =({email, getCodeFromConfirmCode})=>{
     },[])
     return(
         <>
+        <Helmet>
+            <title>صيـف | الرمز التأكيدي </title>
+            <meta name="description" content=" شقة للإيجار. توافر جيد وأسعار رائعة لإيجار الشقق. احجز الشقة المناسبة ،اعرض شقتك للايجار ، حدد موقعك ، احجز اونلاين واختر أفضل العروض لإقامتك."/>
+            <meta name="keywords" content="سكن، إقامة, فندق, الفنادق, عروض خاصة، شقق مصيفية ، أسعار مغرية، عطل نهاية الأسبوع، قضاء العطل في المدينة، صفقات, اقتصادي، رخيص، حسم، توفير"/>
+        </Helmet>
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

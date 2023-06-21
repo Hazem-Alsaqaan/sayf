@@ -10,22 +10,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import {GoogleOAuthProvider} from "@react-oauth/google"
 import {loadStripe} from "@stripe/stripe-js"
 import {Elements} from "@stripe/react-stripe-js"
-
+import {HelmetProvider } from 'react-helmet-async';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLISH_ABLE_KEY)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Elements stripe={stripePromise}>
-        <BrowserRouter>
-          <GoogleOAuthProvider
-          clientId= {import.meta.env.VITE_CLIENT_ID}>
-                  <App />
-          </GoogleOAuthProvider>
-        </BrowserRouter>
-      </Elements>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <Elements stripe={stripePromise}>
+          <BrowserRouter>
+            <GoogleOAuthProvider
+            clientId= {import.meta.env.VITE_CLIENT_ID}>
+                    <App />
+            </GoogleOAuthProvider>
+          </BrowserRouter>
+        </Elements>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>,
 )

@@ -16,8 +16,6 @@ const SearchData = ({pageNumber, setPageNumber})=>{
     const {roomsInSearch} = useSelector((state)=>state.searchDataSlice)
     const {minRang} = useSelector((state)=>state.searchDataSlice)
     const {maxRang} = useSelector((state)=>state.searchDataSlice)
-// const[startDate, setStartDate] = useState("")
-// const[endDate, setEndDate] = useState("")
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -57,12 +55,10 @@ const SearchData = ({pageNumber, setPageNumber})=>{
                             <input
                             type="date"
                             placeholder="تاريخ الوصول"
-                            // onChange={(e)=>setStartDate(e.target.value)}
                             />
                             <input
                             type="date"
                             placeholder="تاريخ المغادرة"
-                            // onChange={(e)=>setEndDate(e.target.value)}
                             />
                             <SelectPrice/>
                             <button 
