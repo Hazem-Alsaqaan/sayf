@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useState} from "react";
 import {Link, useLocation, useParams} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faLocationDot, faStar} from "@fortawesome/free-solid-svg-icons"
