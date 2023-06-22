@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import {BrowserRouter} from "react-router-dom"
+import {BrowserRouter, HashRouter} from "react-router-dom"
 import {Provider} from "react-redux"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -20,12 +20,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider>
       <Provider store={store}>
         <Elements stripe={stripePromise}>
-          <BrowserRouter>
-            <GoogleOAuthProvider
-            clientId= {import.meta.env.VITE_CLIENT_ID}>
-                    <App />
-            </GoogleOAuthProvider>
-          </BrowserRouter>
+          {/* <BrowserRouter> */}
+            <HashRouter basename='/'>
+              <GoogleOAuthProvider
+              clientId= {import.meta.env.VITE_CLIENT_ID}>
+                      <App />
+              </GoogleOAuthProvider>
+            </HashRouter>
+          {/* </BrowserRouter> */}
         </Elements>
       </Provider>
     </HelmetProvider>
