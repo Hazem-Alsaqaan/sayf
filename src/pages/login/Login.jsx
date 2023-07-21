@@ -127,10 +127,10 @@ const handleLogin = async(e)=>{
                                 value={password}
                                 required
                                 />
-                                <Link 
+                                {/* <Link 
                                 className="forget-password"
                                 to="/sentCode"
-                                >نسيت كلمة المرور؟</Link>
+                                >نسيت كلمة المرور؟</Link> */}
                                 <button
                                 type="submit"
                                 >{loginLoading ? 
